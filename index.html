@@ -21,16 +21,17 @@
             background: linear-gradient(120deg, #1e3c72, #2a5298);
             color: white;
             text-align: center;
+            flex-direction: column;
             overflow: hidden;
+            padding: 20px;
         }
 
         .container {
             max-width: 500px;
-            padding: 20px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
@@ -38,15 +39,16 @@
         p {
             font-size: 1.2rem;
             margin-bottom: 20px;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .countdown {
             display: flex;
             justify-content: space-around;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .countdown div {
@@ -55,6 +57,8 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             text-align: center;
+            margin: 10px;
+            min-width: 70px;
         }
 
         .countdown span {
@@ -79,19 +83,36 @@
             color: #f1c40f;
         }
 
-        .wave {
+        /* CSS Waves */
+        .waves {
             position: absolute;
-            width: 100%;
-            height: 100px;
             bottom: 0;
             left: 0;
-            background: url('https://i.imgur.com/wK6zGfY.png') repeat-x;
-            animation: wave 10s linear infinite;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #ffffff30, transparent);
+            animation: wave-animation 5s infinite linear;
         }
 
-        @keyframes wave {
-            0% { background-position: 0 0; }
-            100% { background-position: 1000px 0; }
+        @keyframes wave-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .countdown {
+                font-size: 1.5rem;
+            }
+            .countdown div {
+                padding: 10px 15px;
+            }
+            .social-icons a {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -116,7 +137,7 @@
         </div>
     </div>
 
-    <div class="wave"></div>
+    <div class="waves"></div>
 
     <script>
         function countdownTimer() {
