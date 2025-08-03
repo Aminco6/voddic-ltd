@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown div {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            text-align: center;
+            margin: 10px;
+            min-width: 70px;
+        }
+
+        .countdown span {
+            display: block;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #f1c40f;
+        }
+
+        /* CSS Waves */
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #ffffff30, transparent);
+            animation: wave-animation 5s infinite linear;
+        }
+
+        @keyframes wave-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .countdown {
+                font-size: 1.5rem;
+            }
+            .countdown div {
+                padding: 10px 15px;
+            }
+            .social-icons a {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Coming Soon</h1>
+        <p>We're working hard to upgrade our services in order to serve you better! Stay tuned.</p>
+
+        <div class="countdown">
+            <div><span id="days">30</span> Days</div>
+            <div><span id="hours">00</span> Hours</div>
+            <div><span id="minutes">00</span> Minutes</div>
+            <div><span id="seconds">00</span> Seconds</div>
+        </div>
+
+        <div class="social-icons">
+             <a href="https://twitter.com/voddicltd" class="fab fa-twitter" target="_blank"></a> 
+             <a href="https://discord.gg/eA4hFYaT" class="fab fa-discord" target="_blank"></a> 
+             <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+             <a href="https://wa.me/08139957111" class="fab fa-whatsapp" target="_blank"></a>
+        </div>
+    </div>
+
+    <div class="waves"></div>
+
+    <script>
+        function countdownTimer() {
+            const now = new Date().getTime();
+            const futureDate = now + (30 * 24 * 60 * 60 * 1000); // 30 days from now
+            
+            function updateTimer() {
+                const currentTime = new Date().getTime();
+                const timeLeft = futureDate - currentTime;
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours < 10 ? "0" + hours : hours;
+                document.getElementById('minutes').textContent = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById('seconds').textContent = seconds < 10 ? "0" + seconds : seconds;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.querySelector(".countdown").innerHTML = "<h2>We're Live Now!</h2>";
+                }
+            }
+
+            updateTimer();
+            const timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        countdownTimer();
+    </script>
+
+</body>
+</html>
