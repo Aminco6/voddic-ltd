@@ -1,0 +1,15 @@
+<script>
+async function pingESP() {
+  try {
+    const res = await fetch("http://192.168.4.1/ping");
+    document.getElementById("status").innerText = "ESP Connected ✅";
+  } catch {
+    document.getElementById("status").innerText =
+      "Connect to ESP WiFi";
+  }
+}
+
+setInterval(pingESP, 3000);
+</script>
+
+<h2 id="status">Checking ESP...</h2>
