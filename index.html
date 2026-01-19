@@ -2031,6 +2031,45 @@
 
     <!-- template js -->
     <script src="assets/js/script.js"></script>
+
+
+
+   <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js");
+}
+</script>
+
+
+<button id="installBtn" style="display:none;">
+  📲 Download ESP App
+</button>
+
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "inline-block";
+});
+
+installBtn.addEventListener("click", async () => {
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.style.display = "none";
+});
+</script>
+
+
+
+
+    
+
+
+    
 </body>
 
 </html>
