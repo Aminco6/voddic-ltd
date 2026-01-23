@@ -2036,7 +2036,23 @@
 
 
 
+<script>
 
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src; // Swap placeholder with real image
+      observer.unobserve(img);
+    }
+  });
+}, {
+  rootMargin: "200px 0px" // Start loading 200px before it's visible
+});
+
+
+    
+</script>
 
 
 
