@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product HTML Generator</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .container { display: flex; gap: 30px; }
+        .left { flex: 1; }
+        .right { flex: 1; background: #f5f5f5; padding: 20px; border-radius: 10px; }
+        textarea { width: 100%; height: 300px; padding: 10px; font-family: monospace; }
+        button { padding: 10px 20px; margin: 5px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .preview { background: white; padding: 20px; border: 1px solid #ddd; }
+        .product-item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+        .json-input { height: 400px; }
+        .instructions { background: #e8f4ff; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🛍️ Product HTML Generator</h1>
+    <p>Paste your imported products JSON to generate HTML for your static site</p>
+    
+    <div class="container">
+        <div class="left">
+            <h3>Step 1: Paste Products JSON</h3>
+            <textarea id="jsonInput" class="json-input" placeholder='Paste products array from exported JSON...'></textarea>
+            
+            <div class="instructions">
+                <strong>How to get JSON:</strong><br>
+                1. Click extension icon → Export All for Website<br>
+                2. Open the downloaded JSON file<br>
+                3. Copy the "products" array<br>
+                4. Paste here
+            </div>
+            
+            <button onclick="generateHTML()">Generate HTML</button>
+            <button onclick="loadSample()">Load Sample</button>
+            <button onclick="clearAll()">Clear</button>
+        </div>
+        
+        <div class="right">
+            <h3>Step 2: Generated HTML</h3>
+            <div class="instructions">
+                <strong>How to use:</strong><br>
+                1. Copy the generated HTML below<br>
+                2. Paste into your products page<br>
+                3. Replace existing product cards
+            </div>
+            
+            <textarea id="htmlOutput" readonly placeholder="Generated HTML will appear here..."></textarea>
+            
+            <button onclick="copyHTML()">📋 Copy HTML</button>
+            <button onclick="downloadHTML()">💾 Download HTML</button>
+            
+            <h3 style="margin-top: 30px;">Preview:</h3>
+            <div id="preview" class="preview">
+                Preview will appear here...
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sample product data
+        const sampleProducts = [
+            {
+                "id": 1770800920983,
+                "title": "4000W LED Solar Lights Outdoor",
+                "price": 450.90,
+                "original_price": 300.60,
+                "image": "https://ae01.alicdn.com/kf/S26d37b92952a4294946f404012515ecbx/24x48.jpg",
+                "url": "https://www.aliexpress.com/item/1005009455620621.html",
+                "description": "High-power solar lights with remote control, motion sensor, and waterproof design. Perfect for garden, courtyard, and street lighting.",
+                "category": "Imported",
+                "status": "active",
+                "stock": 10,
+                "sku": "IMP920983"
+            }
+        ];
+        
+        // Load sample data
+        function loadSample() {
+            document.getElementById('jsonInput').value = JSON.stringify(sampleProducts, null, 2);
+        }
+        
+        // Generate HTML from JSON
+        function generateHTML() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const htmlOutput = document.getElementById('htmlOutput');
+            const preview = document.getElementById('preview');
+            
+            if (!jsonInput.trim()) {
+                alert('Please paste JSON first');
+                return;
+            }
+            
+            try {
+                let products;
+                try {
+                    products = JSON.parse(jsonInput);
+                } catch (e) {
+                    // Try to extract from exported format
+                    const data = JSON.parse(jsonInput);
+                    products = data.products || data;
+                }
+                
+                if (!Array.isArray(products)) {
+                    alert('JSON must contain an array of products');
+                    return;
+                }
+                
+                // Generate HTML for each product
+                let html = '';
+                let previewHtml = '';
+                
+                products.forEach((product, index) => {
+                    const productHTML = generateProductHTML(product, index);
+                    html += productHTML.html + '\n\n';
+                    previewHtml += productHTML.preview;
+                });
+                
+                // Add the surrounding row div
+                html = '<!-- Products Start -->\n' + html + '<!-- Products End -->';
+                
+                htmlOutput.value = html;
+                preview.innerHTML = previewHtml;
+                
+                alert(`✅ Generated HTML for ${products.length} products!`);
+                
+            } catch (error) {
+                alert('❌ Error parsing JSON: ' + error.message);
+                console.error(error);
+            }
+        }
+        
+        // Generate HTML for a single product
+        function generateProductHTML(product, index) {
+            // Format price
+            const price = typeof product.price === 'number' ? product.price.toFixed(2) : product.price;
+            
+            // Generate product ID/slug for details page
+            const productId = product.sku || product.id;
+            const productSlug = product.title.toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+            
+            // Generate star ratings (random for now)
+            const stars = Math.floor(Math.random() * 3) + 3; // 3-5 stars
+            const starIcons = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+            
+            // HTML template matching your structure
+            const html = `<!--Product All Single Start-->
+<div class="col-xl-4 col-lg-4 col-md-6">
+    <div class="product__all-single">
+        <div class="product__all-img">
+            <img src="${product.image}" alt="${product.title}" onerror="this.src='assets/images/placeholder.jpg'">
+        </div>
+        <div class="product__all-content">
+            <div class="product__all-review">
+                ${starIcons.split('').map(star => 
+                    `<i class="fa fa-star${star === '☆' ? '-o' : ''}"></i>`
+                ).join('\n                ')}
+            </div>
+            <h4 class="product__all-title">
+                <a href="product-details.html?id=${productId}&slug=${productSlug}">${product.title}</a>
+            </h4>
+            <p class="product__all-price">$${price}</p>
+            ${product.description ? `<p class="product__all-desc">${truncateText(product.description, 100)}</p>` : ''}
+            <div class="product__all-btn-box">
+                <a href="cart.html?product=${productId}" class="thm-btn product__all-btn">
+                    <span></span>Add to Cart
+                </a>
+                <a href="${product.url}" target="_blank" class="product__all-source" style="font-size:12px;color:#666;margin-top:5px;display:block;">
+                    View on AliExpress
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Product All Single End-->`;
+            
+            // Preview version
+            const preview = `
+                <div class="product-item">
+                    <img src="${product.image}" alt="${product.title}" width="100" style="float:left;margin-right:10px;">
+                    <strong>${product.title}</strong><br>
+                    Price: $${price}<br>
+                    ${product.description ? `Desc: ${truncateText(product.description, 80)}<br>` : ''}
+                    <small>SKU: ${product.sku || product.id}</small>
+                </div>
+            `;
+            
+            return { html, preview };
+        }
+        
+        // Helper function to truncate text
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength) + '...';
+        }
+        
+        // Copy HTML to clipboard
+        function copyHTML() {
+            const output = document.getElementById('htmlOutput');
+            output.select();
+            document.execCommand('copy');
+            alert('✅ HTML copied to clipboard!');
+        }
+        
+        // Download HTML as file
+        function downloadHTML() {
+            const html = document.getElementById('htmlOutput').value;
+            if (!html.trim()) {
+                alert('No HTML to download');
+                return;
+            }
+            
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'products-html.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('✅ HTML downloaded as products-html.html');
+        }
+        
+        // Clear all
+        function clearAll() {
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('htmlOutput').value = '';
+            document.getElementById('preview').innerHTML = 'Preview will appear here...';
+        }
+    </script>
+</body>
+</html>
