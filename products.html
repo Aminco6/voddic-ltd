@@ -60,7 +60,34 @@
 
     <!-- template styles -->
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+     <link rel="stylesheet" href="assets/css/responsive.css" />
+
+
+<style>
+    /* Force visibility for all animated elements */
+    .wow,
+    .wow:not(.animated),
+    [class*="wow"] {
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation-name: none !important;
+    }
+    
+    /* Ensure all images are visible */
+    img {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Fix portfolio items */
+    .portfolio-one-sec__single,
+    .portfolio-one-sec__img,
+    .team-one-sec__single,
+    .team-one-sec__img {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+</style>
 </head>
 
 <body class="custom-cursor">
@@ -837,6 +864,30 @@
     <script src="assets/js/gsap/SplitText.js"></script>
 
 
+
+
+  
+<script>
+    // Initialize WOW.js with proper settings
+    $(document).ready(function() {
+        if (typeof WOW !== 'undefined') {
+            var wow = new WOW({
+                boxClass: 'wow',
+                animateClass: 'animated',
+                offset: 0,
+                mobile: true,
+                live: true,
+                callback: function(box) {
+                    // Optional: add class to triggered elements
+                    $(box).addClass('wow-animated');
+                },
+                scrollContainer: null,
+                resetAnimation: true // This is key - allows re-animation on scroll up
+            });
+            wow.init();
+        }
+    });
+</script>
 
 
     <!-- template js -->
