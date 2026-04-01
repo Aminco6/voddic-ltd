@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voddic Wireless Patient Call System — Hospital Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ────────────────────────────────── */
+:root {
+  --teal:      #0A8C7C;
+  --teal2:     #0BB89F;
+  --teal3:     #D6F5F1;
+  --teal-pale: #EBF9F7;
+  --blue:      #0B4F8C;
+  --blue2:     #1466B8;
+  --red:       #D64045;
+  --red-pale:  #FDEAEA;
+  --white:     #FFFFFF;
+  --off:       #F4F8F8;
+  --text:      #0D2B2B;
+  --text2:     #2E5555;
+  --muted:     #6B8A8A;
+  --border:    rgba(10,140,124,0.15);
+  --shadow-sm: 0 2px 12px rgba(10,140,124,0.08);
+  --shadow-md: 0 8px 32px rgba(10,140,124,0.14);
+  --shadow-lg: 0 20px 60px rgba(10,140,124,0.18);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--off);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* subtle dot grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(10,140,124,0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--off); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+/* ─── NAVBAR ────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 48px;
+  background: rgba(244,248,248,0.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: var(--shadow-md); }
+
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+.nav-logo-mark {
+  width: 34px; height: 34px;
+  background: var(--teal);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 0.9rem;
+  color: white;
+}
+
+.nav-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1.15rem;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.nav-logo-text span { color: var(--teal); }
+
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+
+.nav-links a {
+  font-size: 0.87rem; font-weight: 500;
+  color: var(--text2); text-decoration: none;
+  letter-spacing: 0.2px; transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal) !important;
+  color: white !important;
+  padding: 10px 22px !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--teal2) !important; transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+}
+
+/* ─── HERO ──────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding-top: 70px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+}
+
+.hero-left {
+  padding: 80px 48px 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .hero-left { padding: 48px 24px 32px; }
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal3);
+  border: 1px solid rgba(10,140,124,0.3);
+  color: var(--teal);
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 40px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.7s ease both;
+}
+
+.hero-badge .pulse-dot {
+  width: 7px; height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulseDot 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(214,64,69,0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(214,64,69,0); }
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 20px;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.hero h1 .accent { color: var(--teal); }
+.hero h1 .block { display: block; }
+
+.hero-sub {
+  font-size: 1rem; color: var(--text2);
+  line-height: 1.8; font-weight: 300;
+  max-width: 480px; margin-bottom: 40px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+.hero-sub strong { font-weight: 600; color: var(--text); }
+
+.hero-ctas {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: white; font-size: 0.9rem; font-weight: 600;
+  padding: 14px 30px; border-radius: 10px;
+  text-decoration: none; border: 2px solid var(--teal);
+  transition: all 0.25s; cursor: pointer; letter-spacing: 0.2px;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: var(--teal2); border-color: var(--teal2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(10,140,124,0.35);
+}
+
+.btn-outline {
+  background: transparent; color: var(--text);
+  font-size: 0.9rem; font-weight: 600;
+  padding: 14px 26px; border-radius: 10px;
+  border: 2px solid var(--border); text-decoration: none;
+  transition: all 0.25s; display: inline-block; letter-spacing: 0.2px;
+}
+
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+.hero-pills {
+  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px;
+  animation: fadeUp 0.7s ease 0.4s both;
+}
+
+.hero-pill {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; color: var(--muted); font-weight: 500;
+}
+
+.hero-pill-dot {
+  width: 6px; height: 6px;
+  background: var(--teal); border-radius: 50%;
+}
+
+/* ─── HERO RIGHT — ward monitor ─────────────── */
+.hero-right {
+  background: linear-gradient(150deg, #063D36 0%, #0A5C50 50%, #063028 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 40px;
+  position: relative; overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .hero-right { min-height: 420px; }
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(11,184,159,0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-right::after {
+  content: '';
+  position: absolute; bottom: -60px; left: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(11,70,139,0.2), transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── WARD DIAGRAM ──────────────────────────── */
+.ward-diagram { position: relative; z-index: 2; width: 100%; max-width: 380px; }
+
+.ward-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 3px;
+  color: rgba(255,255,255,0.35); text-align: center;
+  margin-bottom: 20px; text-transform: uppercase;
+}
+
+.ward-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-bottom: 16px;
+}
+
+.bed-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px; padding: 12px 8px;
+  text-align: center; transition: all 0.4s;
+}
+
+.bed-card.calling {
+  background: rgba(214,64,69,0.15);
+  border-color: rgba(214,64,69,0.6);
+  animation: bedCall 1.8s ease-in-out infinite;
+}
+
+@keyframes bedCall {
+  0%, 100% { background: rgba(214,64,69,0.12); box-shadow: 0 0 0 0 rgba(214,64,69,0.3); }
+  50% { background: rgba(214,64,69,0.22); box-shadow: 0 0 18px rgba(214,64,69,0.35); }
+}
+
+.bed-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+}
+
+.bed-card.calling .bed-id { color: #FF8A8A; }
+.bed-icon { font-size: 1.2rem; display: block; }
+
+.call-badge {
+  position: absolute; top: -8px; right: -8px;
+  background: var(--red); color: white;
+  font-size: 0.5rem; font-weight: 700;
+  letter-spacing: 0.5px; padding: 3px 7px;
+  border-radius: 20px;
+  animation: badgePulse 1s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.signal-bridge {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; height: 40px; margin-bottom: 12px;
+}
+
+.sig-dot {
+  width: 5px; height: 5px;
+  background: var(--teal2); border-radius: 50%;
+  opacity: 0;
+  animation: dotTravel 1.5s ease-in-out infinite;
+}
+
+.sig-dot:nth-child(1) { animation-delay: 0s; }
+.sig-dot:nth-child(2) { animation-delay: 0.25s; }
+.sig-dot:nth-child(3) { animation-delay: 0.5s; }
+.sig-dot:nth-child(4) { animation-delay: 0.75s; }
+.sig-dot:nth-child(5) { animation-delay: 1s; }
+
+@keyframes dotTravel {
+  0% { opacity: 0; transform: translateY(-6px); }
+  40% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 0; }
+}
+
+.nurse-station {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(11,184,159,0.35);
+  border-radius: 12px; padding: 14px 18px;
+  display: flex; gap: 12px; align-items: center;
+}
+
+.station-icon {
+  width: 42px; height: 42px;
+  background: rgba(11,184,159,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+  animation: stationGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes stationGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(11,184,159,0.3); }
+  50% { box-shadow: 0 0 10px rgba(11,184,159,0.5); }
+}
+
+.station-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 2px;
+  color: var(--teal2); margin-bottom: 4px; text-transform: uppercase;
+}
+
+.station-msg {
+  font-size: 0.76rem; color: rgba(255,255,255,0.85);
+  line-height: 1.45; font-style: italic;
+}
+
+/* ─── STATS BAR ─────────────────────────────── */
+.stats-bar {
+  background: var(--teal);
+  padding: 36px 20px; position: relative; z-index: 1;
+}
+
+.stats-inner {
+  max-width: 960px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 640px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+}
+
+.stat-item { text-align: center; padding: 0 20px; border-right: 1px solid rgba(255,255,255,0.18); }
+.stat-item:last-child { border: none; }
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem; font-weight: 800;
+  color: white; line-height: 1; margin-bottom: 8px;
+}
+
+.stat-label { font-size: 0.79rem; color: rgba(255,255,255,0.65); line-height: 1.4; font-weight: 400; }
+
+/* ─── COMMON SECTION ────────────────────────── */
+section { position: relative; z-index: 1; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+.section-pad { padding: 96px 0; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.67rem; letter-spacing: 3px;
+  color: var(--teal); text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--teal); }
+
+.sec-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  font-weight: 800; color: var(--text);
+  line-height: 1.15; margin-bottom: 14px;
+}
+
+.sec-sub {
+  font-size: 0.97rem; color: var(--text2);
+  line-height: 1.8; font-weight: 300; max-width: 540px;
+}
+
+/* ─── HOW IT WORKS ──────────────────────────── */
+.how-section { background: white; }
+
+.how-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center; margin-top: 60px;
+}
+
+@media (max-width: 800px) {
+  .how-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+
+.steps-list { display: flex; flex-direction: column; gap: 0; }
+
+.step-row {
+  display: flex; gap: 18px;
+  padding-bottom: 28px; position: relative;
+}
+
+.step-row:last-child { padding-bottom: 0; }
+
+.step-row::before {
+  content: '';
+  position: absolute; left: 16px; top: 36px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(10,140,124,0.25), transparent);
+}
+
+.step-row:last-child::before { display: none; }
+
+.step-circle {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--teal3); border: 2px solid var(--teal);
+  color: var(--teal);
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; position: relative; z-index: 1;
+}
+
+.step-content { padding-top: 6px; }
+
+.step-title {
+  font-weight: 600; font-size: 0.93rem;
+  color: var(--text); margin-bottom: 5px;
+}
+
+.step-desc {
+  font-size: 0.86rem; color: var(--text2);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ─── DEMO PANEL ─────────────────────────────── */
+.demo-panel {
+  background: linear-gradient(145deg, #063D36 0%, #094D44 100%);
+  border-radius: 20px; padding: 36px 30px;
+  position: relative; overflow: hidden;
+}
+
+.demo-panel::after {
+  content: '';
+  position: absolute; bottom: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(11,184,159,0.12), transparent 70%);
+}
+
+.demo-panel-eye {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 3px;
+  color: var(--teal2); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.demo-panel-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem; font-weight: 700;
+  color: white; margin-bottom: 10px; line-height: 1.3;
+}
+
+.demo-panel-desc {
+  font-size: 0.84rem; color: rgba(255,255,255,0.5);
+  line-height: 1.7; font-weight: 300; margin-bottom: 24px;
+}
+
+.announcement-card {
+  background: rgba(214,64,69,0.1);
+  border: 1px solid rgba(214,64,69,0.3);
+  border-radius: 12px; padding: 16px 18px;
+  margin-bottom: 22px; position: relative;
+}
+
+.announcement-card::before {
+  content: '🔔';
+  position: absolute; top: -12px; left: 14px;
+  background: #063D36; padding: 0 6px; font-size: 0.9rem;
+}
+
+.announcement-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.77rem; color: rgba(255,255,255,0.9);
+  line-height: 1.7; letter-spacing: 0.2px;
+}
+
+.announcement-text strong { color: #FF9999; }
+
+.play-btn-wrap {
+  width: 100%;
+  background: rgba(11,184,159,0.12);
+  border: 1px solid rgba(11,184,159,0.35);
+  color: var(--teal2);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.87rem; font-weight: 600;
+  padding: 14px; border-radius: 10px;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+.play-btn-wrap:hover { background: rgba(11,184,159,0.2); }
+.play-btn-wrap.playing { background: rgba(11,184,159,0.22); color: white; }
+
+.sound-bars { display: flex; align-items: center; gap: 3px; height: 16px; }
+
+.s-bar {
+  width: 3px; background: var(--teal2); border-radius: 2px; height: 4px;
+}
+
+.playing .s-bar { animation: barUp 0.5s ease-in-out infinite; }
+.s-bar:nth-child(2) { animation-delay: 0.1s; }
+.s-bar:nth-child(3) { animation-delay: 0.2s; }
+.s-bar:nth-child(4) { animation-delay: 0.1s; }
+.s-bar:nth-child(5) { animation-delay: 0s; }
+
+@keyframes barUp {
+  0%, 100% { height: 4px; }
+  50% { height: 14px; }
+}
+
+/* ─── FEATURES ──────────────────────────────── */
+.features-section { background: var(--off); }
+
+.feat-header { text-align: center; margin-bottom: 60px; }
+.feat-header .sec-sub { margin: 0 auto; }
+
+.feat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .feat-grid { grid-template-columns: 1fr; } }
+
+.feat-card {
+  background: white;
+  border: 1px solid rgba(10,140,124,0.12);
+  border-radius: 16px; padding: 28px 24px;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+
+.feat-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--blue2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.feat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+.feat-card:hover::after { transform: scaleX(1); }
+
+.feat-icon {
+  width: 50px; height: 50px; background: var(--teal-pale);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 18px; transition: background 0.3s;
+}
+
+.feat-card:hover .feat-icon { background: var(--teal3); }
+
+.feat-title {
+  font-weight: 600; font-size: 0.93rem;
+  color: var(--text); margin-bottom: 8px;
+}
+
+.feat-desc {
+  font-size: 0.85rem; color: var(--text2);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ─── WARDS / USE CASES ─────────────────────── */
+.wards-section {
+  background: linear-gradient(150deg, #063D36 0%, #094D44 60%, #052E2A 100%);
+  padding: 96px 0; position: relative; overflow: hidden;
+}
+
+.wards-section::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(11,184,159,0.05), transparent 70%);
+  pointer-events: none;
+}
+
+.wards-section .sec-title { color: white; }
+.wards-section .sec-sub { color: rgba(255,255,255,0.5); }
+
+.ward-cards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; margin-top: 52px;
+}
+
+@media (max-width: 900px) { .ward-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .ward-cards-grid { grid-template-columns: 1fr; } }
+
+.ward-use-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 24px 20px;
+  transition: all 0.3s; display: flex; flex-direction: column; gap: 12px;
+}
+
+.ward-use-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(11,184,159,0.3);
+}
+
+.wu-icon {
+  width: 44px; height: 44px;
+  background: rgba(11,184,159,0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+
+.wu-title {
+  font-weight: 600; font-size: 0.92rem;
+  color: white;
+}
+
+.wu-desc {
+  font-size: 0.83rem; color: rgba(255,255,255,0.48);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ─── WHY VODDIC ────────────────────────────── */
+.why-section { background: white; }
+
+.why-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+
+@media (max-width: 800px) { .why-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.why-items { display: flex; flex-direction: column; gap: 0; }
+
+.why-row {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 20px; border-radius: 12px; transition: background 0.2s;
+}
+
+.why-row:hover { background: var(--teal-pale); }
+
+.why-check {
+  width: 22px; height: 22px; background: var(--teal3);
+  border: 1.5px solid var(--teal); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+  font-size: 0.6rem; color: var(--teal); font-weight: 700;
+}
+
+.why-title {
+  font-weight: 600; font-size: 0.93rem;
+  color: var(--text); margin-bottom: 4px;
+}
+
+.why-desc {
+  font-size: 0.86rem; color: var(--text2);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ─── SPECS PANEL ───────────────────────────── */
+.specs-panel {
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 36px 28px;
+}
+
+.specs-header {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text); margin-bottom: 24px;
+}
+
+.spec-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.87rem;
+}
+
+.spec-row:last-child { border: none; }
+.spec-label { color: var(--muted); }
+.spec-value { font-family: 'JetBrains Mono', monospace; color: var(--teal); font-weight: 500; font-size: 0.83rem; }
+
+.uptime-ring {
+  text-align: center; margin-bottom: 28px;
+  padding-bottom: 28px; border-bottom: 1px solid var(--border);
+}
+
+.uptime-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 3.6rem; font-weight: 800;
+  color: var(--teal); line-height: 1;
+}
+
+.uptime-label {
+  font-size: 0.78rem; color: var(--muted);
+  margin-top: 8px; font-weight: 400;
+}
+
+/* ─── FORM SECTION ──────────────────────────── */
+.form-section {
+  background: var(--off); padding: 96px 0;
+  position: relative;
+}
+
+.form-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--blue2), var(--teal));
+}
+
+.form-layout {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 64px; align-items: start;
+}
+
+@media (max-width: 900px) { .form-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.form-sidebar .sec-sub { margin-bottom: 36px; }
+
+.promise-stack { display: flex; flex-direction: column; gap: 18px; }
+
+.promise-row {
+  display: flex; gap: 12px; align-items: flex-start;
+}
+
+.promise-tick {
+  width: 22px; height: 22px;
+  background: var(--teal3); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; color: var(--teal); font-weight: 700;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+.promise-text {
+  font-size: 0.88rem; color: var(--text2);
+  line-height: 1.65; font-weight: 400;
+}
+
+.promise-text strong { font-weight: 600; color: var(--text); }
+
+.contact-card {
+  margin-top: 40px;
+  background: var(--teal);
+  border-radius: 14px; padding: 22px;
+}
+
+.cc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 14px;
+}
+
+.cc-item {
+  font-size: 0.86rem; color: rgba(255,255,255,0.75);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+
+.cc-item:last-child { margin: 0; }
+.cc-item a { color: white; text-decoration: none; }
+.cc-item a:hover { text-decoration: underline; }
+
+/* ─── THE FORM ──────────────────────────────── */
+.form-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(24px, 5vw, 48px);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 36px; right: 36px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--blue2));
+  border-radius: 0 0 3px 3px;
+}
+
+.form-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.55rem; font-weight: 800;
+  color: var(--text); margin-bottom: 6px;
+}
+
+.form-sub {
+  font-size: 0.87rem; color: var(--muted);
+  margin-bottom: 28px; font-weight: 300; line-height: 1.5;
+}
+
+.f-sep {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 3px;
+  color: var(--muted); text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin: 24px 0 18px;
+}
+
+.f-sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 500px) { .f-grid { grid-template-columns: 1fr; } }
+
+.f-grp { display: flex; flex-direction: column; gap: 7px; }
+.f-grp.full { grid-column: 1 / -1; }
+
+.f-grp label {
+  font-size: 0.71rem; font-weight: 600;
+  letter-spacing: 0.5px; color: var(--text2); text-transform: uppercase;
+}
+
+.f-grp input, .f-grp select, .f-grp textarea {
+  background: var(--off);
+  border: 1.5px solid rgba(10,140,124,0.15);
+  color: var(--text); font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; padding: 12px 14px;
+  outline: none; border-radius: 9px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+.f-grp select option { background: white; color: var(--text); }
+
+.f-grp input:focus, .f-grp select:focus, .f-grp textarea:focus {
+  border-color: var(--teal);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(10,140,124,0.1);
+}
+
+.f-grp textarea { resize: vertical; min-height: 85px; line-height: 1.6; }
+
+.pill-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 2px; }
+
+.tag {
+  background: var(--off);
+  border: 1.5px solid rgba(10,140,124,0.15);
+  color: var(--text2);
+  font-size: 0.82rem; font-weight: 500;
+  padding: 8px 14px; border-radius: 40px;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+
+.tag:hover { border-color: var(--teal); color: var(--teal); }
+
+.tag.sel {
+  background: var(--teal); border-color: var(--teal);
+  color: white;
+}
+
+.submit-btn {
+  width: 100%; background: var(--teal); color: white;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem; font-weight: 700;
+  padding: 17px; border: none; border-radius: 10px;
+  cursor: pointer; letter-spacing: 0.3px;
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+
+.submit-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform 0.5s;
+}
+
+.submit-btn:hover::after { transform: translateX(100%); }
+.submit-btn:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,140,124,0.35); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-note-txt {
+  text-align: center; font-size: 0.78rem; color: var(--muted);
+  margin-top: 12px; line-height: 1.6;
+}
+
+/* ─── SUCCESS ───────────────────────────────── */
+.success-state { display: none; text-align: center; padding: 48px 20px; }
+.success-state.show { display: block; }
+
+.success-circle {
+  width: 70px; height: 70px; background: var(--teal);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin: 0 auto 20px;
+  animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.success-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.7rem; font-weight: 800;
+  color: var(--text); margin-bottom: 12px;
+}
+
+.success-body {
+  font-size: 0.93rem; color: var(--text2);
+  line-height: 1.85; font-weight: 300; max-width: 360px; margin: 0 auto;
+}
+
+/* ─── FOOTER ────────────────────────────────── */
+footer {
+  background: var(--text); padding: 52px 24px;
+  position: relative; z-index: 1;
+}
+
+.footer-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+.footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 800;
+  color: white; margin-bottom: 10px;
+}
+
+.footer-brand span { color: var(--teal2); }
+
+.footer-tagline {
+  font-size: 0.83rem; color: rgba(255,255,255,0.35);
+  line-height: 1.7; font-weight: 300;
+}
+
+.footer-col-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 3px;
+  color: var(--teal2); text-transform: uppercase; margin-bottom: 16px;
+}
+
+.footer-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.footer-list a {
+  font-size: 0.85rem; color: rgba(255,255,255,0.45);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.footer-list a:hover { color: rgba(255,255,255,0.9); }
+
+.f-contact-item {
+  font-size: 0.85rem; color: rgba(255,255,255,0.45);
+  margin-bottom: 10px; display: flex; gap: 8px;
+}
+
+.f-contact-item a { color: rgba(255,255,255,0.65); text-decoration: none; }
+.f-contact-item a:hover { color: var(--teal2); }
+
+.footer-bar {
+  max-width: 1100px; margin: 40px auto 0;
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+
+.footer-copy { font-size: 0.77rem; color: rgba(255,255,255,0.25); }
+.footer-copy a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+/* ─── TOAST ─────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--text);
+  border-left: 4px solid var(--teal);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.84rem; padding: 14px 20px;
+  border-radius: 8px; box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  transform: translateY(80px); opacity: 0;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none; max-width: 300px;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ─── ANIMATIONS ────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ──────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">V</div>
+    <div class="nav-logo-text">Voddic <span>LTD</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#wards">Ward Applications</a></li>
+    <li><a href="#request-demo" class="nav-cta">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="pulse-dot"></div>
+      Patient Safety Technology
+    </div>
+    <h1>
+      <span class="block">Every Patient.</span>
+      <span class="block">Every Call.</span>
+      <span class="block accent">Zero Delay.</span>
+    </h1>
+    <p class="hero-sub">
+      The <strong>Voddic Wireless Patient Call System</strong> puts a nurse call button in every patient's hand — delivering instant, room-specific alerts to nursing staff the moment a patient needs help.
+    </p>
+    <div class="hero-ctas">
+      <a href="#request-demo" class="btn-primary">Request a Demo →</a>
+      <a href="#how-it-works" class="btn-outline">See How It Works</a>
+    </div>
+    <div class="hero-pills">
+      <div class="hero-pill"><div class="hero-pill-dot"></div>No wiring needed</div>
+      <div class="hero-pill"><div class="hero-pill-dot"></div>Works without internet</div>
+      <div class="hero-pill"><div class="hero-pill-dot"></div>All ward types supported</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="ward-diagram">
+      <div class="ward-title">Live Ward Monitor — Nurse Station View</div>
+
+      <div class="ward-grid">
+        <div class="bed-card" id="bed1">
+          <div class="bed-id">BED 1A</div>
+          <span class="bed-icon">🛏️</span>
+        </div>
+        <div class="bed-card" id="bed2">
+          <div class="bed-id">BED 1B</div>
+          <span class="bed-icon">🛏️</span>
+        </div>
+        <div class="bed-card" id="bed3">
+          <div class="bed-id">BED 2A</div>
+          <span class="bed-icon">🛏️</span>
+        </div>
+        <div class="bed-card" id="bed4">
+          <div class="bed-id">BED 2B</div>
+          <span class="bed-icon">🛏️</span>
+        </div>
+        <div class="bed-card calling" id="bed5">
+          <div class="bed-id">BED 3A</div>
+          <span class="bed-icon">🆘</span>
+          <div class="call-badge">CALL!</div>
+        </div>
+        <div class="bed-card" id="bed6">
+          <div class="bed-id">BED 3B</div>
+          <span class="bed-icon">🛏️</span>
+        </div>
+      </div>
+
+      <div class="signal-bridge">
+        <div class="sig-dot"></div>
+        <div class="sig-dot"></div>
+        <div class="sig-dot"></div>
+        <div class="sig-dot"></div>
+        <div class="sig-dot"></div>
+      </div>
+
+      <div class="nurse-station">
+        <div class="station-icon">🏥</div>
+        <div>
+          <div class="station-label">Nurse Station Alert</div>
+          <div class="station-msg" id="stationMsg">"Attention please — a patient in <strong style="color:#7FE4D8">Bed 3A</strong> needs nurse attention. Thank you."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STATS BAR ────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">&lt;3s</div>
+      <div class="stat-label">Alert reaches nurse station</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Beds supported per installation</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Independent of hospital Wi-Fi</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Wiring or civil works required</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ─────────────────────────── -->
+<section class="how-section section-pad" id="how-it-works">
+  <div class="container">
+    <div class="how-layout">
+      <div>
+        <div class="eyebrow reveal">System Operation</div>
+        <h2 class="sec-title reveal">Patient presses. Nurse knows. In seconds.</h2>
+        <p class="sec-sub reveal">The entire sequence — from button press to nurse at the bedside — is automated, room-specific, and requires no action from anyone except the patient pressing the button.</p>
+
+        <div class="steps-list" style="margin-top:40px;">
+          <div class="step-row reveal">
+            <div class="step-circle">1</div>
+            <div class="step-content">
+              <div class="step-title">Patient Presses the Bedside Call Button</div>
+              <div class="step-desc">A compact wireless button is placed within arm's reach of every patient. One press — no password, no phone, no confusion — even for elderly or incapacitated patients.</div>
+            </div>
+          </div>
+          <div class="step-row reveal">
+            <div class="step-circle">2</div>
+            <div class="step-content">
+              <div class="step-title">Instant Wireless Alert to the Nurse Station</div>
+              <div class="step-desc">The signal transmits wirelessly and immediately to the central control unit at the nurse station, identifying the exact ward, room, and bed number.</div>
+            </div>
+          </div>
+          <div class="step-row reveal">
+            <div class="step-circle">3</div>
+            <div class="step-content">
+              <div class="step-title">Voice Announcement Plays Through Speakers</div>
+              <div class="step-desc">A clear audio announcement broadcasts the patient's location to nursing staff — eliminating guesswork and ensuring every nurse within earshot knows exactly where to go.</div>
+            </div>
+          </div>
+          <div class="step-row reveal">
+            <div class="step-circle">4</div>
+            <div class="step-content">
+              <div class="step-title">Nurse Responds to the Right Bed, Immediately</div>
+              <div class="step-desc">No phone calls, no running down the wrong corridor, no delays. Your staff responds faster, more confidently, and with far less anxiety for the patient waiting.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIO DEMO PANEL -->
+      <div class="demo-panel reveal">
+        <div class="demo-panel-eye">▸ Live Announcement Demo</div>
+        <div class="demo-panel-title">Hear what your nurses hear the moment a patient calls.</div>
+        <div class="demo-panel-desc">Press play to hear a real Voddic system announcement — broadcast through ward speakers the instant a patient button is pressed.</div>
+
+        <div class="announcement-card">
+          <div class="announcement-text">
+            "Attention please, attention please. A patient in <strong>Bed 3A, Ward 2</strong> has pressed the call button. Nurse attention might be needed. Thank you."
+          </div>
+        </div>
+
+        <button class="play-btn-wrap" id="playBtn" onclick="toggleDemo()">
+          <div class="sound-bars" id="bars">
+            <div class="s-bar"></div>
+            <div class="s-bar"></div>
+            <div class="s-bar"></div>
+            <div class="s-bar"></div>
+            <div class="s-bar"></div>
+          </div>
+          <span id="playLabel">▶ &nbsp;Play Announcement</span>
+        </button>
+
+        <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:0.77rem;color:rgba(255,255,255,0.38);line-height:1.7;font-weight:300;">
+            Announcements can be configured in any language. Bed number, ward name, and urgency level are all customisable to match your hospital's communication standards.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─────────────────────────────── -->
+<section class="features-section section-pad" id="features">
+  <div class="container">
+    <div class="feat-header">
+      <div class="eyebrow reveal">Core Capabilities</div>
+      <h2 class="sec-title reveal">Designed for clinical environments.<br>Built to save critical minutes.</h2>
+      <p class="sec-sub reveal">Every feature is engineered around the reality of hospital operations — patient safety, staff efficiency, and zero tolerance for communication failure.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Sub-3-Second Alert Delivery</div>
+        <div class="feat-desc">From button press to nurse station in under 3 seconds. In medical emergencies, every second is critical — our system wastes none of them.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon">🔊</div>
+        <div class="feat-title">Bed-Specific Voice Announcements</div>
+        <div class="feat-desc">Audio identifies the exact bed and ward. Every nurse within earshot knows immediately — no intercom fumbling, no radio confusion.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon">📡</div>
+        <div class="feat-title">Fully Wireless — Zero Civil Works</div>
+        <div class="feat-desc">No drilling, no conduit, no disruption to patients or clinical operations. Buttons are placed in minutes and can be repositioned as needs change.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon">🏗️</div>
+        <div class="feat-title">Scalable Across All Wards & Floors</div>
+        <div class="feat-desc">Works across maternity, ICU, general, surgical, and paediatric wards simultaneously. Add beds or expand floors with no new infrastructure.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon">🔋</div>
+        <div class="feat-title">Power-Cut Resistant</div>
+        <div class="feat-desc">Battery-backed system operates through NEPA outages. When the lights go out, the patient call system never does.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon">🌐</div>
+        <div class="feat-title">Internet-Independent Operation</div>
+        <div class="feat-desc">Runs on its own dedicated signal frequency — completely separate from hospital Wi-Fi. Network congestion never affects patient safety.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WARD APPLICATIONS ────────────────────── -->
+<section class="wards-section" id="wards">
+  <div class="container">
+    <div class="eyebrow reveal" style="color:var(--teal2);">Ward Applications</div>
+    <h2 class="sec-title reveal">Every ward. Every patient. Every call answered.</h2>
+    <p class="sec-sub reveal">From maternity to intensive care, the Voddic Patient Call System adapts to the unique demands of every clinical environment in your hospital.</p>
+
+    <div class="ward-cards-grid">
+      <div class="ward-use-card reveal">
+        <div class="wu-icon">🧪</div>
+        <div class="wu-title">General & Medical Wards</div>
+        <div class="wu-desc">Patients recovering from surgery or illness can call for assistance — pain medication, repositioning, bedpan — without straining or shouting.</div>
+      </div>
+      <div class="ward-use-card reveal">
+        <div class="wu-icon">❤️</div>
+        <div class="wu-title">ICU & High Dependency</div>
+        <div class="wu-desc">Even minimally conscious or restrained patients can summon attention. Every alert is audible instantly at the nurse station regardless of ward size.</div>
+      </div>
+      <div class="ward-use-card reveal">
+        <div class="wu-icon">🍼</div>
+        <div class="wu-title">Maternity & Obstetrics</div>
+        <div class="wu-desc">Mothers in labour or post-delivery can request assistance immediately. Midwives and nurses respond faster, improving outcomes and patient confidence.</div>
+      </div>
+      <div class="ward-use-card reveal">
+        <div class="wu-icon">🧒</div>
+        <div class="wu-title">Paediatric Ward</div>
+        <div class="wu-desc">Buttons designed to be simple enough for parents or older children to operate. Keeps anxious parents connected to nursing staff at all times.</div>
+      </div>
+      <div class="ward-use-card reveal">
+        <div class="wu-icon">🦽</div>
+        <div class="wu-title">Orthopaedic & Rehabilitation</div>
+        <div class="wu-desc">Immobile patients — post-fracture, joint replacement, or stroke — can summon nursing assistance without risking a fall attempting to reach staff.</div>
+      </div>
+      <div class="ward-use-card reveal">
+        <div class="wu-icon">🩺</div>
+        <div class="wu-title">Private & VIP Rooms</div>
+        <div class="wu-desc">Premium patient experience with discreet, immediate response. A must-have for hospitals looking to differentiate their private ward service level.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY VODDIC ────────────────────────────── -->
+<section class="why-section section-pad">
+  <div class="container">
+    <div class="why-layout">
+      <div>
+        <div class="eyebrow reveal">Why Voddic</div>
+        <h2 class="sec-title reveal">Built for Nigerian hospitals. No compromise.</h2>
+        <p class="sec-sub reveal">Designed around the realities of local clinical operations — power supply challenges, infrastructure limitations, and the need for rapid, affordable deployment.</p>
+
+        <div class="why-items" style="margin-top:36px;">
+          <div class="why-row reveal">
+            <div class="why-check">✓</div>
+            <div>
+              <div class="why-title">Operates Through Power Outages</div>
+              <div class="why-desc">Battery-backed hardware keeps the system active during NEPA cuts. Patient calls are never missed because of the power supply.</div>
+            </div>
+          </div>
+          <div class="why-row reveal">
+            <div class="why-check">✓</div>
+            <div>
+              <div class="why-title">No Monthly Fees or Subscriptions</div>
+              <div class="why-desc">One-time system cost. No cloud subscription, no SIM card fees, no IT overhead. Works out of the box, permanently.</div>
+            </div>
+          </div>
+          <div class="why-row reveal">
+            <div class="why-check">✓</div>
+            <div>
+              <div class="why-title">Same-Day Installation</div>
+              <div class="why-desc">No civil works, no scheduled shutdowns, no ward closures. Our team can install and commission the system in a single day without disrupting patient care.</div>
+            </div>
+          </div>
+          <div class="why-row reveal">
+            <div class="why-check">✓</div>
+            <div>
+              <div class="why-title">Elevates Your Hospital's Standard of Care</div>
+              <div class="why-desc">Faster nurse response times improve patient satisfaction scores, reduce complaints, and position your hospital as a leader in patient safety.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="specs-panel reveal">
+        <div class="uptime-ring">
+          <div class="uptime-num">99.9%</div>
+          <div class="uptime-label">System uptime — independent of hospital network</div>
+        </div>
+
+        <div class="specs-header">Technical Specifications</div>
+        <div class="spec-row">
+          <span class="spec-label">Alert delivery time</span>
+          <span class="spec-value">&lt; 3 seconds</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Maximum beds per unit</span>
+          <span class="spec-value">Up to 500</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Indoor signal range</span>
+          <span class="spec-value">Up to 200m</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Button battery life</span>
+          <span class="spec-value">12–24 months</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Internet required</span>
+          <span class="spec-value">No — standalone</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Installation time</span>
+          <span class="spec-value">Same day</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Monthly subscription</span>
+          <span class="spec-value">None</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEMO REQUEST FORM ──────────────────────── -->
+<section class="form-section" id="request-demo">
+  <div class="container">
+    <div class="form-layout">
+
+      <!-- SIDEBAR -->
+      <div class="form-sidebar">
+        <div class="eyebrow reveal">Get Started</div>
+        <h2 class="sec-title reveal">Request Your Hospital Demo</h2>
+        <p class="sec-sub reveal">Tell us about your facility and we'll arrange a live demonstration — either on-site in your ward or via video call — tailored to your bed count and ward structure.</p>
+
+        <div class="promise-stack reveal" style="margin-top:32px;">
+          <div class="promise-row">
+            <div class="promise-tick">✓</div>
+            <div class="promise-text"><strong>Live ward demo</strong> — we bring the system to your hospital and run it live on an actual ward.</div>
+          </div>
+          <div class="promise-row">
+            <div class="promise-tick">✓</div>
+            <div class="promise-text"><strong>Custom deployment plan</strong> — tailored to your bed count, ward layout, and nursing workflow.</div>
+          </div>
+          <div class="promise-row">
+            <div class="promise-tick">✓</div>
+            <div class="promise-text"><strong>No commitment required</strong> — the demonstration is completely free with no obligation to proceed.</div>
+          </div>
+          <div class="promise-row">
+            <div class="promise-tick">✓</div>
+            <div class="promise-text"><strong>Response within 24 hours</strong> — our team will confirm your preferred date and time.</div>
+          </div>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="cc-label">Direct Contact</div>
+          <div class="cc-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+          <div class="cc-item">📱 <a href="https://wa.me/2348127633556">WhatsApp us</a></div>
+          <div class="cc-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+          <div class="cc-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+        </div>
+      </div>
+
+      <!-- FORM PANEL -->
+      <div class="form-card reveal">
+        <div id="formContent">
+          <h3 class="form-heading">Hospital Demo Request</h3>
+          <p class="form-sub">Complete in under 2 minutes — we'll handle everything else.</p>
+
+          <!-- REPLACE action WITH YOUR FORMSPREE ENDPOINT -->
+          <form id="demoForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+            <input type="hidden" name="bed_count_range" id="h_beds">
+            <input type="hidden" name="demo_preference" id="h_demo">
+            <input type="hidden" name="deployment_urgency" id="h_urgency">
+            <input type="hidden" name="wards_of_interest" id="h_wards">
+
+            <!-- HOSPITAL INFO -->
+            <div class="f-sep">Hospital Information</div>
+            <div class="f-grid">
+              <div class="f-grp">
+                <label for="hosp_name">Hospital / Facility Name *</label>
+                <input type="text" id="hosp_name" name="hospital_name" placeholder="City General Hospital" required>
+              </div>
+              <div class="f-grp">
+                <label for="hosp_type">Facility Type</label>
+                <select id="hosp_type" name="facility_type">
+                  <option value="">Select...</option>
+                  <option>Government / Public Hospital</option>
+                  <option>Private Hospital</option>
+                  <option>Teaching Hospital</option>
+                  <option>Specialist Clinic</option>
+                  <option>Maternity / Women's Clinic</option>
+                  <option>Diagnostic Centre</option>
+                  <option>Rehabilitation Centre</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="f-grp">
+                <label for="hosp_city">City / State *</label>
+                <input type="text" id="hosp_city" name="city_state" placeholder="Lagos, Abuja, Kano..." required>
+              </div>
+              <div class="f-grp">
+                <label for="hosp_floors">Number of Floors / Levels</label>
+                <input type="number" id="hosp_floors" name="floors" placeholder="e.g. 3" min="1">
+              </div>
+              <div class="f-grp full">
+                <label for="hosp_addr">Hospital Address</label>
+                <input type="text" id="hosp_addr" name="address" placeholder="Street, Area, City">
+              </div>
+            </div>
+
+            <!-- BED COUNT -->
+            <div class="f-sep">Patient Beds</div>
+            <div class="f-grp full">
+              <label>Approximate number of patient beds *</label>
+              <div class="pill-row" id="bedPills">
+                <div class="tag" data-val="Under 20 beds" onclick="pickTag(this,'bedPills','h_beds')">Under 20</div>
+                <div class="tag" data-val="20–50 beds" onclick="pickTag(this,'bedPills','h_beds')">20–50</div>
+                <div class="tag" data-val="51–100 beds" onclick="pickTag(this,'bedPills','h_beds')">51–100</div>
+                <div class="tag" data-val="101–200 beds" onclick="pickTag(this,'bedPills','h_beds')">101–200</div>
+                <div class="tag" data-val="200+ beds" onclick="pickTag(this,'bedPills','h_beds')">200+</div>
+              </div>
+            </div>
+
+            <!-- WARDS -->
+            <div class="f-sep">Wards of Interest</div>
+            <div class="f-grp full">
+              <label>Which wards would you like covered? (select all that apply)</label>
+              <div class="pill-row" id="wardPills">
+                <div class="tag" onclick="toggleTag(this)">General Ward</div>
+                <div class="tag" onclick="toggleTag(this)">ICU / HDU</div>
+                <div class="tag" onclick="toggleTag(this)">Maternity</div>
+                <div class="tag" onclick="toggleTag(this)">Paediatric</div>
+                <div class="tag" onclick="toggleTag(this)">Orthopaedic</div>
+                <div class="tag" onclick="toggleTag(this)">Surgical</div>
+                <div class="tag" onclick="toggleTag(this)">Private Rooms</div>
+                <div class="tag" onclick="toggleTag(this)">All Wards</div>
+              </div>
+            </div>
+
+            <!-- CONTACT PERSON -->
+            <div class="f-sep">Contact Person</div>
+            <div class="f-grid">
+              <div class="f-grp">
+                <label for="c_name">Full Name *</label>
+                <input type="text" id="c_name" name="contact_name" placeholder="Dr. / Mr. / Mrs. Name" required>
+              </div>
+              <div class="f-grp">
+                <label for="c_role">Role / Title</label>
+                <input type="text" id="c_role" name="role" placeholder="Medical Director, Matron...">
+              </div>
+              <div class="f-grp">
+                <label for="c_phone">Phone / WhatsApp *</label>
+                <input type="tel" id="c_phone" name="phone" placeholder="+234 800 000 0000" required>
+              </div>
+              <div class="f-grp">
+                <label for="c_email">Email Address *</label>
+                <input type="email" id="c_email" name="email" placeholder="you@hospital.com" required>
+              </div>
+            </div>
+
+            <!-- DEMO & URGENCY -->
+            <div class="f-sep">Demo Preference</div>
+            <div class="f-grp full">
+              <label>How would you prefer the demo?</label>
+              <div class="pill-row" id="demoPills">
+                <div class="tag" data-val="On-site at our hospital" onclick="pickTag(this,'demoPills','h_demo')">On-site demo</div>
+                <div class="tag" data-val="Virtual / video call" onclick="pickTag(this,'demoPills','h_demo')">Video call</div>
+                <div class="tag" data-val="Visit Voddic office" onclick="pickTag(this,'demoPills','h_demo')">Visit your office</div>
+              </div>
+            </div>
+
+            <div class="f-grp full" style="margin-top:14px;">
+              <label>When are you looking to deploy?</label>
+              <div class="pill-row" id="urgencyPills">
+                <div class="tag" data-val="ASAP — within 1 month" onclick="pickTag(this,'urgencyPills','h_urgency')">ASAP</div>
+                <div class="tag" data-val="1–3 months" onclick="pickTag(this,'urgencyPills','h_urgency')">1–3 months</div>
+                <div class="tag" data-val="3–6 months" onclick="pickTag(this,'urgencyPills','h_urgency')">3–6 months</div>
+                <div class="tag" data-val="Just exploring" onclick="pickTag(this,'urgencyPills','h_urgency')">Just exploring</div>
+              </div>
+            </div>
+
+            <!-- NOTES -->
+            <div class="f-sep">Additional Information</div>
+            <div class="f-grp full">
+              <label for="notes">Any specific needs or questions?</label>
+              <textarea id="notes" name="notes" placeholder="Tell us about your current nurse call setup, specific ward challenges, budget questions, or anything else we should know before the demo..."></textarea>
+            </div>
+
+            <!-- SUBMIT -->
+            <div style="margin-top:28px;">
+              <button type="submit" class="submit-btn" id="submitBtn">Request My Hospital Demo →</button>
+              <p class="form-note-txt">No commitment required. We'll reach out within 24 hours to confirm your preferred demo time.</p>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-state" id="successState">
+          <div class="success-circle">✓</div>
+          <div class="success-title">Request Received!</div>
+          <p class="success-body">
+            Thank you for reaching out to <strong>Voddic LTD</strong>. Our team will contact you within <strong>24 hours</strong> to schedule your personalised hospital demo.<br><br>
+            For faster response, WhatsApp us at <a href="https://wa.me/2348127633556" style="color:var(--teal);font-weight:600;">+234 812 763 3556</a>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Voddic <span>LTD</span></div>
+      <div class="footer-tagline">Patient safety redefined. Wireless nurse call technology built for Nigerian hospitals — reliable, fast, and easy to deploy across any clinical environment.</div>
+    </div>
+    <div>
+      <div class="footer-col-head">Navigation</div>
+      <ul class="footer-list">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#wards">Ward Applications</a></li>
+        <li><a href="#request-demo">Request Demo</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-head">Contact</div>
+      <div class="f-contact-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+      <div class="f-contact-item">📱 <a href="https://wa.me/2348127633556">WhatsApp</a></div>
+      <div class="f-contact-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+      <div class="f-contact-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <div class="footer-copy">© 2026 Voddic LTD. All rights reserved. — <a href="https://voddic.com.ng">voddic.com.ng</a></div>
+    <div class="footer-copy">Wireless Patient Call System — Hospital Edition</div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── NAVBAR ───────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── SCROLL REVEALS ───────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 55);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ─── AUDIO DEMO ───────────────────────────────
+let isPlaying = false;
+let utter = null;
+
+function toggleDemo() {
+  const btn = document.getElementById('playBtn');
+  const bars = document.getElementById('bars');
+  const lbl = document.getElementById('playLabel');
+
+  if (isPlaying) {
+    window.speechSynthesis.cancel();
+    isPlaying = false;
+    btn.classList.remove('playing');
+    bars.classList.remove('playing');
+    lbl.innerHTML = '▶ &nbsp;Play Announcement';
+    return;
+  }
+
+  utter = new SpeechSynthesisUtterance(
+    "Attention please, attention please. A patient in Bed 3A, Ward 2 has pressed the call button. Nurse attention might be needed. Thank you."
+  );
+  utter.rate = 0.87;
+  utter.pitch = 0.95;
+  utter.volume = 1;
+
+  utter.onend = utter.onerror = () => {
+    isPlaying = false;
+    btn.classList.remove('playing');
+    bars.classList.remove('playing');
+    lbl.innerHTML = '▶ &nbsp;Play Again';
+  };
+
+  isPlaying = true;
+  btn.classList.add('playing');
+  bars.classList.add('playing');
+  lbl.innerHTML = '■ &nbsp;Stop';
+  window.speechSynthesis.speak(utter);
+}
+
+// ─── PILL / TAG SELECTORS ─────────────────────
+function pickTag(el, groupId, hiddenId) {
+  document.querySelectorAll('#' + groupId + ' .tag').forEach(t => t.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById(hiddenId).value = el.dataset.val;
+}
+
+// Multi-select ward tags
+const selectedWards = new Set();
+function toggleTag(el) {
+  el.classList.toggle('sel');
+  const val = el.textContent.trim();
+  if (el.classList.contains('sel')) selectedWards.add(val);
+  else selectedWards.delete(val);
+  document.getElementById('h_wards').value = Array.from(selectedWards).join(', ');
+}
+
+// ─── FORM SUBMIT ──────────────────────────────
+document.getElementById('demoForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!document.getElementById('h_beds').value) {
+    showToast('Please select your approximate bed count.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const resp = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (resp.ok) {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successState').classList.add('show');
+      document.getElementById('request-demo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Request My Hospital Demo →';
+      showToast('Submission failed. Please try again or contact us directly.');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Request My Hospital Demo →';
+    showToast('Network error — please check your connection.');
+  }
+});
+
+// ─── TOAST ────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── ANIMATED WARD MONITOR ────────────────────
+const beds = document.querySelectorAll('.bed-card');
+const bedIds = ['BED 1A', 'BED 1B', 'BED 2A', 'BED 2B', 'BED 3A', 'BED 3B'];
+let activeIdx = 4;
+
+setInterval(() => {
+  beds[activeIdx].classList.remove('calling');
+  beds[activeIdx].querySelector('.bed-icon').textContent = '🛏️';
+  const badge = beds[activeIdx].querySelector('.call-badge');
+  if (badge) badge.remove();
+
+  activeIdx = Math.floor(Math.random() * beds.length);
+  beds[activeIdx].classList.add('calling');
+  beds[activeIdx].querySelector('.bed-icon').textContent = '🆘';
+
+  const nb = document.createElement('div');
+  nb.className = 'call-badge';
+  nb.textContent = 'CALL!';
+  beds[activeIdx].appendChild(nb);
+
+  document.getElementById('stationMsg').innerHTML =
+    `"Attention please — a patient in <strong style="color:#7FE4D8">${bedIds[activeIdx]}</strong> needs nurse attention. Thank you."`;
+}, 3800);
+</script>
+</body>
+</html>

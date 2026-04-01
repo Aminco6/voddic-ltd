@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voddic Student Safety Alert System — Schools & Colleges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Clash+Display:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────── */
+:root {
+  --ink:       #0D0F1A;
+  --ink2:      #161928;
+  --ink3:      #1E2235;
+  --amber:     #F59E0B;
+  --amber2:    #FBBF24;
+  --amber-pale:#FEF3C7;
+  --amber-dim: rgba(245,158,11,0.12);
+  --violet:    #6D28D9;
+  --violet2:   #7C3AED;
+  --red:       #EF4444;
+  --red-pale:  rgba(239,68,68,0.12);
+  --white:     #FFFFFF;
+  --off:       #F5F5F8;
+  --surface:   #EEEEF4;
+  --text:      #0D0F1A;
+  --text2:     #3B3F5C;
+  --muted:     #7B7F9E;
+  --border:    rgba(13,15,26,0.1);
+  --border-a:  rgba(245,158,11,0.25);
+  --sh-sm:     0 2px 12px rgba(13,15,26,0.07);
+  --sh-md:     0 8px 32px rgba(13,15,26,0.12);
+  --sh-lg:     0 20px 60px rgba(13,15,26,0.18);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--off);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* diagonal stripe texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(245,158,11,0.025) 40px,
+    rgba(245,158,11,0.025) 41px
+  );
+  pointer-events: none; z-index: 0;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--off); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 3px; }
+
+/* ─── NAVBAR ─────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 48px;
+  background: rgba(245,245,248,0.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: var(--sh-md); }
+
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+.nav-logo-mark {
+  width: 34px; height: 34px;
+  background: var(--ink);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem; color: var(--amber);
+  letter-spacing: 1px;
+}
+
+.nav-logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 1.1rem;
+  color: var(--ink); letter-spacing: 0.2px;
+}
+
+.nav-logo-text span { color: var(--amber); }
+
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+
+.nav-links a {
+  font-size: 0.87rem; font-weight: 500;
+  color: var(--text2); text-decoration: none; transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  background: var(--ink) !important;
+  color: var(--amber) !important;
+  padding: 10px 22px !important;
+  border-radius: 6px; font-weight: 700 !important;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--ink2) !important; transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+}
+
+/* ─── HERO ───────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 70px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* large BG text */
+.hero::before {
+  content: 'SOS';
+  position: absolute;
+  bottom: -40px; right: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(180px, 22vw, 300px);
+  color: rgba(245,158,11,0.04);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: -4px;
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero::before { font-size: 120px; }
+}
+
+.hero-left {
+  padding: 80px 48px 80px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+
+@media (max-width: 900px) { .hero-left { padding: 48px 24px 32px; } }
+
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: var(--amber2); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 4px;
+  margin-bottom: 28px;
+  animation: fup 0.7s ease both;
+}
+
+.sos-pip {
+  width: 8px; height: 8px; background: var(--red);
+  border-radius: 50%;
+  animation: pip 1s ease-in-out infinite;
+}
+
+@keyframes pip {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  animation: fup 0.7s ease 0.1s both;
+}
+
+.hero h1 .amber { color: var(--amber); display: block; }
+.hero h1 .outline {
+  -webkit-text-stroke: 2px rgba(255,255,255,0.25);
+  color: transparent; display: block;
+}
+
+.hero-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.6);
+  line-height: 1.8; font-weight: 300;
+  max-width: 460px; margin-bottom: 40px;
+  animation: fup 0.7s ease 0.2s both;
+}
+
+.hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+.hero-ctas {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: fup 0.7s ease 0.3s both;
+}
+
+.btn-amber {
+  background: var(--amber);
+  color: var(--ink); font-size: 0.9rem; font-weight: 700;
+  padding: 15px 32px; border-radius: 6px;
+  text-decoration: none; display: inline-block;
+  border: 2px solid var(--amber); transition: all 0.25s;
+  letter-spacing: 0.3px; cursor: pointer;
+}
+
+.btn-amber:hover {
+  background: var(--amber2); border-color: var(--amber2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(245,158,11,0.4);
+}
+
+.btn-wire {
+  background: transparent; color: rgba(255,255,255,0.8);
+  font-size: 0.9rem; font-weight: 600;
+  padding: 15px 26px; border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.15);
+  text-decoration: none; display: inline-block;
+  transition: all 0.25s; letter-spacing: 0.2px;
+}
+
+.btn-wire:hover { border-color: var(--amber); color: var(--amber); }
+
+.hero-tags {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-top: 36px;
+  animation: fup 0.7s ease 0.4s both;
+}
+
+.hero-tag {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; color: rgba(255,255,255,0.4); font-weight: 400;
+}
+
+.htag-dot { width: 5px; height: 5px; background: var(--amber); border-radius: 50%; }
+
+/* ─── HERO RIGHT — CAMPUS MONITOR ───────── */
+.hero-right {
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 40px; position: relative; z-index: 2;
+  border-left: 1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width: 900px) {
+  .hero-right { min-height: 440px; border-left: none; border-top: 1px solid rgba(255,255,255,0.05); }
+}
+
+.campus-monitor { width: 100%; max-width: 380px; }
+
+.monitor-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: rgba(255,255,255,0.25); text-align: center;
+  margin-bottom: 18px; text-transform: uppercase;
+}
+
+/* Zones grid */
+.zones-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-bottom: 14px;
+}
+
+.zone-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 12px 8px;
+  text-align: center; transition: all 0.4s;
+  position: relative;
+}
+
+.zone-card.sos-active {
+  background: var(--red-pale);
+  border-color: rgba(239,68,68,0.5);
+  animation: sosFlash 1.6s ease-in-out infinite;
+}
+
+@keyframes sosFlash {
+  0%, 100% { background: rgba(239,68,68,0.1); box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
+  50% { background: rgba(239,68,68,0.2); box-shadow: 0 0 18px rgba(239,68,68,0.3); }
+}
+
+.zone-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; color: rgba(255,255,255,0.35);
+  margin-bottom: 5px; line-height: 1.3;
+}
+
+.zone-card.sos-active .zone-label { color: #FF9999; }
+.zone-icon { font-size: 1.25rem; display: block; }
+
+.sos-tag {
+  position: absolute; top: -9px; right: -9px;
+  background: var(--red); color: white;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.48rem; font-weight: 700;
+  letter-spacing: 0.5px; padding: 3px 7px;
+  border-radius: 20px;
+  animation: tagPop 1s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes tagPop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Signal trail */
+.signal-trail {
+  display: flex; align-items: center; justify-content: center;
+  gap: 5px; height: 36px; margin-bottom: 12px;
+}
+
+.trail-dot {
+  width: 5px; height: 5px; background: var(--amber);
+  border-radius: 50%; opacity: 0;
+  animation: trailFlow 1.4s ease-in-out infinite;
+}
+
+.trail-dot:nth-child(1) { animation-delay: 0s; }
+.trail-dot:nth-child(2) { animation-delay: 0.2s; }
+.trail-dot:nth-child(3) { animation-delay: 0.4s; }
+.trail-dot:nth-child(4) { animation-delay: 0.6s; }
+.trail-dot:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes trailFlow {
+  0% { opacity: 0; transform: translateY(-5px); }
+  35% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 0; }
+}
+
+/* Security station */
+.security-station {
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 10px; padding: 14px 16px;
+  display: flex; gap: 12px; align-items: center;
+}
+
+.sec-icon {
+  width: 40px; height: 40px;
+  background: rgba(245,158,11,0.15); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+  animation: secGlow 1.6s ease-in-out infinite;
+}
+
+@keyframes secGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.3); }
+  50% { box-shadow: 0 0 10px rgba(245,158,11,0.45); }
+}
+
+.sec-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 2px;
+  color: var(--amber2); margin-bottom: 4px; text-transform: uppercase;
+}
+
+.sec-msg {
+  font-size: 0.75rem; color: rgba(255,255,255,0.8);
+  line-height: 1.45; font-style: italic;
+}
+
+/* ─── STATS BAR ──────────────────────────── */
+.stats-bar {
+  background: var(--amber);
+  padding: 36px 20px; position: relative; z-index: 1;
+}
+
+.stats-inner {
+  max-width: 960px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 640px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+}
+
+.si { text-align: center; padding: 0 20px; border-right: 1px solid rgba(13,15,26,0.15); }
+.si:last-child { border: none; }
+
+.si-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem; color: var(--ink); line-height: 1; margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.si-label { font-size: 0.78rem; color: rgba(13,15,26,0.6); line-height: 1.4; font-weight: 500; }
+
+/* ─── SECTIONS ───────────────────────────── */
+section { position: relative; z-index: 1; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 96px 0; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 3px;
+  color: var(--amber); text-transform: uppercase; margin-bottom: 14px;
+}
+
+.eyebrow::before { content: '//'; opacity: 0.5; }
+
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: 1px; color: var(--ink); line-height: 1.05; margin-bottom: 14px;
+}
+
+.sec-title.light { color: white; }
+
+.sec-sub {
+  font-size: 0.97rem; color: var(--text2);
+  line-height: 1.8; font-weight: 300; max-width: 540px;
+}
+
+.sec-sub.light { color: rgba(255,255,255,0.5); }
+
+/* ─── HOW IT WORKS ───────────────────────── */
+.how-section { background: white; }
+
+.how-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center; margin-top: 60px;
+}
+
+@media (max-width: 800px) { .how-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.step-stack { display: flex; flex-direction: column; }
+
+.step-item {
+  display: flex; gap: 18px; padding-bottom: 28px; position: relative;
+}
+
+.step-item:last-child { padding-bottom: 0; }
+
+.step-item::before {
+  content: '';
+  position: absolute; left: 17px; top: 38px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(245,158,11,0.3), transparent);
+}
+
+.step-item:last-child::before { display: none; }
+
+.step-n {
+  width: 36px; height: 36px;
+  background: var(--ink); border-radius: 6px;
+  color: var(--amber); font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 1px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; position: relative; z-index: 1;
+}
+
+.step-body { padding-top: 7px; }
+
+.step-t {
+  font-weight: 700; font-size: 0.94rem;
+  color: var(--ink); margin-bottom: 5px;
+}
+
+.step-d {
+  font-size: 0.86rem; color: var(--text2);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* AUDIO PANEL */
+.audio-panel {
+  background: var(--ink);
+  border-radius: 16px; padding: 34px 28px;
+  position: relative; overflow: hidden;
+}
+
+.audio-panel::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 70%);
+}
+
+.ap-eye {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 3px;
+  color: var(--amber2); text-transform: uppercase; margin-bottom: 14px;
+}
+
+.ap-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 1px;
+  color: white; margin-bottom: 10px; line-height: 1.2;
+}
+
+.ap-desc {
+  font-size: 0.83rem; color: rgba(255,255,255,0.45);
+  line-height: 1.7; font-weight: 300; margin-bottom: 22px;
+}
+
+.alert-script {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 10px; padding: 16px 18px;
+  margin-bottom: 20px; position: relative;
+}
+
+.alert-script::before {
+  content: '📣';
+  position: absolute; top: -11px; left: 14px;
+  background: var(--ink); padding: 0 6px; font-size: 0.85rem;
+}
+
+.alert-script-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem; color: rgba(255,255,255,0.88);
+  line-height: 1.7; letter-spacing: 0.2px;
+}
+
+.alert-script-text strong { color: #FCA5A5; }
+
+.play-wrap {
+  width: 100%; background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: var(--amber2); font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.87rem; font-weight: 600;
+  padding: 13px; border-radius: 8px;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+.play-wrap:hover { background: rgba(245,158,11,0.18); }
+.play-wrap.playing { background: rgba(245,158,11,0.22); color: white; }
+
+.wave-bars { display: flex; align-items: center; gap: 3px; height: 16px; }
+.w-bar { width: 3px; background: var(--amber); border-radius: 2px; height: 4px; }
+.playing .w-bar { animation: ww 0.5s ease-in-out infinite; }
+.w-bar:nth-child(2) { animation-delay: 0.1s; }
+.w-bar:nth-child(3) { animation-delay: 0.2s; }
+.w-bar:nth-child(4) { animation-delay: 0.1s; }
+@keyframes ww { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+
+/* ─── SCENARIOS ──────────────────────────── */
+.scenarios-section { background: var(--ink); padding: 96px 0; position: relative; overflow: hidden; }
+
+.scenarios-section::before {
+  content: 'SAFE';
+  position: absolute; bottom: -30px; left: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(120px, 18vw, 220px);
+  color: rgba(245,158,11,0.03); pointer-events: none; letter-spacing: -2px;
+}
+
+.incident-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 52px;
+}
+
+@media (max-width: 900px) { .incident-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .incident-grid { grid-template-columns: 1fr; } }
+
+.incident-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 24px 20px;
+  transition: all 0.3s; display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+}
+
+.incident-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--amber);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.3s;
+}
+
+.incident-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(245,158,11,0.2);
+}
+
+.incident-card:hover::after { transform: scaleY(1); }
+
+.ic-icon-wrap {
+  width: 44px; height: 44px;
+  background: rgba(245,158,11,0.1);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+}
+
+.ic-severity {
+  position: absolute; top: 16px; right: 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem; letter-spacing: 2px;
+  padding: 3px 8px; border-radius: 3px; text-transform: uppercase;
+}
+
+.ic-severity.high { background: rgba(239,68,68,0.15); color: #FC8181; border: 1px solid rgba(239,68,68,0.2); }
+.ic-severity.medium { background: rgba(245,158,11,0.15); color: var(--amber2); border: 1px solid rgba(245,158,11,0.2); }
+
+.ic-title { font-weight: 700; font-size: 0.93rem; color: white; }
+
+.ic-desc {
+  font-size: 0.83rem; color: rgba(255,255,255,0.45);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ─── LOCATIONS ──────────────────────────── */
+.locations-section { background: var(--off); }
+
+.loc-header { text-align: center; margin-bottom: 56px; }
+.loc-header .sec-sub { margin: 0 auto; }
+
+.loc-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) { .loc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .loc-grid { grid-template-columns: 1fr 1fr; } }
+
+.loc-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 18px;
+  text-align: center; transition: all 0.3s;
+  cursor: default;
+}
+
+.loc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-md); border-color: var(--border-a);
+}
+
+.loc-icon { font-size: 2rem; display: block; margin-bottom: 12px; }
+
+.loc-name {
+  font-weight: 700; font-size: 0.88rem;
+  color: var(--ink); margin-bottom: 6px;
+}
+
+.loc-desc {
+  font-size: 0.78rem; color: var(--muted); line-height: 1.6;
+}
+
+/* coverage bar */
+.coverage-bar {
+  height: 4px; background: var(--surface);
+  border-radius: 2px; margin-top: 12px; overflow: hidden;
+}
+
+.coverage-fill {
+  height: 100%; background: linear-gradient(90deg, var(--amber), var(--violet2));
+  border-radius: 2px;
+}
+
+/* ─── WHY VODDIC ─────────────────────────── */
+.why-section { background: white; }
+
+.why-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+
+@media (max-width: 800px) { .why-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.why-list { display: flex; flex-direction: column; }
+
+.why-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 20px; border-radius: 10px; transition: background 0.2s;
+}
+
+.why-item:hover { background: var(--off); }
+
+.why-icon-box {
+  width: 40px; height: 40px; background: var(--ink);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+
+.why-t { font-weight: 700; font-size: 0.93rem; color: var(--ink); margin-bottom: 4px; }
+.why-d { font-size: 0.85rem; color: var(--text2); line-height: 1.7; font-weight: 300; }
+
+/* ─── IMPACT PANEL ───────────────────────── */
+.impact-panel {
+  background: var(--ink); border-radius: 16px; padding: 36px 28px;
+  position: relative; overflow: hidden;
+}
+
+.impact-panel::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 70%);
+}
+
+.impact-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem; color: var(--amber); line-height: 1;
+  letter-spacing: 2px; margin-bottom: 4px;
+}
+
+.impact-label {
+  font-size: 0.82rem; color: rgba(255,255,255,0.45);
+  margin-bottom: 28px; font-weight: 300; line-height: 1.5;
+}
+
+.stat-rows { display: flex; flex-direction: column; }
+
+.stat-r {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.86rem;
+}
+
+.stat-r:last-child { border: none; }
+.stat-rl { color: rgba(255,255,255,0.45); }
+.stat-rv {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem; color: var(--amber2); font-weight: 700;
+}
+
+/* ─── FORM SECTION ───────────────────────── */
+.form-section { background: var(--off); padding: 96px 0; position: relative; }
+
+.form-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--ink), var(--amber), var(--ink));
+}
+
+.form-layout {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 64px; align-items: start;
+}
+
+@media (max-width: 900px) { .form-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.form-sidebar .sec-sub { margin-bottom: 32px; }
+
+.promise-list { display: flex; flex-direction: column; gap: 16px; }
+
+.promise-row {
+  display: flex; gap: 12px; align-items: flex-start;
+}
+
+.promise-dash {
+  width: 20px; height: 3px; background: var(--amber);
+  flex-shrink: 0; margin-top: 10px; border-radius: 2px;
+}
+
+.promise-t {
+  font-size: 0.88rem; color: var(--text2); line-height: 1.6;
+}
+
+.promise-t strong { font-weight: 700; color: var(--text); }
+
+.contact-box {
+  margin-top: 40px; background: var(--ink);
+  border-radius: 12px; padding: 22px;
+}
+
+.cb-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.56rem; letter-spacing: 3px;
+  color: var(--amber2); text-transform: uppercase; margin-bottom: 14px;
+}
+
+.cb-item {
+  font-size: 0.85rem; color: rgba(255,255,255,0.55);
+  margin-bottom: 8px; display: flex; gap: 8px;
+}
+
+.cb-item:last-child { margin: 0; }
+.cb-item a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.cb-item a:hover { color: var(--amber); }
+
+/* ─── THE FORM ───────────────────────────── */
+.form-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: clamp(24px, 5vw, 48px);
+  box-shadow: var(--sh-md); position: relative;
+}
+
+.form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 32px; right: 32px; height: 3px;
+  background: linear-gradient(90deg, var(--ink), var(--amber));
+  border-radius: 0 0 3px 3px;
+}
+
+.form-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 1px;
+  color: var(--ink); margin-bottom: 4px;
+}
+
+.form-sub {
+  font-size: 0.86rem; color: var(--muted);
+  margin-bottom: 26px; font-weight: 300; line-height: 1.5;
+}
+
+.f-div {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: var(--muted); text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin: 22px 0 16px;
+}
+
+.f-div::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 500px) { .f-grid { grid-template-columns: 1fr; } }
+
+.f-g { display: flex; flex-direction: column; gap: 6px; }
+.f-g.full { grid-column: 1 / -1; }
+
+.f-g label {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.5px; color: var(--text2); text-transform: uppercase;
+}
+
+.f-g input, .f-g select, .f-g textarea {
+  background: var(--off);
+  border: 1.5px solid rgba(13,15,26,0.1);
+  color: var(--text); font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem; padding: 12px 14px;
+  outline: none; border-radius: 8px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+.f-g select option { background: white; color: var(--text); }
+
+.f-g input:focus, .f-g select:focus, .f-g textarea:focus {
+  border-color: var(--amber);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+}
+
+.f-g textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+/* Tags */
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+
+.chip {
+  background: var(--off);
+  border: 1.5px solid rgba(13,15,26,0.1);
+  color: var(--text2); font-size: 0.81rem; font-weight: 500;
+  padding: 8px 14px; border-radius: 40px;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+
+.chip:hover { border-color: var(--amber); color: var(--ink); }
+.chip.on { background: var(--ink); border-color: var(--ink); color: var(--amber); font-weight: 700; }
+
+/* submit */
+.sub-btn {
+  width: 100%; background: var(--ink); color: var(--amber);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem; letter-spacing: 2px;
+  padding: 18px; border: none; border-radius: 8px;
+  cursor: pointer; transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+
+.sub-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform 0.5s;
+}
+
+.sub-btn:hover::after { transform: translateX(100%); }
+.sub-btn:hover { background: var(--ink2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,15,26,0.3); }
+.sub-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.sub-note {
+  text-align: center; font-size: 0.76rem; color: var(--muted);
+  margin-top: 12px; line-height: 1.6;
+}
+
+/* ─── SUCCESS ────────────────────────────── */
+.success-state { display: none; text-align: center; padding: 48px 20px; }
+.success-state.show { display: block; }
+
+.success-box {
+  width: 72px; height: 72px; background: var(--ink);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; color: var(--amber);
+  margin: 0 auto 22px;
+  animation: boxIn 0.5s ease;
+}
+
+@keyframes boxIn {
+  from { transform: scale(0) rotate(-10deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.success-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 2px;
+  color: var(--ink); margin-bottom: 12px;
+}
+
+.success-body {
+  font-size: 0.93rem; color: var(--text2);
+  line-height: 1.85; font-weight: 300; max-width: 360px; margin: 0 auto;
+}
+
+/* ─── FOOTER ─────────────────────────────── */
+footer { background: var(--ink); padding: 52px 24px; position: relative; z-index: 1; }
+
+.foot-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px;
+}
+
+@media (max-width: 640px) { .foot-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+.foot-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem; color: white; letter-spacing: 2px; margin-bottom: 10px;
+}
+
+.foot-brand span { color: var(--amber); }
+
+.foot-tag {
+  font-size: 0.82rem; color: rgba(255,255,255,0.3);
+  line-height: 1.7; font-weight: 300;
+}
+
+.foot-col-head {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: var(--amber2); text-transform: uppercase; margin-bottom: 16px;
+}
+
+.foot-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.foot-links a {
+  font-size: 0.84rem; color: rgba(255,255,255,0.4);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.foot-links a:hover { color: rgba(255,255,255,0.9); }
+
+.foot-contact { display: flex; flex-direction: column; gap: 10px; }
+
+.fc-item {
+  font-size: 0.84rem; color: rgba(255,255,255,0.4);
+  display: flex; gap: 8px;
+}
+
+.fc-item a { color: rgba(255,255,255,0.65); text-decoration: none; }
+.fc-item a:hover { color: var(--amber); }
+
+.foot-bar {
+  max-width: 1100px; margin: 40px auto 0;
+  padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+
+.foot-copy { font-size: 0.75rem; color: rgba(255,255,255,0.22); }
+.foot-copy a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+/* ─── TOAST ──────────────────────────────── */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--ink); border-left: 4px solid var(--amber);
+  color: rgba(255,255,255,0.9); font-size: 0.83rem;
+  padding: 14px 20px; border-radius: 8px; box-shadow: var(--sh-lg);
+  z-index: 9999; transform: translateY(80px); opacity: 0;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none; max-width: 300px;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ─── ANIMATIONS ─────────────────────────── */
+@keyframes fup {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ────────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">V</div>
+    <div class="nav-logo-text">Voddic <span>LTD</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#incidents">Incidents Covered</a></li>
+    <li><a href="#locations">Campus Zones</a></li>
+    <li><a href="#request-demo" class="nav-cta">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-chip"><div class="sos-pip"></div>Student Safety Technology</div>
+    <h1>
+      <span>EVERY</span>
+      <span class="amber">STUDENT.</span>
+      <span class="outline">PROTECTED.</span>
+    </h1>
+    <p class="hero-sub">
+      The <strong>Voddic Student Safety Alert System</strong> gives every student a silent emergency button — instantly alerting school security and staff the moment abuse, assault, harassment, or danger is detected on campus.
+    </p>
+    <div class="hero-ctas">
+      <a href="#request-demo" class="btn-amber">Request a Demo →</a>
+      <a href="#how-it-works" class="btn-wire">See How It Works</a>
+    </div>
+    <div class="hero-tags">
+      <div class="hero-tag"><div class="htag-dot"></div>No wiring needed</div>
+      <div class="hero-tag"><div class="htag-dot"></div>Silent distress option</div>
+      <div class="hero-tag"><div class="htag-dot"></div>Works campus-wide</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="campus-monitor">
+      <div class="monitor-title">Live Campus Safety Monitor</div>
+
+      <div class="zones-grid">
+        <div class="zone-card" id="z1">
+          <div class="zone-label">BLOCK A<br>CLASS 1</div>
+          <span class="zone-icon">🏫</span>
+        </div>
+        <div class="zone-card" id="z2">
+          <div class="zone-label">BLOCK B<br>CLASS 3</div>
+          <span class="zone-icon">🏫</span>
+        </div>
+        <div class="zone-card" id="z3">
+          <div class="zone-label">LIBRARY</div>
+          <span class="zone-icon">📚</span>
+        </div>
+        <div class="zone-card" id="z4">
+          <div class="zone-label">HOSTEL<br>BLOCK C</div>
+          <span class="zone-icon">🏠</span>
+        </div>
+        <div class="zone-card sos-active" id="z5">
+          <div class="zone-label">TOILET<br>BLOCK B</div>
+          <span class="zone-icon">🆘</span>
+          <div class="sos-tag">SOS!</div>
+        </div>
+        <div class="zone-card" id="z6">
+          <div class="zone-label">SPORTS<br>FIELD</div>
+          <span class="zone-icon">⚽</span>
+        </div>
+      </div>
+
+      <div class="signal-trail">
+        <div class="trail-dot"></div>
+        <div class="trail-dot"></div>
+        <div class="trail-dot"></div>
+        <div class="trail-dot"></div>
+        <div class="trail-dot"></div>
+      </div>
+
+      <div class="security-station">
+        <div class="sec-icon">🛡️</div>
+        <div>
+          <div class="sec-label">Security / Admin Alert</div>
+          <div class="sec-msg" id="secMsg">"Attention — student emergency at <strong style="color:#FCD34D">Toilet Block B</strong>. Staff response needed immediately."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STATS BAR ──────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="si">
+      <div class="si-num">&lt;3s</div>
+      <div class="si-label">Alert reaches security & staff</div>
+    </div>
+    <div class="si">
+      <div class="si-num">100%</div>
+      <div class="si-label">Wireless — no internet required</div>
+    </div>
+    <div class="si">
+      <div class="si-num">Silent</div>
+      <div class="si-label">Discreet SOS option available</div>
+    </div>
+    <div class="si">
+      <div class="si-num">Zero</div>
+      <div class="si-label">Wiring or building works needed</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ───────────────────────── -->
+<section class="how-section section-pad" id="how-it-works">
+  <div class="container">
+    <div class="how-layout">
+      <div>
+        <div class="eyebrow reveal">System Operation</div>
+        <h2 class="sec-title reveal">One press. Staff responds. Student protected.</h2>
+        <p class="sec-sub reveal">The entire sequence is instant, location-specific, and requires nothing from a student in distress except pressing a single button — even silently.</p>
+
+        <div class="step-stack" style="margin-top:40px;">
+          <div class="step-item reveal">
+            <div class="step-n">1</div>
+            <div class="step-body">
+              <div class="step-t">Student Presses the Emergency Button</div>
+              <div class="step-d">A compact SOS button is installed in classrooms, hostels, toilets, corridors, and other campus zones. One press — no PIN, no phone, even usable under duress or in fear.</div>
+            </div>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-n">2</div>
+            <div class="step-body">
+              <div class="step-t">Instant Alert to Security & Admin Station</div>
+              <div class="step-d">The signal transmits wirelessly and immediately to the security control unit, identifying the exact campus zone, block, and location where the button was pressed.</div>
+            </div>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-n">3</div>
+            <div class="step-body">
+              <div class="step-t">Voice Announcement or Silent Alert Activates</div>
+              <div class="step-d">Depending on configuration, either a public PA announcement or a silent staff-only alert notifies the right people — security, a teacher, the admin — immediately and precisely.</div>
+            </div>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-n">4</div>
+            <div class="step-body">
+              <div class="step-t">Staff Dispatched to the Exact Location</div>
+              <div class="step-d">No guessing, no confusion. Security and staff respond to the exact zone within seconds — stopping abuse, harassment, fights, or any threat before it escalates further.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIO DEMO PANEL -->
+      <div class="audio-panel reveal">
+        <div class="ap-eye">▸ Live Announcement Demo</div>
+        <div class="ap-title">Hear what your security team hears the moment a student calls for help.</div>
+        <div class="ap-desc">Press play to hear a real Voddic campus safety announcement — broadcast to security and staff the instant a student presses the emergency button.</div>
+
+        <div class="alert-script">
+          <div class="alert-script-text">
+            "Attention please, attention please. A student at <strong>Toilet Block B</strong> has pressed the emergency button. Staff attention might be needed. Please respond immediately. Thank you."
+          </div>
+        </div>
+
+        <button class="play-wrap" id="playBtn" onclick="togglePlay()">
+          <div class="wave-bars" id="wbars">
+            <div class="w-bar"></div>
+            <div class="w-bar"></div>
+            <div class="w-bar"></div>
+            <div class="w-bar"></div>
+            <div class="w-bar"></div>
+          </div>
+          <span id="playLbl">▶ &nbsp;Play Announcement</span>
+        </button>
+
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:0.76rem;color:rgba(255,255,255,0.35);line-height:1.7;font-weight:300;">
+            A silent mode is also available — alerts go only to staff devices and the security station without a public announcement, protecting student privacy and preventing escalation.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INCIDENTS COVERED ───────────────────── -->
+<section class="scenarios-section" id="incidents">
+  <div class="container">
+    <div class="eyebrow reveal" style="color:var(--amber2);">Incidents Covered</div>
+    <h2 class="sec-title light reveal">Every threat. One button. Immediate response.</h2>
+    <p class="sec-sub light reveal">From physical violence to silent psychological abuse — the Voddic system empowers students and staff to trigger help for any campus safety incident.</p>
+
+    <div class="incident-grid">
+      <div class="incident-card reveal">
+        <div class="ic-icon-wrap">👊</div>
+        <div class="ic-severity high">HIGH RISK</div>
+        <div class="ic-title">Physical Assault & Fighting</div>
+        <div class="ic-desc">Students involved in or witnessing a physical fight or violent assault can trigger an immediate staff response before serious injury occurs.</div>
+      </div>
+      <div class="incident-card reveal">
+        <div class="ic-icon-wrap">😰</div>
+        <div class="ic-severity high">HIGH RISK</div>
+        <div class="ic-title">Sexual Harassment & Abuse</div>
+        <div class="ic-desc">A discreet, silent alert option allows victims of sexual harassment or abuse to call for help without drawing attention or risking retaliation from an abuser.</div>
+      </div>
+      <div class="incident-card reveal">
+        <div class="ic-icon-wrap">😤</div>
+        <div class="ic-severity medium">MEDIUM RISK</div>
+        <div class="ic-title">Bullying & Intimidation</div>
+        <div class="ic-desc">Students being bullied, threatened, or coerced can trigger an alert from a classroom, toilet, or corridor — stopping the intimidation before it worsens.</div>
+      </div>
+      <div class="incident-card reveal">
+        <div class="ic-icon-wrap">🔪</div>
+        <div class="ic-severity high">HIGH RISK</div>
+        <div class="ic-title">Weapon or Armed Threat</div>
+        <div class="ic-desc">If a student or staff member detects a weapon or armed threat on campus, a single silent press brings security without alerting the threat.</div>
+      </div>
+      <div class="incident-card reveal">
+        <div class="ic-icon-wrap">🆘</div>
+        <div class="ic-severity high">HIGH RISK</div>
+        <div class="ic-title">Unauthorised Intruder</div>
+        <div class="ic-desc">Anyone spotting an unknown or unauthorised person on campus can silently alert security before the individual moves further into the school.</div>
+      </div>
+      <div class="incident-card reveal">
+        <div class="ic-icon-wrap">💔</div>
+        <div class="ic-severity medium">MEDIUM RISK</div>
+        <div class="ic-title">Mental Health Crisis</div>
+        <div class="ic-desc">A student showing signs of self-harm, severe distress, or a mental health breakdown can be referred to pastoral care staff quietly and immediately.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CAMPUS ZONES ────────────────────────── -->
+<section class="locations-section section-pad" id="locations">
+  <div class="container">
+    <div class="loc-header">
+      <div class="eyebrow reveal">Campus Coverage</div>
+      <h2 class="sec-title reveal">Protection in every corner of your campus.</h2>
+      <p class="sec-sub reveal">SOS buttons are installed across all high-risk campus zones — not just classrooms. Because danger doesn't only happen in class.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card reveal">
+        <span class="loc-icon">🏫</span>
+        <div class="loc-name">Classrooms</div>
+        <div class="loc-desc">Teacher or student can trigger alert during intimidation, threats, or disruptive incidents mid-lesson.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:95%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">🚻</span>
+        <div class="loc-name">Toilets & Bathrooms</div>
+        <div class="loc-desc">The highest-risk blind spot on any campus. Discreet buttons provide coverage where staff cannot be present.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:100%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">🏠</span>
+        <div class="loc-name">Hostels & Dormitories</div>
+        <div class="loc-desc">Nighttime incidents, room-based abuse, or dormitory fights are reported instantly without leaving the room.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:90%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">🛤️</span>
+        <div class="loc-name">Corridors & Stairwells</div>
+        <div class="loc-desc">Common zones for confrontation, bullying, and unsupervised harassment between classes or after hours.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:85%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">⚽</span>
+        <div class="loc-name">Sports Fields</div>
+        <div class="loc-desc">Remote from main buildings — fights or accidents during sports activities can be reported immediately.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:80%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">📚</span>
+        <div class="loc-name">Library & Study Areas</div>
+        <div class="loc-desc">Quiet zones where intimidation or coercion often goes unnoticed. A silent SOS reaches security without disruption.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:88%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">🍽️</span>
+        <div class="loc-name">Canteen & Dining Hall</div>
+        <div class="loc-desc">Large gathering areas where confrontations and bullying frequently occur during unsupervised break periods.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:82%"></div></div>
+      </div>
+      <div class="loc-card reveal">
+        <span class="loc-icon">🚪</span>
+        <div class="loc-name">School Gates & Perimeter</div>
+        <div class="loc-desc">Entry points and boundaries — alerts for unauthorised access, off-campus intimidation, or suspicious activity near school grounds.</div>
+        <div class="coverage-bar"><div class="coverage-fill" style="width:75%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY VODDIC ──────────────────────────── -->
+<section class="why-section section-pad">
+  <div class="container">
+    <div class="why-layout">
+      <div>
+        <div class="eyebrow reveal">Why Voddic</div>
+        <h2 class="sec-title reveal">Built for schools that take student safety seriously.</h2>
+        <p class="sec-sub reveal">Designed around the reality of Nigerian educational environments — power interruptions, limited budgets, and the urgent need to protect students from harm.</p>
+
+        <div class="why-list" style="margin-top:36px;">
+          <div class="why-item reveal">
+            <div class="why-icon-box">🔕</div>
+            <div>
+              <div class="why-t">Silent Alert Mode for Sensitive Situations</div>
+              <div class="why-d">In cases of abuse or harassment, a public announcement can endanger the student. Our silent mode alerts only security and admin — discreetly and safely.</div>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon-box">🔋</div>
+            <div>
+              <div class="why-t">Works Through Power Cuts</div>
+              <div class="why-d">Battery-backed system ensures the student safety network stays active during generator or NEPA outages — when incidents are more likely to occur.</div>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon-box">💰</div>
+            <div>
+              <div class="why-t">Affordable — No Monthly Fees</div>
+              <div class="why-d">A one-time investment protects your entire campus permanently. No subscription, no SIM, no cloud services required to keep the system running.</div>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon-box">⚖️</div>
+            <div>
+              <div class="why-t">Demonstrates Duty of Care</div>
+              <div class="why-d">Schools with documented safety infrastructure are better protected legally and reputationally. Parents and regulators notice when schools invest in student protection.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-panel reveal">
+        <div class="impact-big">87%</div>
+        <div class="impact-label">of school violence incidents occur in areas without staff supervision — classrooms, toilets, corridors, and hostels.</div>
+
+        <div class="stat-rows">
+          <div class="stat-r">
+            <span class="stat-rl">Alert reaches security</span>
+            <span class="stat-rv">&lt; 3 seconds</span>
+          </div>
+          <div class="stat-r">
+            <span class="stat-rl">Campus zones covered</span>
+            <span class="stat-rv">Unlimited</span>
+          </div>
+          <div class="stat-r">
+            <span class="stat-rl">Silent alert mode</span>
+            <span class="stat-rv">Available</span>
+          </div>
+          <div class="stat-r">
+            <span class="stat-rl">Button battery life</span>
+            <span class="stat-rv">12–24 months</span>
+          </div>
+          <div class="stat-r">
+            <span class="stat-rl">Internet required</span>
+            <span class="stat-rv">No — standalone</span>
+          </div>
+          <div class="stat-r">
+            <span class="stat-rl">Monthly subscription</span>
+            <span class="stat-rv">None</span>
+          </div>
+          <div class="stat-r">
+            <span class="stat-rl">Installation time</span>
+            <span class="stat-rv">Same day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEMO REQUEST FORM ────────────────────── -->
+<section class="form-section" id="request-demo">
+  <div class="container">
+    <div class="form-layout">
+
+      <!-- SIDEBAR -->
+      <div class="form-sidebar">
+        <div class="eyebrow reveal">Get Started</div>
+        <h2 class="sec-title reveal">Request Your School Demo</h2>
+        <p class="sec-sub reveal">Tell us about your school or college and we'll arrange a live campus demonstration — showing exactly how the system would protect your students.</p>
+
+        <div class="promise-list reveal" style="margin-top:32px;">
+          <div class="promise-row">
+            <div class="promise-dash"></div>
+            <div class="promise-t"><strong>Live on-campus demo</strong> — we bring the system to your school and demonstrate it in your actual campus zones.</div>
+          </div>
+          <div class="promise-row">
+            <div class="promise-dash"></div>
+            <div class="promise-t"><strong>Campus safety plan</strong> — we map your highest-risk zones and propose a tailored button placement strategy.</div>
+          </div>
+          <div class="promise-row">
+            <div class="promise-dash"></div>
+            <div class="promise-t"><strong>No commitment required</strong> — the demo is completely free and without obligation.</div>
+          </div>
+          <div class="promise-row">
+            <div class="promise-dash"></div>
+            <div class="promise-t"><strong>24-hour response</strong> — our team will reach out to confirm your preferred demo time.</div>
+          </div>
+        </div>
+
+        <div class="contact-box reveal">
+          <div class="cb-label">Direct Contact</div>
+          <div class="cb-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+          <div class="cb-item">📱 <a href="https://wa.me/2348127633556">WhatsApp us</a></div>
+          <div class="cb-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+          <div class="cb-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+        </div>
+      </div>
+
+      <!-- FORM PANEL -->
+      <div class="form-card reveal">
+        <div id="formContent">
+          <h3 class="form-heading">School Demo Request</h3>
+          <p class="form-sub">Takes under 2 minutes. We'll handle the rest.</p>
+
+          <!-- REPLACE WITH YOUR FORMSPREE ENDPOINT -->
+          <form id="demoForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+            <input type="hidden" name="student_count" id="h_students">
+            <input type="hidden" name="demo_preference" id="h_demo">
+            <input type="hidden" name="deployment_urgency" id="h_urgency">
+            <input type="hidden" name="zones_of_interest" id="h_zones">
+
+            <!-- SCHOOL INFO -->
+            <div class="f-div">School / College Information</div>
+            <div class="f-grid">
+              <div class="f-g">
+                <label for="sch_name">School / College Name *</label>
+                <input type="text" id="sch_name" name="school_name" placeholder="Excel Academy, University of..." required>
+              </div>
+              <div class="f-g">
+                <label for="sch_type">Institution Type</label>
+                <select id="sch_type" name="school_type">
+                  <option value="">Select...</option>
+                  <option>Primary School</option>
+                  <option>Secondary / High School</option>
+                  <option>Boarding / Residential School</option>
+                  <option>Polytechnic</option>
+                  <option>University / College</option>
+                  <option>Vocational / Tech School</option>
+                  <option>International School</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="f-g">
+                <label for="sch_city">City / State *</label>
+                <input type="text" id="sch_city" name="city_state" placeholder="Lagos, Ibadan, Abuja..." required>
+              </div>
+              <div class="f-g">
+                <label for="sch_buildings">No. of Buildings / Blocks</label>
+                <input type="number" id="sch_buildings" name="buildings" placeholder="e.g. 4" min="1">
+              </div>
+              <div class="f-g full">
+                <label for="sch_addr">School Address</label>
+                <input type="text" id="sch_addr" name="address" placeholder="Street, Area, City">
+              </div>
+            </div>
+
+            <!-- STUDENT COUNT -->
+            <div class="f-div">Student Population</div>
+            <div class="f-g full">
+              <label>Approximate number of students *</label>
+              <div class="tag-row" id="studentTags">
+                <div class="chip" data-val="Under 200 students" onclick="pickChip(this,'studentTags','h_students')">Under 200</div>
+                <div class="chip" data-val="200–500 students" onclick="pickChip(this,'studentTags','h_students')">200–500</div>
+                <div class="chip" data-val="500–1,000 students" onclick="pickChip(this,'studentTags','h_students')">500–1,000</div>
+                <div class="chip" data-val="1,000–3,000 students" onclick="pickChip(this,'studentTags','h_students')">1,000–3,000</div>
+                <div class="chip" data-val="3,000+ students" onclick="pickChip(this,'studentTags','h_students')">3,000+</div>
+              </div>
+            </div>
+
+            <!-- CAMPUS ZONES -->
+            <div class="f-div">Priority Zones</div>
+            <div class="f-g full">
+              <label>Which zones would you prioritise for coverage? (select all that apply)</label>
+              <div class="tag-row" id="zoneTags">
+                <div class="chip" onclick="toggleChip(this)">Classrooms</div>
+                <div class="chip" onclick="toggleChip(this)">Toilets</div>
+                <div class="chip" onclick="toggleChip(this)">Hostels / Dorms</div>
+                <div class="chip" onclick="toggleChip(this)">Corridors</div>
+                <div class="chip" onclick="toggleChip(this)">Sports Field</div>
+                <div class="chip" onclick="toggleChip(this)">Library</div>
+                <div class="chip" onclick="toggleChip(this)">Canteen</div>
+                <div class="chip" onclick="toggleChip(this)">School Gates</div>
+                <div class="chip" onclick="toggleChip(this)">Entire Campus</div>
+              </div>
+            </div>
+
+            <!-- CONTACT PERSON -->
+            <div class="f-div">Contact Person</div>
+            <div class="f-grid">
+              <div class="f-g">
+                <label for="c_name">Full Name *</label>
+                <input type="text" id="c_name" name="contact_name" placeholder="Principal, Rector, Director..." required>
+              </div>
+              <div class="f-g">
+                <label for="c_role">Role / Title</label>
+                <input type="text" id="c_role" name="role" placeholder="Principal, Dean of Students...">
+              </div>
+              <div class="f-g">
+                <label for="c_phone">Phone / WhatsApp *</label>
+                <input type="tel" id="c_phone" name="phone" placeholder="+234 800 000 0000" required>
+              </div>
+              <div class="f-g">
+                <label for="c_email">Email Address *</label>
+                <input type="email" id="c_email" name="email" placeholder="you@school.edu.ng" required>
+              </div>
+            </div>
+
+            <!-- DEMO PREFERENCE -->
+            <div class="f-div">Demo Preference</div>
+            <div class="f-g full">
+              <label>How would you prefer the demo?</label>
+              <div class="tag-row" id="demoPT">
+                <div class="chip" data-val="On-site at our school" onclick="pickChip(this,'demoPT','h_demo')">On-site at our school</div>
+                <div class="chip" data-val="Virtual / video call" onclick="pickChip(this,'demoPT','h_demo')">Virtual / video call</div>
+                <div class="chip" data-val="Visit Voddic office" onclick="pickChip(this,'demoPT','h_demo')">Visit your office</div>
+              </div>
+            </div>
+
+            <div class="f-g full" style="margin-top:14px;">
+              <label>When are you looking to deploy?</label>
+              <div class="tag-row" id="urgencyT">
+                <div class="chip" data-val="ASAP — within 1 month" onclick="pickChip(this,'urgencyT','h_urgency')">ASAP</div>
+                <div class="chip" data-val="1–3 months" onclick="pickChip(this,'urgencyT','h_urgency')">1–3 months</div>
+                <div class="chip" data-val="Before next term" onclick="pickChip(this,'urgencyT','h_urgency')">Next term</div>
+                <div class="chip" data-val="Just exploring" onclick="pickChip(this,'urgencyT','h_urgency')">Just exploring</div>
+              </div>
+            </div>
+
+            <!-- NOTES -->
+            <div class="f-div">Additional Information</div>
+            <div class="f-g full">
+              <label for="notes">Any specific incidents, concerns, or questions?</label>
+              <textarea id="notes" name="notes" placeholder="Tell us about recent incidents on campus, your current security setup, specific zones of concern, budget, or anything else we should know before the demo..."></textarea>
+            </div>
+
+            <!-- SUBMIT -->
+            <div style="margin-top:28px;">
+              <button type="submit" class="sub-btn" id="submitBtn">REQUEST CAMPUS DEMO →</button>
+              <p class="sub-note">No commitment required. We'll reach out within 24 hours to confirm your preferred demo date and time.</p>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-state" id="successState">
+          <div class="success-box">✓</div>
+          <div class="success-heading">REQUEST RECEIVED</div>
+          <p class="success-body">
+            Thank you. Our team at <strong>Voddic LTD</strong> will contact you within <strong>24 hours</strong> to schedule your campus safety demo.<br><br>
+            For a faster response, WhatsApp us directly at <a href="https://wa.me/2348127633556" style="color:var(--amber);font-weight:700;">+234 812 763 3556</a>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────── -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">Voddic <span>LTD</span></div>
+      <div class="foot-tag">Student safety reimagined. Wireless emergency alert technology built for Nigerian schools and colleges — protecting students in every corner of campus, every hour of the day.</div>
+    </div>
+    <div>
+      <div class="foot-col-head">Navigation</div>
+      <ul class="foot-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#incidents">Incidents Covered</a></li>
+        <li><a href="#locations">Campus Zones</a></li>
+        <li><a href="#request-demo">Request Demo</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-head">Contact</div>
+      <div class="foot-contact">
+        <div class="fc-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+        <div class="fc-item">📱 <a href="https://wa.me/2348127633556">WhatsApp</a></div>
+        <div class="fc-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+        <div class="fc-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <div class="foot-copy">© 2026 Voddic LTD. All rights reserved. — <a href="https://voddic.com.ng">voddic.com.ng</a></div>
+    <div class="foot-copy">Student Safety Alert System — School & College Edition</div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── NAVBAR ────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── SCROLL REVEALS ────────────────────────────
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 55);
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ─── AUDIO DEMO ────────────────────────────────
+let playing = false, utt = null;
+
+function togglePlay() {
+  const btn = document.getElementById('playBtn');
+  const bars = document.getElementById('wbars');
+  const lbl = document.getElementById('playLbl');
+
+  if (playing) {
+    window.speechSynthesis.cancel();
+    playing = false;
+    btn.classList.remove('playing');
+    bars.classList.remove('playing');
+    lbl.innerHTML = '▶ &nbsp;Play Announcement';
+    return;
+  }
+
+  utt = new SpeechSynthesisUtterance(
+    "Attention please, attention please. A student at Toilet Block B has pressed the emergency button. Staff attention might be needed. Please respond immediately. Thank you."
+  );
+  utt.rate = 0.87; utt.pitch = 0.95; utt.volume = 1;
+
+  utt.onend = utt.onerror = () => {
+    playing = false;
+    btn.classList.remove('playing');
+    bars.classList.remove('playing');
+    lbl.innerHTML = '▶ &nbsp;Play Again';
+  };
+
+  playing = true;
+  btn.classList.add('playing');
+  bars.classList.add('playing');
+  lbl.innerHTML = '■ &nbsp;Stop';
+  window.speechSynthesis.speak(utt);
+}
+
+// ─── SINGLE-SELECT CHIPS ────────────────────────
+function pickChip(el, groupId, hiddenId) {
+  document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById(hiddenId).value = el.dataset.val;
+}
+
+// ─── MULTI-SELECT CHIPS (zones) ─────────────────
+const selZones = new Set();
+function toggleChip(el) {
+  el.classList.toggle('on');
+  const v = el.textContent.trim();
+  if (el.classList.contains('on')) selZones.add(v);
+  else selZones.delete(v);
+  document.getElementById('h_zones').value = Array.from(selZones).join(', ');
+}
+
+// ─── FORM SUBMIT ───────────────────────────────
+document.getElementById('demoForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!document.getElementById('h_students').value) {
+    showToast('Please select your approximate student count.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'SENDING...';
+
+  try {
+    const resp = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (resp.ok) {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successState').classList.add('show');
+      document.getElementById('request-demo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'REQUEST CAMPUS DEMO →';
+      showToast('Submission failed. Please try again or contact us directly.');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'REQUEST CAMPUS DEMO →';
+    showToast('Network error — please check your connection.');
+  }
+});
+
+// ─── TOAST ─────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── ANIMATED CAMPUS MONITOR ───────────────────
+const zones = document.querySelectorAll('.zone-card');
+const zoneData = [
+  { label: 'BLOCK A\nCLASS 1', icon: '🏫', msg: 'Block A, Classroom 1' },
+  { label: 'BLOCK B\nCLASS 3', icon: '🏫', msg: 'Block B, Classroom 3' },
+  { label: 'LIBRARY', icon: '📚', msg: 'the Library' },
+  { label: 'HOSTEL\nBLOCK C', icon: '🏠', msg: 'Hostel Block C' },
+  { label: 'TOILET\nBLOCK B', icon: '🚻', msg: 'Toilet Block B' },
+  { label: 'SPORTS\nFIELD', icon: '⚽', msg: 'the Sports Field' },
+];
+let activeZ = 4;
+
+setInterval(() => {
+  // clear current
+  zones[activeZ].classList.remove('sos-active');
+  const lines = zoneData[activeZ].label.split('\n');
+  zones[activeZ].querySelector('.zone-label').innerHTML = lines.join('<br>');
+  zones[activeZ].querySelector('.zone-icon').textContent = zoneData[activeZ].icon;
+  const oldTag = zones[activeZ].querySelector('.sos-tag');
+  if (oldTag) oldTag.remove();
+
+  // pick new
+  activeZ = Math.floor(Math.random() * zones.length);
+  zones[activeZ].classList.add('sos-active');
+  zones[activeZ].querySelector('.zone-icon').textContent = '🆘';
+
+  const nt = document.createElement('div');
+  nt.className = 'sos-tag'; nt.textContent = 'SOS!';
+  zones[activeZ].appendChild(nt);
+
+  document.getElementById('secMsg').innerHTML =
+    `"Attention — student emergency at <strong style="color:#FCD34D">${zoneData[activeZ].msg}</strong>. Staff response needed immediately."`;
+}, 3800);
+</script>
+</body>
+</html>
