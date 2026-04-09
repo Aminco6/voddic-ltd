@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voddic BloomGuard — The Flower That Guards Your Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Nunito:wght@300;400;500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+ <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/custom-animate.css" />
+    <link rel="stylesheet" href="assets/css/swiper.min.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome-all.css" />
+    <link rel="stylesheet" href="assets/css/jarallax.css" />
+    <link rel="stylesheet" href="assets/css/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.css" />
+
+
+    <link rel="stylesheet" href="assets/css/module-css/slider.css" />
+    <link rel="stylesheet" href="assets/css/module-css/footer.css" />
+    <link rel="stylesheet" href="assets/css/module-css/service.css" />
+    <link rel="stylesheet" href="assets/css/module-css/about.css" />
+    <link rel="stylesheet" href="assets/css/module-css/vission.css" />
+    <link rel="stylesheet" href="assets/css/module-css/why-choose.css" />
+    <link rel="stylesheet" href="assets/css/module-css/feature.css" />
+    <link rel="stylesheet" href="assets/css/module-css/divider.css" />
+    <link rel="stylesheet" href="assets/css/module-css/brand.css" />
+    <link rel="stylesheet" href="assets/css/module-css/portfolio.css" />
+    <link rel="stylesheet" href="assets/css/module-css/news.css" />
+    <link rel="stylesheet" href="assets/css/module-css/cta.css" />
+    <link rel="stylesheet" href="assets/css/module-css/team.css" />
+    <link rel="stylesheet" href="assets/css/module-css/sliding-text.css" />
+    <link rel="stylesheet" href="assets/css/module-css/testimonial.css" />
+    <link rel="stylesheet" href="assets/css/module-css/two-section.css" />
+    <link rel="stylesheet" href="assets/css/module-css/contact.css" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+     <link rel="stylesheet" href="assets/css/responsive.css" />
+
+<style>
+/* ─── TOKENS ─────────────────────────────────── */
+:root {
+  --forest:    #1B3A2D;
+  --forest2:   #234D3C;
+  --forest3:   #2E6B52;
+  --sage:      #6B9E84;
+  --sage2:     #A8C4B4;
+  --cream:     #F7F3EC;
+  --cream2:    #EDE8DE;
+  --ivory:     #FDFBF7;
+  --earth:     #5C3D2E;
+  --earth2:    #7A5240;
+  --gold:      #C9A84C;
+  --gold2:     #E8C96A;
+  --gold-pale: #FBF3DC;
+  --petal:     #E8A0B0;
+  --petal2:    #F2C5CF;
+  --white:     #FFFFFF;
+  --text:      #1E2D22;
+  --text2:     #3D5247;
+  --muted:     #7A9080;
+  --border:    rgba(27,58,45,0.12);
+  --border-g:  rgba(201,168,76,0.3);
+  --sh-sm:     0 2px 16px rgba(27,58,45,0.08);
+  --sh-md:     0 8px 40px rgba(27,58,45,0.13);
+  --sh-lg:     0 24px 70px rgba(27,58,45,0.18);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--ivory);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* organic leaf pattern overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(107,158,132,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
+
+/* ─── NAVBAR ─────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 52px;
+  background: rgba(253,251,247,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: var(--sh-md); }
+
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+.nav-logo-bloom {
+  font-size: 1.4rem; line-height: 1;
+  animation: sway 4s ease-in-out infinite;
+  display: block;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600; font-size: 1.3rem;
+  color: var(--forest); letter-spacing: 0.5px;
+}
+
+.nav-brand span { color: var(--gold); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text2); text-decoration: none; transition: color 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.nav-links a:hover { color: var(--forest); }
+
+.nav-order {
+  background: var(--forest) !important;
+  color: var(--cream) !important;
+  padding: 10px 24px !important;
+  border-radius: 40px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.3px;
+  transition: all 0.25s !important;
+}
+
+.nav-order:hover { background: var(--forest2) !important; transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+}
+
+/* ─── HERO ───────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  padding-top: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+
+/* large watercolor-style bg circle */
+.hero::after {
+  content: '';
+  position: absolute; top: -100px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(107,158,132,0.12) 0%, rgba(201,168,76,0.06) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-text {
+  padding: 80px 48px 80px 80px;
+  position: relative; z-index: 2;
+}
+
+@media (max-width: 900px) { .hero-text { padding: 48px 24px 32px; } }
+
+.hero-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.7rem; letter-spacing: 3px;
+  color: var(--sage); text-transform: uppercase;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s ease both;
+}
+
+.hero-label::before, .hero-label::after {
+  content: '✿';
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.0;
+  color: var(--forest);
+  margin-bottom: 8px;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--earth);
+  display: block;
+}
+
+.hero h1 .gold-word { color: var(--gold); }
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  animation: fadeUp 0.7s ease 0.15s both;
+}
+
+.hero-desc {
+  font-size: 1rem; color: var(--text2);
+  line-height: 1.8; font-weight: 400;
+  max-width: 460px; margin-bottom: 40px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+.hero-desc strong { font-weight: 700; color: var(--forest); }
+
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.btn-forest {
+  background: var(--forest); color: var(--cream);
+  font-size: 0.9rem; font-weight: 700;
+  padding: 15px 34px; border-radius: 40px;
+  text-decoration: none; display: inline-block;
+  border: 2px solid var(--forest);
+  transition: all 0.25s; cursor: pointer;
+  letter-spacing: 0.3px;
+}
+
+.btn-forest:hover {
+  background: var(--forest2); border-color: var(--forest2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(27,58,45,0.35);
+}
+
+.btn-outline-f {
+  background: transparent; color: var(--forest);
+  font-size: 0.9rem; font-weight: 600;
+  padding: 15px 28px; border-radius: 40px;
+  text-decoration: none; display: inline-block;
+  border: 2px solid var(--border);
+  transition: all 0.25s; letter-spacing: 0.3px;
+}
+
+.btn-outline-f:hover { border-color: var(--forest); }
+
+.hero-traits {
+  display: flex; gap: 28px; margin-top: 40px; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.4s both;
+}
+
+.trait {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.83rem; color: var(--muted); font-weight: 500;
+}
+
+.trait-leaf { color: var(--sage); font-size: 0.9rem; }
+
+/* ─── HERO VISUAL ────────────────────────────── */
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 40px;
+  position: relative; z-index: 2;
+}
+
+@media (max-width: 900px) { .hero-visual { padding: 32px 24px 60px; } }
+
+.bloom-stage {
+  position: relative;
+  width: 320px; height: 380px;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+
+/* Pot */
+.pot {
+  position: absolute; bottom: 0;
+  width: 110px; height: 80px;
+}
+
+.pot-body {
+  width: 110px; height: 65px;
+  background: linear-gradient(160deg, #8B5E3C, #6B4226);
+  border-radius: 6px 6px 18px 18px;
+  position: absolute; bottom: 0;
+  box-shadow: inset -8px 0 16px rgba(0,0,0,0.2), var(--sh-sm);
+}
+
+.pot-rim {
+  width: 120px; height: 16px;
+  background: linear-gradient(90deg, #9B6E4C, #7A5235, #9B6E4C);
+  border-radius: 4px;
+  position: absolute; bottom: 57px; left: -5px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.pot-stripe {
+  position: absolute; bottom: 18px; left: 18px; right: 18px;
+  height: 2px; background: rgba(255,255,255,0.12); border-radius: 1px;
+}
+
+/* Soil */
+.soil {
+  width: 96px; height: 14px;
+  background: linear-gradient(90deg, #3D2B1F, #5C3D2E, #3D2B1F);
+  border-radius: 50%;
+  position: absolute; bottom: 63px;
+}
+
+/* ─── ANIMATED FLOWER ────────────────────────── */
+.flower-wrap {
+  position: absolute;
+  bottom: 76px;
+  display: flex; flex-direction: column; align-items: center;
+  transform-origin: bottom center;
+  animation: plantSway 5s ease-in-out infinite;
+}
+
+@keyframes plantSway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+/* Main stem */
+.stem {
+  width: 5px; height: 140px;
+  background: linear-gradient(to top, #2D5C3A, #4A8A5A, #3A7048);
+  border-radius: 3px;
+  position: relative;
+}
+
+/* Side leaves */
+.leaf-left, .leaf-right {
+  position: absolute;
+  width: 52px; height: 28px;
+  border-radius: 0 60% 0 60%;
+  transform-origin: right center;
+}
+
+.leaf-left {
+  background: linear-gradient(135deg, #3A7048, #5CA870);
+  top: 60px; right: 3px;
+  transform: rotate(-30deg) scaleX(-1);
+  animation: leafWave 4s ease-in-out infinite;
+}
+
+.leaf-right {
+  background: linear-gradient(135deg, #4A8A5A, #6ABD7C);
+  top: 40px; left: 3px;
+  transform: rotate(25deg);
+  animation: leafWave 4s ease-in-out 0.5s infinite;
+}
+
+@keyframes leafWave {
+  0%, 100% { transform: rotate(-30deg) scaleX(-1); }
+  50% { transform: rotate(-24deg) scaleX(-1); }
+}
+
+/* Small extra leaves */
+.leaf-sm {
+  position: absolute;
+  width: 36px; height: 20px;
+  background: linear-gradient(135deg, #2D5C3A, #4A8A5A);
+  border-radius: 0 50% 0 50%;
+}
+
+.leaf-sm.l1 { top: 90px; right: 2px; transform: rotate(-45deg) scaleX(-1); animation: leafWave 3.5s ease-in-out 0.3s infinite; }
+.leaf-sm.l2 { top: 20px; left: 2px; transform: rotate(40deg); animation: leafWave 3.5s ease-in-out 0.8s infinite; }
+
+/* Flower head */
+.flower-head {
+  position: relative;
+  width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: -2px;
+}
+
+/* Petals */
+.petal {
+  position: absolute;
+  width: 28px; height: 38px;
+  background: linear-gradient(to top, var(--petal), var(--petal2));
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform-origin: center bottom;
+  animation: petalBreath 3s ease-in-out infinite;
+}
+
+@keyframes petalBreath {
+  0%, 100% { transform: var(--pt) scale(1); }
+  50% { transform: var(--pt) scale(1.05); }
+}
+
+.petal:nth-child(1) { --pt: rotate(0deg) translateY(-22px); }
+.petal:nth-child(2) { --pt: rotate(45deg) translateY(-22px); }
+.petal:nth-child(3) { --pt: rotate(90deg) translateY(-22px); }
+.petal:nth-child(4) { --pt: rotate(135deg) translateY(-22px); }
+.petal:nth-child(5) { --pt: rotate(180deg) translateY(-22px); }
+.petal:nth-child(6) { --pt: rotate(225deg) translateY(-22px); }
+.petal:nth-child(7) { --pt: rotate(270deg) translateY(-22px); }
+.petal:nth-child(8) { --pt: rotate(315deg) translateY(-22px); }
+
+.petal:nth-child(1), .petal:nth-child(3), .petal:nth-child(5), .petal:nth-child(7) {
+  background: linear-gradient(to top, #E8A0B0, #F2C5CF);
+}
+
+.petal:nth-child(2), .petal:nth-child(4), .petal:nth-child(6), .petal:nth-child(8) {
+  background: linear-gradient(to top, #D4889A, #EBB3BE);
+  width: 24px; height: 34px;
+}
+
+/* Flower centre — the hidden eye / sensor */
+.flower-centre {
+  width: 28px; height: 28px;
+  background: radial-gradient(circle, #FFDB6B, #C9A84C);
+  border-radius: 50%;
+  position: relative; z-index: 2;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.3), 0 2px 8px rgba(0,0,0,0.15);
+  animation: centreGlow 3s ease-in-out infinite;
+}
+
+@keyframes centreGlow {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(201,168,76,0.3), 0 2px 8px rgba(0,0,0,0.15); }
+  50% { box-shadow: 0 0 0 6px rgba(201,168,76,0.15), 0 0 20px rgba(201,168,76,0.4), 0 2px 8px rgba(0,0,0,0.15); }
+}
+
+/* Sensor eye dot */
+.sensor-eye {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px; height: 8px;
+  background: var(--forest);
+  border-radius: 50%;
+  animation: sensorBlink 4s ease-in-out infinite;
+}
+
+@keyframes sensorBlink {
+  0%, 90%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  95% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+}
+
+/* Motion ring detection animation */
+.motion-rings {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.motion-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  animation: ringExpand 3s ease-out infinite;
+}
+
+.motion-ring:nth-child(1) { width: 60px; height: 60px; animation-delay: 0s; }
+.motion-ring:nth-child(2) { width: 90px; height: 90px; animation-delay: 0.5s; }
+.motion-ring:nth-child(3) { width: 120px; height: 120px; animation-delay: 1s; }
+.motion-ring:nth-child(4) { width: 150px; height: 150px; animation-delay: 1.5s; }
+
+@keyframes ringExpand {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* Sound waves from flower */
+.sound-emit {
+  position: absolute;
+  top: -20px;
+  right: -60px;
+  display: flex; flex-direction: column; gap: 5px;
+  opacity: 0;
+  animation: soundAppear 3s ease-in-out 1s infinite;
+}
+
+@keyframes soundAppear {
+  0%, 30% { opacity: 0; transform: translateX(-5px); }
+  50%, 80% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(5px); }
+}
+
+.sound-arc {
+  width: 20px; height: 14px;
+  border-right: 3px solid var(--gold);
+  border-radius: 0 50% 50% 0;
+  opacity: 0.8;
+}
+
+.sound-arc:nth-child(2) { width: 28px; height: 20px; opacity: 0.5; }
+.sound-arc:nth-child(3) { width: 36px; height: 26px; opacity: 0.3; }
+
+/* Floating label */
+.sensor-label {
+  position: absolute;
+  top: -52px;
+  background: var(--forest);
+  color: var(--cream);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 2px;
+  padding: 5px 12px; border-radius: 20px;
+  white-space: nowrap;
+  animation: labelFloat 3s ease-in-out infinite;
+}
+
+.sensor-label::after {
+  content: '';
+  position: absolute; bottom: -5px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--forest);
+}
+
+@keyframes labelFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Motion indicator bubble */
+.motion-bubble {
+  position: absolute;
+  top: 60px; left: -80px;
+  background: var(--gold-pale);
+  border: 1px solid var(--border-g);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.72rem;
+  font-family: 'Courier Prime', monospace;
+  color: var(--earth);
+  white-space: nowrap;
+  animation: bubbleFloat 4s ease-in-out infinite;
+  box-shadow: var(--sh-sm);
+}
+
+.motion-bubble::before {
+  content: '◉ MOTION';
+  display: block;
+  color: var(--sage);
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  margin-bottom: 3px;
+}
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+/* Outdoor flower (second smaller plant) */
+.outdoor-flower {
+  position: absolute;
+  bottom: 0; right: -40px;
+  opacity: 0.5;
+  transform: scale(0.6);
+  transform-origin: bottom center;
+  animation: plantSway 6s ease-in-out 1s infinite;
+}
+
+/* ─── PRODUCT BADGE ──────────────────────────── */
+.product-badge-strip {
+  background: var(--forest);
+  padding: 28px 20px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 60px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+
+.pb-item {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.pb-icon { font-size: 1.4rem; }
+
+.pb-text { }
+
+.pb-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--gold2); line-height: 1;
+}
+
+.pb-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.4; font-weight: 400; }
+
+.pb-sep { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+/* ─── SECTIONS ───────────────────────────────── */
+section { position: relative; z-index: 1; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 96px 0; }
+
+.eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.68rem; letter-spacing: 3px;
+  color: var(--sage); text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before { content: '✿'; color: var(--gold); }
+
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700; color: var(--forest);
+  line-height: 1.15; margin-bottom: 14px;
+}
+
+.sec-title em { font-style: italic; font-weight: 300; color: var(--earth); }
+
+.sec-sub {
+  font-size: 1rem; color: var(--text2);
+  line-height: 1.8; font-weight: 400; max-width: 540px;
+}
+
+/* ─── THE CONCEPT ────────────────────────────── */
+.concept-section { background: var(--ivory); }
+
+.concept-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center; margin-top: 60px;
+}
+
+@media (max-width: 800px) { .concept-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.concept-steps { display: flex; flex-direction: column; gap: 0; }
+
+.cs-row {
+  display: flex; gap: 18px; padding: 24px;
+  border-radius: 14px; transition: background 0.2s;
+  cursor: default;
+}
+
+.cs-row:hover { background: var(--cream); }
+
+.cs-num {
+  width: 36px; height: 36px;
+  background: var(--forest); border-radius: 8px;
+  color: var(--gold2);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+.cs-title {
+  font-weight: 700; font-size: 0.95rem;
+  color: var(--forest); margin-bottom: 5px;
+}
+
+.cs-desc {
+  font-size: 0.88rem; color: var(--text2);
+  line-height: 1.7; font-weight: 400;
+}
+
+/* ─── DISGUISE VISUAL PANEL ──────────────────── */
+.disguise-panel {
+  background: linear-gradient(145deg, var(--forest) 0%, var(--forest2) 60%, #142E22 100%);
+  border-radius: 20px; padding: 36px 32px;
+  position: relative; overflow: hidden;
+}
+
+.disguise-panel::before {
+  content: '🌸';
+  position: absolute; bottom: -20px; right: -10px;
+  font-size: 8rem; opacity: 0.05;
+}
+
+.dp-eye {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 3px;
+  color: var(--sage2); text-transform: uppercase; margin-bottom: 16px;
+}
+
+.dp-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: white; margin-bottom: 10px; line-height: 1.25;
+}
+
+.dp-title em { font-style: italic; font-weight: 300; color: var(--gold2); }
+
+.dp-desc {
+  font-size: 0.87rem; color: rgba(255,255,255,0.5);
+  line-height: 1.75; font-weight: 400; margin-bottom: 28px;
+}
+
+/* ─── AUDIO SAMPLES ──────────────────────────── */
+.audio-samples { display: flex; flex-direction: column; gap: 12px; }
+
+.audio-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px; padding: 14px 16px;
+  display: flex; align-items: center; gap: 14px;
+  transition: all 0.2s; cursor: pointer;
+}
+
+.audio-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(201,168,76,0.25); }
+.audio-card.active { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.4); }
+
+.ac-play {
+  width: 38px; height: 38px;
+  background: rgba(201,168,76,0.15);
+  border: 1.5px solid rgba(201,168,76,0.35);
+  border-radius: 50%; color: var(--gold2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; flex-shrink: 0;
+  transition: all 0.2s; cursor: pointer;
+  font-family: monospace;
+}
+
+.audio-card.active .ac-play {
+  background: rgba(201,168,76,0.25);
+  color: white;
+  animation: playPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes playPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(201,168,76,0); }
+}
+
+.ac-info { flex: 1; }
+
+.ac-name {
+  font-weight: 700; font-size: 0.83rem;
+  color: rgba(255,255,255,0.88); margin-bottom: 3px;
+}
+
+.ac-audio-card.active .ac-name { color: var(--gold2); }
+
+.ac-desc {
+  font-size: 0.75rem; color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+}
+
+.ac-wave {
+  display: flex; align-items: center; gap: 2px; height: 20px;
+}
+
+.aw-bar {
+  width: 3px; background: rgba(201,168,76,0.3);
+  border-radius: 2px; height: 6px;
+}
+
+.audio-card.active .aw-bar {
+  background: var(--gold2);
+  animation: awAnim 0.4s ease-in-out infinite;
+}
+
+.aw-bar:nth-child(2) { animation-delay: 0.08s; }
+.aw-bar:nth-child(3) { animation-delay: 0.16s; }
+.aw-bar:nth-child(4) { animation-delay: 0.08s; }
+
+@keyframes awAnim {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+/* ─── PLACEMENT SECTION ──────────────────────── */
+.placement-section { background: var(--cream2); }
+
+.placement-header { text-align: center; margin-bottom: 56px; }
+.placement-header .sec-sub { margin: 0 auto; }
+
+.placement-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 640px) { .placement-grid { grid-template-columns: 1fr; } }
+
+.place-card {
+  background: var(--ivory); border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px 28px;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+
+.place-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  transition: opacity 0.3s; opacity: 0;
+}
+
+.place-card.indoor::before { background: linear-gradient(90deg, var(--sage), var(--forest3)); }
+.place-card.outdoor::before { background: linear-gradient(90deg, var(--gold), var(--earth)); }
+
+.place-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+.place-card:hover::before { opacity: 1; }
+
+.place-type-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 2px;
+  text-transform: uppercase; padding: 5px 14px;
+  border-radius: 20px; margin-bottom: 20px;
+}
+
+.indoor .place-type-badge { background: rgba(107,158,132,0.12); color: var(--forest3); border: 1px solid rgba(107,158,132,0.25); }
+.outdoor .place-type-badge { background: var(--gold-pale); color: var(--earth); border: 1px solid var(--border-g); }
+
+.place-icon { font-size: 2.5rem; display: block; margin-bottom: 16px; }
+
+.place-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--forest); margin-bottom: 10px;
+}
+
+.place-desc {
+  font-size: 0.9rem; color: var(--text2);
+  line-height: 1.75; font-weight: 400; margin-bottom: 20px;
+}
+
+.place-spots { display: flex; flex-direction: column; gap: 8px; }
+
+.spot-row {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.84rem; color: var(--text2);
+}
+
+.spot-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%; flex-shrink: 0;
+}
+
+.indoor .spot-dot { background: var(--sage); }
+.outdoor .spot-dot { background: var(--gold); }
+
+/* ─── FEATURES ───────────────────────────────── */
+.features-section { background: var(--ivory); }
+
+.feats-header { text-align: center; margin-bottom: 56px; }
+.feats-header .sec-sub { margin: 0 auto; }
+
+.feats-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 860px) { .feats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .feats-grid { grid-template-columns: 1fr; } }
+
+.feat-card {
+  background: var(--ivory); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 22px;
+  transition: all 0.3s;
+}
+
+.feat-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); border-color: var(--border-g); }
+
+.fc-icon {
+  width: 50px; height: 50px;
+  background: var(--cream);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 18px;
+  transition: background 0.3s;
+}
+
+.feat-card:hover .fc-icon { background: var(--gold-pale); }
+
+.fc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 600;
+  color: var(--forest); margin-bottom: 8px;
+}
+
+.fc-desc {
+  font-size: 0.86rem; color: var(--text2);
+  line-height: 1.75; font-weight: 400;
+}
+
+/* ─── COMPARISON SECTION ─────────────────────── */
+.compare-section {
+  background: var(--forest);
+  padding: 96px 0; position: relative; overflow: hidden;
+}
+
+.compare-section::before {
+  content: '🌿';
+  position: absolute; bottom: -20px; right: 5%;
+  font-size: 12rem; opacity: 0.04;
+  pointer-events: none;
+}
+
+.compare-section .sec-title { color: white; }
+.compare-section .sec-sub { color: rgba(255,255,255,0.5); }
+
+.vs-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 32px; align-items: start; margin-top: 56px;
+}
+
+@media (max-width: 700px) {
+  .vs-grid { grid-template-columns: 1fr; }
+  .vs-divider { display: none; }
+}
+
+.vs-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 28px 24px;
+}
+
+.vs-card.winner {
+  background: rgba(201,168,76,0.08);
+  border-color: rgba(201,168,76,0.3);
+}
+
+.vs-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 14px;
+  display: inline-block; padding: 4px 12px; border-radius: 20px;
+}
+
+.vs-card:not(.winner) .vs-label { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+.vs-card.winner .vs-label { background: rgba(201,168,76,0.15); color: var(--gold2); }
+
+.vs-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.vs-card:not(.winner) .vs-title { color: rgba(255,255,255,0.5); }
+.vs-card.winner .vs-title { color: white; }
+
+.vs-list { display: flex; flex-direction: column; gap: 10px; }
+
+.vs-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.86rem; line-height: 1.5;
+}
+
+.vs-card:not(.winner) .vs-item { color: rgba(255,255,255,0.35); }
+.vs-card.winner .vs-item { color: rgba(255,255,255,0.8); }
+
+.vs-x { color: rgba(239,68,68,0.6); font-size: 0.75rem; }
+.vs-check { color: var(--gold2); font-size: 0.75rem; }
+
+.vs-divider {
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 80px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-style: italic;
+  color: rgba(255,255,255,0.15);
+}
+
+/* ─── ORDER FORM ─────────────────────────────── */
+.order-section {
+  background: var(--cream);
+  padding: 96px 0;
+  position: relative;
+}
+
+.order-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--forest), var(--gold), var(--sage), var(--forest));
+}
+
+.order-layout {
+  display: grid; grid-template-columns: 1fr 1.25fr;
+  gap: 64px; align-items: start;
+}
+
+@media (max-width: 900px) { .order-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+.order-sidebar .sec-sub { margin-bottom: 32px; }
+
+.order-promises { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+
+.op-row {
+  display: flex; gap: 12px; align-items: flex-start;
+}
+
+.op-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+.op-text {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.65;
+}
+
+.op-text strong { font-weight: 700; color: var(--forest); }
+
+.contact-leaf {
+  margin-top: 40px; background: var(--forest);
+  border-radius: 16px; padding: 24px;
+}
+
+.cl-head {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: var(--sage2); text-transform: uppercase; margin-bottom: 14px;
+}
+
+.cl-item {
+  font-size: 0.86rem; color: rgba(255,255,255,0.5);
+  margin-bottom: 8px; display: flex; gap: 9px;
+}
+
+.cl-item:last-child { margin: 0; }
+.cl-item a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.cl-item a:hover { color: var(--gold2); }
+
+/* ─── THE FORM ───────────────────────────────── */
+.order-form-card {
+  background: var(--ivory); border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(24px, 5vw, 48px);
+  box-shadow: var(--sh-md); position: relative;
+}
+
+.order-form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 36px; right: 36px; height: 4px;
+  background: linear-gradient(90deg, var(--forest), var(--gold), var(--sage));
+  border-radius: 0 0 4px 4px;
+}
+
+.form-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700;
+  color: var(--forest); margin-bottom: 4px;
+}
+
+.form-heading em { font-style: italic; font-weight: 300; color: var(--earth); }
+
+.form-sub {
+  font-size: 0.87rem; color: var(--muted);
+  margin-bottom: 28px; font-weight: 400; line-height: 1.55;
+}
+
+/* pricing summary in form */
+.price-summary {
+  background: var(--cream2);
+  border: 1px solid var(--border-g);
+  border-radius: 10px; padding: 16px 18px;
+  margin-bottom: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+
+.ps-left { }
+
+.ps-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 2px;
+  color: var(--muted); text-transform: uppercase; margin-bottom: 4px;
+}
+
+.ps-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--forest); line-height: 1;
+}
+
+.ps-note { font-size: 0.78rem; color: var(--muted); }
+
+.ps-badge {
+  background: var(--forest); color: var(--gold2);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.65rem; letter-spacing: 1px;
+  padding: 6px 14px; border-radius: 20px;
+  font-weight: 700;
+}
+
+.f-sep {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: var(--muted); text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  margin: 22px 0 16px;
+}
+
+.f-sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 500px) { .f-grid { grid-template-columns: 1fr; } }
+
+.f-g { display: flex; flex-direction: column; gap: 7px; }
+.f-g.full { grid-column: 1 / -1; }
+
+.f-g label {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.5px; color: var(--text2); text-transform: uppercase;
+}
+
+.f-g input, .f-g select, .f-g textarea {
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  color: var(--text); font-family: 'Nunito', sans-serif;
+  font-size: 0.92rem; padding: 12px 14px;
+  outline: none; border-radius: 10px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+.f-g select option { background: var(--ivory); color: var(--text); }
+
+.f-g input:focus, .f-g select:focus, .f-g textarea:focus {
+  border-color: var(--forest);
+  background: var(--ivory);
+  box-shadow: 0 0 0 3px rgba(27,58,45,0.08);
+}
+
+.f-g textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+/* Chips */
+.chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+
+.chip {
+  background: var(--cream2);
+  border: 1.5px solid var(--border);
+  color: var(--text2); font-size: 0.82rem; font-weight: 600;
+  padding: 8px 16px; border-radius: 40px;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+
+.chip:hover { border-color: var(--forest); color: var(--forest); }
+.chip.on { background: var(--forest); border-color: var(--forest); color: var(--gold2); }
+
+/* payment options */
+.pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.pay-opt {
+  background: var(--cream2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 16px 14px;
+  cursor: pointer; transition: all 0.2s; text-align: center;
+}
+
+.pay-opt:hover { border-color: var(--forest); }
+.pay-opt.on { border-color: var(--forest); background: rgba(27,58,45,0.06); }
+
+.pay-icon { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+.pay-name { font-weight: 700; font-size: 0.82rem; color: var(--forest); margin-bottom: 3px; }
+.pay-opt.on .pay-name { color: var(--forest); }
+.pay-note { font-size: 0.72rem; color: var(--muted); }
+
+/* bank transfer details */
+.bank-reveal {
+  display: none; margin-top: 14px;
+  background: rgba(27,58,45,0.05);
+  border: 1px solid rgba(27,58,45,0.12);
+  border-radius: 10px; padding: 18px;
+}
+
+.bank-reveal.show { display: block; }
+
+.bank-head {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 3px;
+  color: var(--sage); text-transform: uppercase; margin-bottom: 12px;
+}
+
+.bank-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+  font-size: 0.86rem;
+}
+
+.bank-row:last-of-type { border: none; }
+.bk-label { color: var(--muted); font-size: 0.78rem; }
+.bk-val { font-family: 'Courier Prime', monospace; color: var(--forest); font-weight: 700; }
+
+.copy-btn {
+  background: none; border: 1px solid var(--border);
+  color: var(--muted); font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 1px;
+  padding: 4px 10px; border-radius: 4px; cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover { border-color: var(--forest); color: var(--forest); }
+
+/* Submit */
+.submit-btn {
+  width: 100%;
+  background: var(--forest); color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px;
+  padding: 18px; border: none; border-radius: 12px;
+  cursor: pointer; transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+
+.submit-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform 0.5s;
+}
+
+.submit-btn:hover::after { transform: translateX(100%); }
+.submit-btn:hover { background: var(--forest2); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,58,45,0.35); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.sub-note {
+  text-align: center; font-size: 0.77rem; color: var(--muted);
+  margin-top: 12px; line-height: 1.6;
+}
+
+/* ─── SUCCESS ────────────────────────────────── */
+.success-state { display: none; text-align: center; padding: 48px 20px; }
+.success-state.show { display: block; }
+
+.success-bloom {
+  font-size: 4rem; display: block; margin-bottom: 18px;
+  animation: bloomIn 0.7s ease;
+}
+
+@keyframes bloomIn {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700;
+  color: var(--forest); margin-bottom: 12px;
+}
+
+.success-body {
+  font-size: 0.93rem; color: var(--text2);
+  line-height: 1.85; font-weight: 400; max-width: 360px; margin: 0 auto;
+}
+
+/* ─── FOOTER ─────────────────────────────────── */
+footer { background: var(--forest); padding: 52px 24px; position: relative; z-index: 1; }
+
+.footer-grid {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 48px;
+}
+
+@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700; color: white; margin-bottom: 8px;
+}
+
+.footer-brand span { color: var(--gold2); }
+
+.footer-tagline {
+  font-size: 0.83rem; color: rgba(255,255,255,0.35);
+  line-height: 1.7; font-weight: 300;
+}
+
+.ft-col-head {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem; letter-spacing: 3px;
+  color: var(--sage2); text-transform: uppercase; margin-bottom: 16px;
+}
+
+.ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.ft-links a {
+  font-size: 0.84rem; color: rgba(255,255,255,0.4);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.ft-links a:hover { color: rgba(255,255,255,0.9); }
+
+.ft-contact { display: flex; flex-direction: column; gap: 10px; }
+
+.ft-c-item { font-size: 0.84rem; color: rgba(255,255,255,0.4); display: flex; gap: 8px; }
+.ft-c-item a { color: rgba(255,255,255,0.65); text-decoration: none; }
+.ft-c-item a:hover { color: var(--gold2); }
+
+.footer-bar {
+  max-width: 1080px; margin: 40px auto 0;
+  padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+
+.ft-copy { font-size: 0.76rem; color: rgba(255,255,255,0.22); }
+.ft-copy a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+/* ─── TOAST ──────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--forest);
+  border-left: 4px solid var(--gold);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.83rem; padding: 14px 20px;
+  border-radius: 10px; box-shadow: var(--sh-lg);
+  z-index: 9999; transform: translateY(80px); opacity: 0;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none; max-width: 300px;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ─── ANIMATIONS ─────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-bloom">🌸</span>
+    <span class="nav-brand">Bloom<span>Guard</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel-panic-button.html">Hotel</a></li>
+    <li><a href="hospital_panic_buttun.html">Hospital</a></li>
+    <li><a href="school_panic_button.html">School</a></li>
+    <li><a href="bloom_guard.html">Bloom</a></li>
+    <li><a href="schoolPass.html">SchPass</a></li>
+    
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#placement">Indoor & Outdoor</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#order" class="nav-order">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-label">Voddic Smart Home Security</div>
+    <h1>
+      Hidden In
+      <span class="gold-word">Plain</span>
+      <em>Sight.</em>
+    </h1>
+    <p class="hero-tagline">The flower that guards your home — silently watching, loudly defending.</p>
+    <p class="hero-desc">
+      <strong>BloomGuard</strong> looks like a beautiful decorative flower — indoors on your shelf or outdoors in your garden. But the moment a stranger steps into your space, a powerful voice warning fills the air, scaring them away before they take another step.
+    </p>
+    <div class="hero-btns">
+      <a href="#order" class="btn-forest">Order Yours →</a>
+      <a href="#how-it-works" class="btn-outline-f">See How It Works</a>
+    </div>
+    <div class="hero-traits">
+      <div class="trait"><span class="trait-leaf">🌿</span> Looks like real décor</div>
+      <div class="trait"><span class="trait-leaf">🌿</span> Indoor & outdoor use</div>
+      <div class="trait"><span class="trait-leaf">🌿</span> Voice deters intruders</div>
+    </div>
+  </div>
+
+  <!-- ANIMATED FLOWER VISUAL -->
+  <div class="hero-visual">
+    <div class="bloom-stage">
+
+      <!-- Motion bubble -->
+      <div class="motion-bubble">Intruder detected — 2.3m</div>
+
+      <!-- Outdoor second plant (decorative) -->
+      <div class="outdoor-flower">
+        <div class="flower-wrap" style="animation-delay:2s;">
+          <div class="flower-head" style="width:50px;height:50px;">
+            <div class="petal" style="width:18px;height:24px;"></div>
+            <div class="petal" style="width:18px;height:24px;"></div>
+            <div class="petal" style="width:18px;height:24px;"></div>
+            <div class="petal" style="width:18px;height:24px;"></div>
+            <div class="petal" style="width:18px;height:24px;"></div>
+            <div class="petal" style="width:18px;height:24px;"></div>
+            <div class="flower-centre" style="width:18px;height:18px;"></div>
+          </div>
+          <div class="stem" style="height:90px;"></div>
+        </div>
+        <div class="pot"><div class="pot-body" style="width:70px;height:50px;"></div><div class="pot-rim" style="width:78px;"></div></div>
+      </div>
+
+      <!-- MAIN FLOWER -->
+      <div class="flower-wrap">
+
+        <!-- Sound waves -->
+        <div class="sound-emit">
+          <div class="sound-arc"></div>
+          <div class="sound-arc"></div>
+          <div class="sound-arc"></div>
+        </div>
+
+        <div class="flower-head">
+          <!-- Motion rings emanating from centre -->
+          <div class="motion-rings">
+            <div class="motion-ring"></div>
+            <div class="motion-ring"></div>
+            <div class="motion-ring"></div>
+            <div class="motion-ring"></div>
+          </div>
+
+          <!-- Petals -->
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+
+          <!-- Centre sensor -->
+          <div class="flower-centre">
+            <div class="sensor-eye"></div>
+          </div>
+
+          <!-- Tooltip -->
+          <div class="sensor-label">◉ PIR SENSOR ACTIVE</div>
+        </div>
+
+        <div class="stem">
+          <div class="leaf-left"></div>
+          <div class="leaf-right"></div>
+          <div class="leaf-sm l1"></div>
+          <div class="leaf-sm l2"></div>
+        </div>
+      </div>
+
+      <!-- Pot -->
+      <div class="pot">
+        <div class="pot-rim"></div>
+        <div class="pot-body">
+          <div class="pot-stripe"></div>
+        </div>
+        <div class="soil"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT BADGE STRIP ───────────────────── -->
+<div class="product-badge-strip">
+  <div class="pb-item">
+    <span class="pb-icon">🌸</span>
+    <div class="pb-text">
+      <div class="pb-num">100%</div>
+      <div class="pb-label">Decorative — nobody suspects it</div>
+    </div>
+  </div>
+  <div class="pb-sep"></div>
+  <div class="pb-item">
+    <span class="pb-icon">🔊</span>
+    <div class="pb-text">
+      <div class="pb-num">3</div>
+      <div class="pb-label">Escalating voice warning levels</div>
+    </div>
+  </div>
+  <div class="pb-sep"></div>
+  <div class="pb-item">
+    <span class="pb-icon">🏡</span>
+    <div class="pb-text">
+      <div class="pb-num">2</div>
+      <div class="pb-label">Indoor & outdoor versions</div>
+    </div>
+  </div>
+  <div class="pb-sep"></div>
+  <div class="pb-item">
+    <span class="pb-icon">⚡</span>
+    <div class="pb-text">
+      <div class="pb-num">&lt;1s</div>
+      <div class="pb-label">Warning triggers after motion</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ──────────────────────────── -->
+<section class="concept-section section-pad" id="how-it-works">
+  <div class="container">
+    <div class="concept-layout">
+      <div>
+        <div class="eyebrow reveal">The Concept</div>
+        <h2 class="sec-title reveal">A flower that <em>sees</em> — and speaks.</h2>
+        <p class="sec-sub reveal">Hidden inside the petals of a beautiful decorative flower is a precision PIR motion sensor and a powerful audio speaker. The intruder sees décor. Your home sees danger — and responds instantly.</p>
+
+        <div class="concept-steps" style="margin-top:40px;">
+          <div class="cs-row reveal">
+            <div class="cs-num">1</div>
+            <div>
+              <div class="cs-title">BloomGuard Sits Beautifully in Your Space</div>
+              <div class="cs-desc">Placed on a shelf, windowsill, garden step, or entrance — it looks like an ordinary decorative flower. Visitors and family see décor. The sensor watches silently, always on.</div>
+            </div>
+          </div>
+          <div class="cs-row reveal">
+            <div class="cs-num">2</div>
+            <div>
+              <div class="cs-title">Motion Sensor Detects an Intruder</div>
+              <div class="cs-desc">The hidden PIR (Passive Infrared) sensor inside the flower head detects human body heat and movement within its detection zone — up to 8 metres. Within less than one second, it knows someone is there.</div>
+            </div>
+          </div>
+          <div class="cs-row reveal">
+            <div class="cs-num">3</div>
+            <div>
+              <div class="cs-title">A Powerful Voice Warning Plays Immediately</div>
+              <div class="cs-desc">A loud, authoritative recorded voice erupts from the flower — warning the intruder that they have been detected, they are being recorded, and the owner has been alerted. Most intruders flee immediately.</div>
+            </div>
+          </div>
+          <div class="cs-row reveal">
+            <div class="cs-num">4</div>
+            <div>
+              <div class="cs-title">Escalates if They Don't Leave</div>
+              <div class="cs-desc">If motion continues, a second and third warning plays — each more urgent. The third warning triggers the full alarm siren alongside the voice, creating maximum deterrence.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIO DEMO PANEL -->
+      <div class="disguise-panel reveal">
+        <div class="dp-eye">▸ Sample Voice Warnings — Click to Play</div>
+        <div class="dp-title">Hear what an intruder <em>hears.</em></div>
+        <div class="dp-desc">These are the actual audio warnings your BloomGuard plays when motion is detected. Three escalating levels — each more authoritative than the last. Click any to hear it now.</div>
+
+        <div class="audio-samples">
+          <div class="audio-card" id="ac1" onclick="playWarning(1)">
+            <div class="ac-play" id="btn1">▶</div>
+            <div class="ac-info">
+              <div class="ac-name">⚠ Warning 1 — Calm Authority</div>
+              <div class="ac-desc">First motion detected. Polite but firm deterrence.</div>
+            </div>
+            <div class="ac-wave">
+              <div class="aw-bar"></div><div class="aw-bar"></div>
+              <div class="aw-bar"></div><div class="aw-bar"></div>
+            </div>
+          </div>
+
+          <div class="audio-card" id="ac2" onclick="playWarning(2)">
+            <div class="ac-play" id="btn2">▶</div>
+            <div class="ac-info">
+              <div class="ac-name">🔴 Warning 2 — Stern Command</div>
+              <div class="ac-desc">Repeated intrusion. Direct and urgent.</div>
+            </div>
+            <div class="ac-wave">
+              <div class="aw-bar"></div><div class="aw-bar"></div>
+              <div class="aw-bar"></div><div class="aw-bar"></div>
+            </div>
+          </div>
+
+          <div class="audio-card" id="ac3" onclick="playWarning(3)">
+            <div class="ac-play" id="btn3">▶</div>
+            <div class="ac-info">
+              <div class="ac-name">🚨 Warning 3 — Maximum Alert</div>
+              <div class="ac-desc">Final warning before full alarm activates.</div>
+            </div>
+            <div class="ac-wave">
+              <div class="aw-bar"></div><div class="aw-bar"></div>
+              <div class="aw-bar"></div><div class="aw-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:0.76rem;color:rgba(255,255,255,0.35);line-height:1.7;">
+            Voice warnings are pre-recorded in a clear, authoritative tone. Custom messages in Yoruba, Igbo, Hausa, or Pidgin available on request. Volume is loud enough to be heard from outside the building.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INDOOR / OUTDOOR PLACEMENT ───────────── -->
+<section class="placement-section section-pad" id="placement">
+  <div class="container">
+    <div class="placement-header">
+      <div class="eyebrow reveal">Placement Options</div>
+      <h2 class="sec-title reveal">One device. <em>Every space.</em></h2>
+      <p class="sec-sub reveal">BloomGuard is designed for both indoor and outdoor environments — with weatherproofed housing for outdoor units and a slim elegant design for interior placement.</p>
+    </div>
+    <div class="placement-grid">
+      <div class="place-card indoor reveal">
+        <div class="place-type-badge">🏠 Indoors</div>
+        <span class="place-icon">🌷</span>
+        <div class="place-title">Inside the Home</div>
+        <div class="place-desc">BloomGuard blends naturally with indoor décor — on shelves, sideboards, windowsills, or entrance tables. It watches your most vulnerable entry points while adding to the beauty of your home.</div>
+        <div class="place-spots">
+          <div class="spot-row"><div class="spot-dot"></div>Living room entrance — first line of defence</div>
+          <div class="spot-row"><div class="spot-dot"></div>Corridor leading to bedrooms</div>
+          <div class="spot-row"><div class="spot-dot"></div>Home office or study</div>
+          <div class="spot-row"><div class="spot-dot"></div>Shop floor or business reception</div>
+          <div class="spot-row"><div class="spot-dot"></div>Staircase or hallway</div>
+        </div>
+      </div>
+      <div class="place-card outdoor reveal">
+        <div class="place-type-badge">🌿 Outdoors</div>
+        <span class="place-icon">🌻</span>
+        <div class="place-title">Outside the Home</div>
+        <div class="place-desc">The outdoor version features weather-resistant housing styled as a garden flower or potted plant. It monitors your compound, gate, driveway, or veranda — deterring intruders before they even reach your door.</div>
+        <div class="place-spots">
+          <div class="spot-row"><div class="spot-dot"></div>Front gate or compound entrance</div>
+          <div class="spot-row"><div class="spot-dot"></div>Veranda, porch, or balcony</div>
+          <div class="spot-row"><div class="spot-dot"></div>Garden pathway or driveway</div>
+          <div class="spot-row"><div class="spot-dot"></div>Backyard or side passage</div>
+          <div class="spot-row"><div class="spot-dot"></div>Shop or office exterior</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ───────────────────────────────── -->
+<section class="features-section section-pad" id="features">
+  <div class="container">
+    <div class="feats-header">
+      <div class="eyebrow reveal">Why BloomGuard</div>
+      <h2 class="sec-title reveal">Security that doesn't look like <em>security.</em></h2>
+      <p class="sec-sub reveal">Conventional cameras and alarm boxes announce themselves — intruders look for them and avoid them. BloomGuard is the one security device they'll never see coming.</p>
+    </div>
+    <div class="feats-grid">
+      <div class="feat-card reveal">
+        <div class="fc-icon">🎭</div>
+        <div class="fc-title">Completely Disguised</div>
+        <div class="fc-desc">No visible cameras, no alarm boxes, no tell-tale flashing lights. The flower looks exactly like what it is — a decoration. Intruders never know they've been detected until the voice hits them.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="fc-icon">📢</div>
+        <div class="fc-title">Loud Deterrent Voice</div>
+        <div class="fc-desc">The built-in speaker is powerful enough to be heard clearly in outdoor spaces. The voice creates the impression that the owner is home and watching — one of the most effective deterrents possible.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="fc-icon">🔁</div>
+        <div class="fc-title">3-Stage Escalation</div>
+        <div class="fc-desc">Three levels of warnings — calm, stern, then maximum alert. Each stage is more urgent. If motion persists through all three, the full alarm siren activates alongside the voice.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="fc-icon">🌦️</div>
+        <div class="fc-title">Outdoor Weatherproofing</div>
+        <div class="fc-desc">The outdoor model is sealed against rain, humidity, and dust. Designed to survive the Nigerian climate — heavy rain, intense sun, and humid air — without any performance loss.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="fc-icon">🔌</div>
+        <div class="fc-title">Simple Power Options</div>
+        <div class="fc-desc">Runs on mains electricity or rechargeable battery. The outdoor model supports solar top-up. Works through power cuts with a charged battery backup — no generator needed.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="fc-icon">🎛️</div>
+        <div class="fc-title">Fully Customisable</div>
+        <div class="fc-desc">Choose your flower type, pot style, warning language, voice tone, warning count, and alarm siren. Every unit is built to your specification before it ships to you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VS COMPARISON ─────────────────────────── -->
+<section class="compare-section" id="why">
+  <div class="container">
+    <div class="eyebrow reveal" style="color:var(--sage2);">BloomGuard vs Traditional Security</div>
+    <h2 class="sec-title reveal">The smarter the disguise, the stronger the defence.</h2>
+    <p class="sec-sub reveal">Conventional security devices are visible — and experienced intruders know how to avoid them. BloomGuard flips the equation entirely.</p>
+
+    <div class="vs-grid">
+      <div class="vs-card">
+        <span class="vs-label">Traditional Alarm</span>
+        <div class="vs-title">Conventional Security</div>
+        <div class="vs-list">
+          <div class="vs-item"><span class="vs-x">✕</span> Visible to intruders — can be avoided</div>
+          <div class="vs-item"><span class="vs-x">✕</span> Loud siren only — no voice deterrence</div>
+          <div class="vs-item"><span class="vs-x">✕</span> Often ignored by neighbours</div>
+          <div class="vs-item"><span class="vs-x">✕</span> Obvious installation gives intent away</div>
+          <div class="vs-item"><span class="vs-x">✕</span> Reacts after intrusion has begun</div>
+          <div class="vs-item"><span class="vs-x">✕</span> Adds nothing to home aesthetics</div>
+        </div>
+      </div>
+
+      <div class="vs-divider">vs</div>
+
+      <div class="vs-card winner">
+        <span class="vs-label">✿ BloomGuard</span>
+        <div class="vs-title">Voddic BloomGuard</div>
+        <div class="vs-list">
+          <div class="vs-item"><span class="vs-check">✓</span> Invisible — looks like home décor</div>
+          <div class="vs-item"><span class="vs-check">✓</span> Voice warning deters before entry</div>
+          <div class="vs-item"><span class="vs-check">✓</span> Voice creates illusion owner is present</div>
+          <div class="vs-item"><span class="vs-check">✓</span> Intruders never know it exists</div>
+          <div class="vs-item"><span class="vs-check">✓</span> Warns before they set foot inside</div>
+          <div class="vs-item"><span class="vs-check">✓</span> Beautifies and protects your space</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ORDER FORM ────────────────────────────── -->
+<section class="order-section" id="order">
+  <div class="container">
+    <div class="order-layout">
+
+      <!-- SIDEBAR -->
+      <div class="order-sidebar">
+        <div class="eyebrow reveal">Order Your BloomGuard</div>
+        <h2 class="sec-title reveal">Custom-built for <em>your home.</em></h2>
+        <p class="sec-sub reveal">Every BloomGuard unit is configured to your exact specification — flower type, placement, voice warnings, and alarm — then hand-built and delivered to your door.</p>
+
+        <div class="order-promises">
+          <div class="op-row reveal">
+            <span class="op-icon">🌸</span>
+            <div class="op-text"><strong>Custom built to order</strong> — your chosen flower style, colour, and security settings assembled before shipping.</div>
+          </div>
+          <div class="op-row reveal">
+            <span class="op-icon">💳</span>
+            <div class="op-text"><strong>50% commitment fee</strong> — pay half now to secure your build slot. Balance paid on delivery only.</div>
+          </div>
+          <div class="op-row reveal">
+            <span class="op-icon">🚚</span>
+            <div class="op-text"><strong>Delivered to your door</strong> — nationwide delivery with tracking. Setup assistance included.</div>
+          </div>
+          <div class="op-row reveal">
+            <span class="op-icon">📞</span>
+            <div class="op-text"><strong>Direct support</strong> — WhatsApp or call us with any question before or after your order.</div>
+          </div>
+        </div>
+
+        <div class="contact-leaf reveal">
+          <div class="cl-head">Direct Contact</div>
+          <div class="cl-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+          <div class="cl-item">📱 <a href="https://wa.me/2348127633556">WhatsApp us</a></div>
+          <div class="cl-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+          <div class="cl-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+        </div>
+      </div>
+
+      <!-- ORDER FORM CARD -->
+      <div class="order-form-card reveal">
+        <div id="formContent">
+          <h3 class="form-heading">Order <em>BloomGuard</em></h3>
+          <p class="form-sub">Fill in your details below. We'll confirm and start building your custom unit within 24 hours.</p>
+
+          <!-- Pricing summary -->
+          <div class="price-summary">
+            <div class="ps-left">
+              <div class="ps-label">Commitment Fee (Pay Now)</div>
+              <div class="ps-price">₦12,500</div>
+              <div class="ps-note">Balance of ₦12,500 on delivery · Total: ₦25,000</div>
+            </div>
+            <div class="ps-badge">50% NOW · 50% ON DELIVERY</div>
+          </div>
+
+          <!-- REPLACE WITH YOUR FORMSPREE ENDPOINT -->
+          <form id="orderForm" action="https://formspree.io/f/mpqjgoep" method="POST">
+
+            <input type="hidden" name="placement_type" id="h_place">
+            <input type="hidden" name="flower_style" id="h_flower">
+            <input type="hidden" name="warning_count" id="h_wcount">
+            <input type="hidden" name="payment_method" id="h_pay">
+
+            <!-- PERSONAL INFO -->
+            <div class="f-sep">Your Details</div>
+            <div class="f-grid">
+              <div class="f-g">
+                <label for="fname">Full Name *</label>
+                <input type="text" id="fname" name="full_name" placeholder="Your name" required>
+              </div>
+              <div class="f-g">
+                <label for="fphone">Phone / WhatsApp *</label>
+                <input type="tel" id="fphone" name="phone" placeholder="+234 800 000 0000" required>
+              </div>
+              <div class="f-g">
+                <label for="femail">Email Address *</label>
+                <input type="email" id="femail" name="email" placeholder="you@example.com" required>
+              </div>
+              <div class="f-g">
+                <label for="fcity">City / State *</label>
+                <input type="text" id="fcity" name="city_state" placeholder="Lagos, Abuja..." required>
+              </div>
+              <div class="f-g full">
+                <label for="faddr">Delivery Address *</label>
+                <input type="text" id="faddr" name="delivery_address" placeholder="Full address for delivery..." required>
+              </div>
+            </div>
+
+            <!-- PLACEMENT TYPE -->
+            <div class="f-sep">Placement Type</div>
+            <div class="f-g full">
+              <label>Where will BloomGuard be placed? *</label>
+              <div class="chip-row" id="placePills">
+                <div class="chip" data-val="Indoor — inside the home" onclick="pickChip(this,'placePills','h_place')">🏠 Indoors</div>
+                <div class="chip" data-val="Outdoor — garden or compound" onclick="pickChip(this,'placePills','h_place')">🌿 Outdoors</div>
+                <div class="chip" data-val="Both indoor and outdoor units" onclick="pickChip(this,'placePills','h_place')">Both (2 units)</div>
+              </div>
+            </div>
+
+            <!-- FLOWER STYLE -->
+            <div class="f-sep">Flower Style Preference</div>
+            <div class="f-g full">
+              <label>Choose your preferred flower appearance</label>
+              <div class="chip-row" id="flowerPills">
+                <div class="chip" data-val="Pink Rose" onclick="pickChip(this,'flowerPills','h_flower')">🌹 Pink Rose</div>
+                <div class="chip" data-val="Sunflower" onclick="pickChip(this,'flowerPills','h_flower')">🌻 Sunflower</div>
+                <div class="chip" data-val="White Lily" onclick="pickChip(this,'flowerPills','h_flower')">🤍 White Lily</div>
+                <div class="chip" data-val="Tropical Leaf Plant" onclick="pickChip(this,'flowerPills','h_flower')">🌿 Leaf Plant</div>
+                <div class="chip" data-val="Surprise Me" onclick="pickChip(this,'flowerPills','h_flower')">✨ Surprise me</div>
+              </div>
+            </div>
+
+            <!-- CONFIGURATION -->
+            <div class="f-sep">Security Configuration</div>
+            <div class="f-grid">
+              <div class="f-g">
+                <label for="flang">Warning Voice Language</label>
+                <select id="flang" name="warning_language">
+                  <option value="">Select...</option>
+                  <option>English</option>
+                  <option>Yoruba</option>
+                  <option>Igbo</option>
+                  <option>Hausa</option>
+                  <option>Pidgin English</option>
+                  <option>Mix of English & Yoruba</option>
+                  <option>Mix of English & Pidgin</option>
+                </select>
+              </div>
+              <div class="f-g">
+                <label for="falarm">Alarm Type</label>
+                <select id="falarm" name="alarm_type">
+                  <option value="">Select...</option>
+                  <option>Standard Siren</option>
+                  <option>Police Klaxon</option>
+                  <option>Repeating Vocal Alert</option>
+                  <option>Loud Voice Only (No Siren)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="f-g full" style="margin-top:14px;">
+              <label>Number of voice warnings before alarm *</label>
+              <div class="chip-row" id="wcountPills">
+                <div class="chip" data-val="1 warning" onclick="pickChip(this,'wcountPills','h_wcount')">1 Warning</div>
+                <div class="chip" data-val="2 warnings" onclick="pickChip(this,'wcountPills','h_wcount')">2 Warnings</div>
+                <div class="chip" data-val="3 warnings" onclick="pickChip(this,'wcountPills','h_wcount')">3 Warnings</div>
+              </div>
+            </div>
+
+            <div class="f-g full" style="margin-top:14px;">
+              <label for="fnotes">Special requests or custom message</label>
+              <textarea id="fnotes" name="special_requests" placeholder="Any custom warning message text, specific flower colour preferences, pot style, installation questions, or anything else..."></textarea>
+            </div>
+
+            <!-- PAYMENT METHOD -->
+            <div class="f-sep">Payment Method</div>
+            <div class="f-g full">
+              <label>Choose how to pay your ₦12,500 commitment fee *</label>
+              <div class="pay-grid" id="payOptions">
+                <div class="pay-opt on" data-val="Paystack (Card/USSD/Bank)" onclick="selectPay(this)">
+                  <span class="pay-icon">💳</span>
+                  <div class="pay-name">Paystack</div>
+                  <div class="pay-note">Card, USSD, Bank Transfer</div>
+                </div>
+                <div class="pay-opt" data-val="Direct Bank Transfer" onclick="selectPay(this)">
+                  <span class="pay-icon">🏦</span>
+                  <div class="pay-name">Bank Transfer</div>
+                  <div class="pay-note">Pay directly to our account</div>
+                </div>
+              </div>
+
+              <!-- Bank reveal -->
+              <div class="bank-reveal" id="bankDetails">
+                <div class="bank-head">Transfer Details</div>
+                <div class="bank-row">
+                  <span class="bk-label">Bank Name</span>
+                  <span class="bk-val"><!-- YOUR BANK NAME --></span>
+                </div>
+                <div class="bank-row">
+                  <span class="bk-label">Account Number</span>
+                  <span class="bk-val" id="acctNum"><!-- YOUR ACCOUNT NUMBER --></span>
+                  <button type="button" class="copy-btn" onclick="copyAcct()">COPY</button>
+                </div>
+                <div class="bank-row">
+                  <span class="bk-label">Account Name</span>
+                  <span class="bk-val"><!-- YOUR ACCOUNT NAME --></span>
+                </div>
+                <div class="bank-row">
+                  <span class="bk-label">Amount</span>
+                  <span class="bk-val" style="color:var(--forest)">₦12,500 (Commitment Fee)</span>
+                </div>
+                <p style="margin-top:12px;font-size:0.78rem;color:var(--muted);line-height:1.6;">After transfer, submit this form. We'll confirm payment within 2 hours and begin your custom build.</p>
+              </div>
+            </div>
+
+            <!-- SUBMIT -->
+            <div style="margin-top:28px;">
+              <button type="submit" class="submit-btn" id="submitBtn">
+                🌸 &nbsp;Place My Order →
+              </button>
+              <p
+
+              🌸 &nbsp;Place My Order →
+              </button>
+              <p class="sub-note">
+                By ordering, you agree to pay the ₦12,500 commitment fee now. The remaining balance is paid only on delivery. Custom builds take 5–10 working days.
+              </p>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-state" id="successState">
+          <span class="success-bloom">🌸</span>
+          <div class="success-title">Order Placed!</div>
+          <p class="success-body">
+            Thank you! Your <strong>BloomGuard</strong> order has been received. Our team will contact you within <strong>24 hours</strong> to confirm your payment and begin your custom build.<br><br>
+            Questions? WhatsApp us at <a href="https://wa.me/2348127633556" style="color:var(--forest);font-weight:700;">+234 812 763 3556</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Bloom<span>Guard</span></div>
+      <div class="footer-tagline">A Voddic LTD product. The world's most beautiful home security device — disguised as a flower, powered by intelligence, ready to defend at any moment.</div>
+    </div>
+    <div>
+      <div class="ft-col-head">Navigation</div>
+      <ul class="ft-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#placement">Indoor & Outdoor</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#order">Order Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-head">Contact</div>
+      <div class="ft-contact">
+        <div class="ft-c-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+        <div class="ft-c-item">📱 <a href="https://wa.me/2348127633556">WhatsApp</a></div>
+        <div class="ft-c-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+        <div class="ft-c-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <div class="ft-copy">© 2026 Voddic LTD. All rights reserved. — <a href="https://voddic.com.ng">voddic.com.ng</a></div>
+    <div class="ft-copy">BloomGuard — Decorative Motion Voice Security System</div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+// ─── NAVBAR ───────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── SCROLL REVEALS ───────────────────────────
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ─── AUDIO WARNINGS ───────────────────────────
+const warnings = {
+  1: "Warning! You have entered a restricted area. You are being monitored. Please leave this property immediately. This is your first and final warning.",
+  2: "This is your second warning. You are trespassing on private property. You have been recorded. The owner has been alerted. Leave this property now before the alarm is activated.",
+  3: "Final warning! Security has been dispatched to this location. You are caught on camera. You have 10 seconds to leave before the full alarm activates. Leave now!"
+};
+
+let currentWarn = null;
+let currentSpeech = null;
+
+function playWarning(num) {
+  // Stop current if playing
+  if (currentSpeech) {
+    window.speechSynthesis.cancel();
+    if (currentWarn) {
+      document.getElementById('ac' + currentWarn).classList.remove('active');
+      document.getElementById('btn' + currentWarn).textContent = '▶';
+    }
+    if (currentWarn === num) {
+      currentWarn = null; currentSpeech = null;
+      return;
+    }
+  }
+
+  const card = document.getElementById('ac' + num);
+  const btn = document.getElementById('btn' + num);
+
+  const utt = new SpeechSynthesisUtterance(warnings[num]);
+  utt.rate = num === 1 ? 0.88 : num === 2 ? 0.95 : 1.05;
+  utt.pitch = num === 1 ? 1.0 : num === 2 ? 0.9 : 0.8;
+  utt.volume = 1;
+
+  utt.onend = utt.onerror = () => {
+    card.classList.remove('active');
+    btn.textContent = '▶';
+    currentWarn = null; currentSpeech = null;
+  };
+
+  card.classList.add('active');
+  btn.textContent = '■';
+  currentWarn = num;
+  currentSpeech = utt;
+
+  window.speechSynthesis.speak(utt);
+}
+
+// ─── CHIP SELECTORS ───────────────────────────
+function pickChip(el, groupId, hiddenId) {
+  document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById(hiddenId).value = el.dataset.val;
+}
+
+// ─── PAYMENT SELECTION ────────────────────────
+function selectPay(el) {
+  document.querySelectorAll('#payOptions .pay-opt').forEach(o => o.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('h_pay').value = el.dataset.val;
+  document.getElementById('bankDetails').classList.toggle('show', el.dataset.val === 'Direct Bank Transfer');
+}
+
+// Init default
+document.getElementById('h_pay').value = 'Paystack (Card/USSD/Bank)';
+
+// ─── COPY ACCOUNT NUMBER ──────────────────────
+function copyAcct() {
+  const txt = document.getElementById('acctNum').textContent.trim();
+  navigator.clipboard.writeText(txt).then(() => showToast('Account number copied!'));
+}
+
+// ─── FORM SUBMISSION ──────────────────────────
+document.getElementById('orderForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!document.getElementById('h_place').value) {
+    showToast('Please select your placement type (Indoor/Outdoor).'); return;
+  }
+  if (!document.getElementById('h_wcount').value) {
+    showToast('Please select number of voice warnings.'); return;
+  }
+
+  const payMethod = document.getElementById('h_pay').value;
+  const email = document.getElementById('femail').value;
+  const name = document.getElementById('fname').value;
+
+  if (payMethod === 'Paystack (Card/USSD/Bank)') {
+    // !! REPLACE 'pk_test_XXXX' WITH YOUR PAYSTACK PUBLIC KEY !!
+    const handler = PaystackPop.setup({
+      key: 'pk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+      email: email,
+      amount: 1250000, // ₦12,500 in kobo
+      currency: 'NGN',
+      ref: 'BLOOMGUARD_' + Date.now(),
+      metadata: {
+        custom_fields: [{ display_name: "Customer Name", variable_name: "name", value: name }]
+      },
+      callback: function(response) {
+        document.getElementById('h_pay').value = 'Paystack — Ref: ' + response.reference;
+        submitForm();
+      },
+      onClose: function() {
+        showToast('Payment window closed. You can also choose Bank Transfer.');
+      }
+    });
+    handler.openIframe();
+  } else {
+    submitForm();
+  }
+});
+
+async function submitForm() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Placing Order...';
+
+  const form = document.getElementById('orderForm');
+  try {
+    const resp = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (resp.ok) {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successState').classList.add('show');
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      btn.disabled = false;
+      btn.textContent = '🌸  Place My Order →';
+      showToast('Submission failed. Please try again or contact us directly.');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = '🌸  Place My Order →';
+    showToast('Network error — please check your connection.');
+  }
+}
+
+// ─── TOAST ────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+</script>
+
+        <!--Site Footer Two Start-->
+       <footer class="site-footer-two">
+        <div class="site-footer-two__shape-1 float-bob-x">
+            <img src="assets/images/shapes/site-footer-two-shape-1.png" alt="">
+        </div>
+        <div class="site-footer-two__shape-2 float-bob-y">
+            <img src="assets/images/shapes/site-footer-two-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="site-footer-two__top">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="footer-widget-two__column footer-widget-two__about">
+                            <div class="footer-widget-two__logo">
+                                <a href="index.html"><img src="assets/images/resources/voddic-ltd.png" width="350" height="250" alt=""></a>
+                            </div>
+                            <p class="footer-widget-two__about-text">Connecting real world devices with different softwares for automation and security puposes.</p>
+                            <div class="site-footer-two__social">
+                               <a href="https://twitter.com/voddicltd" class="fab fa-twitter" target="_blank"></a>
+                               <a href="https://discord.gg/AWnQc2MnUA" class="fab fa-discord" target="_blank"></a>
+    <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a>
+   
+<a href="https://wa.me/2348127633556" class="fab fa-whatsapp" target="_blank" rel="noopener"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="footer-widget-two__column footer-widget-two__usefull-link">
+                            <div class="footer-widget-two__title-box">
+                                <h4 class="footer-widget-two__title">Useful Links</h4>
+                            </div>
+                            <div class="footer-widget-two__link-box">
+                                <ul class="footer-widget-two__link list-unstyled">
+                                    <li><a href="testimonials.html">Testimonials</a></li>
+                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                        <li> <a href="contact.html">Contact</a></li>
+                                </ul>
+                                <ul class="footer-widget-two__link footer-widget-two__link-2 list-unstyled">
+                                    <li><a href="">Ebooks</a></li>
+                                        <li><a href="electrical-portfolio.html">Electrical</a></li>
+                                        <li><a href="industrial-portfolio.html">Industrial</a></li>
+                                        <li><a href="home-automation-portfolio.html">Home Automation</a></li>
+                                        <li><a href="security-portfolio.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="footer-widget-two__column footer-widget-two__services">
+                            <div class="footer-widget-two__title-box">
+                                <h4 class="footer-widget-two__title">Our Services</h4>
+                            </div>
+                            <ul class="footer-widget-two__link list-unstyled">
+                              
+                               
+                                <li><a href="web-development-service.html">Web Development</a></li>
+                                <li><a href="plc-programming-service.html">PLC Programming</a></li>
+                                <li><a href="industrial-automation-service.html">Industrial Automation</a></li>
+                                <li><a href="home-automation-service.html">Home Automation</a></li>
+                                <li><a href="cctv-alarms-service.html">CCTV & Alarms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
+                        <div class="footer-widget-two__column footer-widget-two__instagram">
+                            <div class="footer-widget-two__title-box">
+                                <h4 class="footer-widget-two__title">Telegram</h4>
+                            </div>
+                            <ul class="footer-widget-two__instagram-list list-unstyled clearfix">
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-1.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-2.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-3.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-4.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-5.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-6.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-two__bottom">
+            <div class="container">
+                <div class="site-footer-two__bottom-inner">
+                    <p class="site-footer-two__bottom-text">© Copywright 2026 by <a href="#">voddic.com.ng</a>. All
+                        Rights Reserved.</p>
+                    <ul class="list-unstyled site-footer-two__bottom-menu">
+                        <li><a href="privacy-policy.html">Privacy & Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms of use</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Site Footer Two End-->
+
+
+
+    
+    </div><!-- /.page-wrapper -->
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/resources/voddic-ltd2.png" width="110" height="85"
+                        alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:voddic28@gmail.com">voddic28@gmail.com</a>
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:812-763-3556">+234 (812) 763 3556</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                   <a href="https://twitter.com/voddicltd"><i class="fab fa-twitter"></i></a>
+                            <a href="https://t.me/voddicltd" target="_blank">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                            <a href="https://discord.gg/AWnQc2MnUA" target="_blank"><i class="fab fa-discord"></i></a>
+
+                           <a href="https://wa.me/2348127633556?text=Hello%2C%20I%20am%20interested%20in%20your%20services." target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                    
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+        <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
+        <span class="scroll-to-top__text"> Go Back Top</span>
+    </a>
+
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jarallax.min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/wNumb.min.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/marquee.min.js"></script>
+    <script src="assets/js/countdown.min.js"></script>
+    <script src="assets/js/gsap/gsap.js"></script>
+    <script src="assets/js/gsap/ScrollTrigger.js"></script>
+    <script src="assets/js/gsap/SplitText.js"></script>
+
+
+<script>
+    // Initialize WOW.js with proper settings
+    $(document).ready(function() {
+        if (typeof WOW !== 'undefined') {
+            var wow = new WOW({
+                boxClass: 'wow',
+                animateClass: 'animated',
+                offset: 0,
+                mobile: true,
+                live: true,
+                callback: function(box) {
+                    // Optional: add class to triggered elements
+                    $(box).addClass('wow-animated');
+                },
+                scrollContainer: null,
+                resetAnimation: true // This is key - allows re-animation on scroll up
+            });
+            wow.init();
+        }
+    });
+</script>
+
+
+  
+<script>
+    // Initialize WOW.js with proper settings
+    $(document).ready(function() {
+        if (typeof WOW !== 'undefined') {
+            var wow = new WOW({
+                boxClass: 'wow',
+                animateClass: 'animated',
+                offset: 0,
+                mobile: true,
+                live: true,
+                callback: function(box) {
+                    // Optional: add class to triggered elements
+                    $(box).addClass('wow-animated');
+                },
+                scrollContainer: null,
+                resetAnimation: true // This is key - allows re-animation on scroll up
+            });
+            wow.init();
+        }
+    });
+</script>
+
+
+    <!-- template js -->
+    <script src="assets/js/script.js"></script>
+
+  
+
+
+<script>
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Stop the page from redirecting
+
+        // Show a "Sending..." state
+        const submitBtn = contactForm.querySelector('button');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = "<span></span>Sending...";
+        submitBtn.disabled = true;
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mpqjgoep", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // SUCCESS POPUP
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your message has been sent successfully.',
+                    icon: 'success',
+                    confirmButtonColor: '#ff5e14', // Match this to your theme color
+                    confirmButtonText: 'OK'
+                });
+                contactForm.reset(); // Clear the form
+            } else {
+                // ERROR POPUP
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Something went wrong. Please try again.',
+                    icon: 'error'
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Could not connect to the server.',
+                icon: 'error'
+            });
+        } finally {
+            // Reset button state
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+              

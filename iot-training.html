@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Build Smart Devices With AI — IoT Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg2: #111115;
+    --bg3: #18181f;
+    --amber: #f59e0b;
+    --amber-light: #fbbf24;
+    --amber-dim: rgba(245,158,11,0.12);
+    --amber-glow: rgba(245,158,11,0.25);
+    --white: #f4f4f5;
+    --muted: #a1a1aa;
+    --border: rgba(245,158,11,0.18);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius: 12px;
+    --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* GRID TEXTURE */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(12,12,14,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .nav-logo { font-family: var(--font-display); font-size:1.5rem; color: var(--amber); letter-spacing:2px; }
+  .nav-cta {
+    background: var(--amber); color:#000; font-weight:700; font-size:0.85rem;
+    padding:10px 20px; border-radius:8px; border:none; cursor:pointer;
+    text-decoration:none; transition:var(--transition); white-space:nowrap;
+    font-family: var(--font-body);
+  }
+  .nav-cta:hover { background: var(--amber-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(245,158,11,0.35); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 5% 80px;
+    display: flex; align-items:center;
+    position:relative; z-index:1;
+    overflow:hidden;
+  }
+  .hero::after {
+    content:'';
+    position:absolute;
+    top:-200px; right:-200px;
+    width:600px; height:600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner {
+    max-width: 1200px; width:100%; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--amber-dim); border:1px solid var(--border);
+    border-radius:100px; padding:6px 16px; font-size:0.8rem;
+    color: var(--amber); font-family:var(--font-mono);
+    margin-bottom:24px; letter-spacing:1px;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  .hero-badge span.dot { width:8px; height:8px; background:var(--amber); border-radius:50%; display:inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom:24px;
+    animation: fadeInUp 0.7s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--amber); font-style:normal; }
+  .hero p {
+    font-size:1.15rem; color: var(--muted); line-height:1.75;
+    margin-bottom:36px; max-width:520px;
+    animation: fadeInUp 0.7s 0.2s ease both;
+  }
+  .hero-ctas { display:flex; gap:16px; flex-wrap:wrap; animation: fadeInUp 0.7s 0.3s ease both; }
+  .btn-primary {
+    background: var(--amber); color:#000; font-weight:700;
+    padding:16px 32px; border-radius:10px; border:none; cursor:pointer;
+    font-size:1rem; font-family:var(--font-body); text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:var(--transition);
+  }
+  .btn-primary:hover { background:var(--amber-light); transform:translateY(-2px); box-shadow:0 12px 32px rgba(245,158,11,0.4); }
+  .btn-secondary {
+    background:transparent; color:var(--white); font-weight:600;
+    padding:16px 32px; border-radius:10px; border:1px solid var(--border);
+    cursor:pointer; font-size:1rem; font-family:var(--font-body); text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition:var(--transition);
+  }
+  .btn-secondary:hover { border-color:var(--amber); color:var(--amber); }
+
+  /* HERO VISUAL */
+  .hero-visual { position:relative; animation: fadeIn 1s 0.4s ease both; }
+  .device-card {
+    background: var(--bg3);
+    border:1px solid var(--border);
+    border-radius:16px; padding:28px;
+    position:relative; overflow:hidden;
+  }
+  .device-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+  .device-title { font-family:var(--font-display); font-size:1.4rem; letter-spacing:2px; color:var(--amber); margin-bottom:20px; }
+  .device-row { display:flex; gap:12px; margin-bottom:12px; }
+  .device-item {
+    flex:1; background:var(--bg2); border:1px solid var(--border);
+    border-radius:10px; padding:16px 12px; text-align:center;
+    font-size:0.82rem; color:var(--muted);
+  }
+  .device-item .icon { font-size:1.8rem; display:block; margin-bottom:6px; }
+  .status-row { display:flex; align-items:center; justify-content:space-between; margin-top:20px; padding-top:16px; border-top:1px solid var(--border); }
+  .status-dot { width:10px; height:10px; background:#22c55e; border-radius:50%; animation: pulse 2s infinite; }
+  .status-text { font-family:var(--font-mono); font-size:0.78rem; color:#22c55e; }
+  .telegram-alert {
+    background: var(--bg2); border:1px solid #2563eb44;
+    border-radius:10px; padding:12px 16px; margin-top:12px;
+    display:flex; align-items:center; gap:10px; font-size:0.83rem;
+  }
+  .tg-icon { font-size:1.2rem; }
+  .tg-text { color:var(--muted); }
+  .tg-text strong { color:var(--white); }
+
+  /* SECTION SHARED */
+  section { position:relative; z-index:1; }
+  .section-inner { max-width:1100px; margin:0 auto; padding:0 5%; }
+  .section-tag {
+    font-family:var(--font-mono); font-size:0.75rem; color:var(--amber);
+    letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; display:block;
+  }
+  .section-title {
+    font-family:var(--font-display);
+    font-size:clamp(2.2rem, 4vw, 3.6rem);
+    line-height:1.05; letter-spacing:1px; margin-bottom:16px;
+  }
+  .section-title em { color:var(--amber); font-style:normal; }
+  .section-sub { color:var(--muted); font-size:1.05rem; max-width:600px; line-height:1.7; margin-bottom:40px; }
+  .divider { border:none; border-top:1px solid var(--border); margin:80px 0; }
+
+  /* WHAT THEY BUILD */
+  .build-section { padding:80px 0; background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); }
+  .build-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:20px; }
+  .build-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:var(--radius); padding:28px 24px;
+    transition:var(--transition);
+  }
+  .build-card:hover { border-color:var(--amber); transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,158,11,0.1); }
+  .build-card .card-icon { font-size:2rem; margin-bottom:16px; }
+  .build-card h3 { font-weight:700; font-size:1.05rem; margin-bottom:8px; }
+  .build-card p { color:var(--muted); font-size:0.9rem; }
+  .project-hero {
+    background:var(--bg3); border:1px solid var(--amber); border-radius:16px;
+    padding:36px; margin-bottom:40px; position:relative; overflow:hidden;
+  }
+  .project-hero::after {
+    content:'ESP-01';
+    position:absolute; right:24px; top:50%; transform:translateY(-50%);
+    font-family:var(--font-display); font-size:5rem; color:rgba(245,158,11,0.06);
+    pointer-events:none; letter-spacing:4px;
+  }
+  .project-hero h3 { font-family:var(--font-display); font-size:1.8rem; color:var(--amber); margin-bottom:8px; letter-spacing:2px; }
+  .project-hero p { color:var(--muted); margin-bottom:20px; }
+  .cap-list { list-style:none; display:flex; flex-wrap:wrap; gap:10px; }
+  .cap-list li {
+    background:var(--amber-dim); border:1px solid var(--border);
+    border-radius:8px; padding:8px 14px; font-size:0.85rem;
+    color:var(--amber-light); font-family:var(--font-mono);
+  }
+  .cap-list li::before { content:'→ '; }
+
+  /* ZERO CODING */
+  .zero-section { padding:80px 0; }
+  .zero-banner {
+    background: linear-gradient(135deg, var(--amber) 0%, #f97316 100%);
+    border-radius:16px; padding:40px; text-align:center;
+    margin-bottom:40px; position:relative; overflow:hidden;
+  }
+  .zero-banner::before {
+    content:'0';
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    font-family:var(--font-display); font-size:18rem;
+    color:rgba(0,0,0,0.06); pointer-events:none;
+  }
+  .zero-banner h2 { font-family:var(--font-display); font-size:clamp(2rem,5vw,3.5rem); color:#000; letter-spacing:2px; position:relative; }
+  .zero-banner p { color:rgba(0,0,0,0.7); font-size:1.05rem; margin-top:8px; position:relative; }
+  .steps-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px; }
+  .step-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:var(--radius); padding:28px;
+    display:flex; gap:16px; align-items:flex-start;
+    transition:var(--transition);
+  }
+  .step-card:hover { border-color:var(--amber); }
+  .step-num {
+    font-family:var(--font-display); font-size:2.2rem; color:var(--amber);
+    line-height:1; min-width:40px;
+  }
+  .step-card h4 { font-weight:700; margin-bottom:6px; }
+  .step-card p { color:var(--muted); font-size:0.88rem; }
+
+  /* KIT */
+  .kit-section { padding:80px 0; background: var(--bg2); }
+  .kit-inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .kit-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
+  .kit-list li {
+    display:flex; align-items:center; gap:14px;
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:10px; padding:14px 18px;
+    font-size:0.95rem;
+  }
+  .kit-list li .k-icon { font-size:1.4rem; }
+  .payment-box {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:16px; padding:32px;
+  }
+  .payment-box h3 { font-family:var(--font-display); font-size:1.6rem; margin-bottom:8px; letter-spacing:1px; }
+  .payment-box p { color:var(--muted); font-size:0.9rem; margin-bottom:24px; }
+  .policy-item {
+    display:flex; gap:12px; margin-bottom:14px;
+    align-items:flex-start; font-size:0.9rem;
+  }
+  .policy-icon { font-size:1.1rem; margin-top:2px; }
+  .policy-warn { color:#f97316; }
+  .policy-ok { color:#22c55e; }
+
+  /* LEARNING */
+  .learn-section { padding:80px 0; }
+  .outcomes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+  .outcome-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:var(--radius); padding:28px;
+    position:relative; overflow:hidden; transition:var(--transition);
+  }
+  .outcome-card:hover { border-color:var(--amber); transform:translateY(-3px); }
+  .outcome-card::before {
+    content:'';
+    position:absolute; bottom:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+    opacity:0; transition:var(--transition);
+  }
+  .outcome-card:hover::before { opacity:1; }
+  .outcome-card h4 { font-weight:700; margin-bottom:8px; }
+  .outcome-card p { color:var(--muted); font-size:0.88rem; }
+  .outcome-num {
+    font-family:var(--font-display); font-size:3rem; color:var(--amber-dim);
+    position:absolute; top:12px; right:16px; line-height:1;
+  }
+
+  /* SOCIAL PROOF */
+  .proof-section { padding:80px 0; background:var(--bg2); }
+  .stats-row { display:flex; flex-wrap:wrap; gap:24px; margin-bottom:48px; justify-content:center; }
+  .stat-block {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:16px; padding:32px 40px; text-align:center; flex:1; min-width:200px;
+    position:relative; overflow:hidden;
+  }
+  .stat-block::before {
+    content:'';
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:60%; height:2px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+  .stat-num {
+    font-family:var(--font-display); font-size:3.5rem; color:var(--amber); line-height:1;
+    margin-bottom:4px;
+  }
+  .stat-label { color:var(--muted); font-size:0.9rem; }
+  .people-row { display:flex; justify-content:center; gap:-8px; margin-bottom:12px; }
+  .person-icon {
+    width:44px; height:44px; border-radius:50%;
+    background: linear-gradient(135deg, var(--amber), #f97316);
+    border:2px solid var(--bg2);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; margin-left:-10px;
+  }
+  .person-icon:first-child { margin-left:0; }
+
+  /* TESTIMONIALS */
+  .testi-section { padding:80px 0; }
+  .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .testi-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:16px; overflow:hidden; transition:var(--transition);
+  }
+  .testi-card:hover { border-color:var(--amber); transform:translateY(-4px); }
+  .testi-video {
+    aspect-ratio:16/9; background:#111;
+    position:relative; cursor:pointer; overflow:hidden;
+  }
+  .testi-video img { width:100%; height:100%; object-fit:cover; opacity:0.7; }
+  .testi-video .play-btn {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:56px; height:56px; border-radius:50%;
+    background:rgba(245,158,11,0.9); display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem; transition:var(--transition);
+  }
+  .testi-card:hover .play-btn { background:var(--amber); transform:translate(-50%,-50%) scale(1.1); }
+  .testi-thumb-placeholder {
+    aspect-ratio:16/9;
+    background: linear-gradient(135deg, var(--bg2), var(--bg3));
+    display:flex; align-items:center; justify-content:center;
+    font-size:3rem; position:relative;
+  }
+  .testi-info { padding:20px; }
+  .testi-avatar {
+    width:44px; height:44px; border-radius:50%;
+    background: linear-gradient(135deg, var(--amber), #f97316);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; margin-bottom:12px;
+  }
+  .testi-name { font-weight:700; font-size:1rem; }
+  .testi-feedback { color:var(--muted); font-size:0.88rem; margin-top:6px; line-height:1.6; }
+  .testi-stars { color:var(--amber); font-size:0.85rem; margin-top:6px; }
+
+  /* URGENCY / SLOTS */
+  .urgency-section { padding:80px 0; background:var(--bg2); }
+  .slots-box {
+    background: var(--bg3); border:2px solid var(--amber);
+    border-radius:20px; padding:48px; text-align:center;
+    max-width:560px; margin:0 auto; position:relative; overflow:hidden;
+  }
+  .slots-box::before {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(circle at center, rgba(245,158,11,0.07) 0%, transparent 70%);
+  }
+  .slots-label { font-family:var(--font-mono); font-size:0.8rem; color:var(--amber); letter-spacing:3px; margin-bottom:12px; }
+  .slots-num {
+    font-family:var(--font-display); font-size:6rem; color:var(--amber);
+    line-height:1; margin-bottom:4px;
+  }
+  .slots-total { color:var(--muted); font-size:1rem; margin-bottom:24px; }
+  .slots-bar-wrap { background:var(--bg2); border-radius:100px; height:10px; overflow:hidden; margin-bottom:24px; }
+  .slots-bar { height:100%; background: linear-gradient(90deg, var(--amber), #f97316); border-radius:100px; transition:width 1.5s ease; }
+  .slots-urgency { color:var(--muted); font-size:0.9rem; }
+  .slots-urgency strong { color:#f97316; }
+
+  /* COUNTDOWN */
+  .countdown-section { padding:80px 0; }
+  .countdown-label { font-family:var(--font-mono); font-size:0.85rem; color:var(--muted); letter-spacing:2px; text-align:center; margin-bottom:8px; }
+  .countdown-title { font-family:var(--font-display); font-size:clamp(1.8rem,3.5vw,3rem); text-align:center; margin-bottom:40px; }
+  .countdown-grid { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .cd-block {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:16px; padding:28px 32px; text-align:center;
+    min-width:110px; position:relative; overflow:hidden;
+    transition:var(--transition);
+  }
+  .cd-block:hover { border-color:var(--amber); }
+  .cd-num {
+    font-family:var(--font-display); font-size:3.8rem; color:var(--amber);
+    line-height:1; display:block;
+  }
+  .cd-unit { font-family:var(--font-mono); font-size:0.72rem; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+
+  /* FORM */
+  .form-section { padding:80px 0; background:var(--bg2); }
+  .form-wrap { max-width:640px; margin:0 auto; }
+  .form-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:20px; padding:48px;
+    position:relative; overflow:hidden;
+  }
+  .form-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--amber), #f97316);
+  }
+  .form-group { margin-bottom:20px; }
+  .form-group label { display:block; font-size:0.88rem; font-weight:600; margin-bottom:8px; color:var(--muted); }
+  .form-group input, .form-group select {
+    width:100%; background:var(--bg2); border:1px solid var(--border);
+    border-radius:10px; padding:14px 16px; color:var(--white);
+    font-family:var(--font-body); font-size:1rem;
+    transition:var(--transition); outline:none;
+  }
+  .form-group input:focus, .form-group select:focus { border-color:var(--amber); box-shadow:0 0 0 3px var(--amber-dim); }
+  .form-group select option { background:var(--bg2); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-submit {
+    width:100%; background:var(--amber); color:#000; font-weight:700;
+    padding:18px; border-radius:12px; border:none; cursor:pointer;
+    font-size:1.1rem; font-family:var(--font-body); margin-top:8px;
+    transition:var(--transition);
+  }
+  .form-submit:hover { background:var(--amber-light); transform:translateY(-2px); box-shadow:0 12px 32px rgba(245,158,11,0.35); }
+  .form-note { color:var(--muted); font-size:0.82rem; text-align:center; margin-top:14px; }
+  .success-msg {
+    display:none; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3);
+    border-radius:12px; padding:20px; text-align:center; color:#22c55e;
+    font-weight:600; margin-top:16px;
+  }
+  .error-msg { color:#ef4444; font-size:0.82rem; margin-top:6px; display:none; }
+
+  /* PAYMENT */
+  .payment-section { padding:80px 0; }
+  .payment-options { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:800px; margin:0 auto; }
+  .pay-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:16px; padding:36px; text-align:center;
+    transition:var(--transition); position:relative; overflow:hidden;
+  }
+  .pay-card.featured { border-color:var(--amber); }
+  .pay-card.featured::before {
+    content:'RECOMMENDED';
+    position:absolute; top:0; right:0;
+    background:var(--amber); color:#000; font-family:var(--font-mono);
+    font-size:0.65rem; letter-spacing:2px; padding:4px 12px;
+    border-bottom-left-radius:8px;
+  }
+  .pay-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+  .pay-icon { font-size:2.5rem; margin-bottom:16px; }
+  .pay-card h3 { font-family:var(--font-display); font-size:1.6rem; letter-spacing:2px; margin-bottom:8px; }
+  .pay-card p { color:var(--muted); font-size:0.9rem; margin-bottom:24px; }
+  .paystack-btn {
+    background:var(--amber); color:#000; font-weight:700;
+    padding:14px 28px; border-radius:10px; border:none; cursor:pointer;
+    font-size:0.95rem; font-family:var(--font-body); width:100%;
+    transition:var(--transition);
+  }
+  .paystack-btn:hover { background:var(--amber-light); transform:translateY(-2px); }
+  .bank-details { text-align:left; margin-top:8px; }
+  .bank-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.9rem; }
+  .bank-row:last-child { border-bottom:none; }
+  .bank-row span:first-child { color:var(--muted); }
+  .bank-row span:last-child { font-weight:600; font-family:var(--font-mono); }
+
+  /* FINAL CTA */
+  .final-section { padding:100px 5%; text-align:center; position:relative; overflow:hidden; }
+  .final-section::before {
+    content:'';
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:800px; height:800px;
+    background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .final-section h2 {
+    font-family:var(--font-display);
+    font-size:clamp(2.5rem,5vw,5rem);
+    line-height:1; margin-bottom:20px; position:relative;
+  }
+  .final-section p { color:var(--muted); font-size:1.1rem; max-width:480px; margin:0 auto 40px; position:relative; }
+  .final-ctas { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative; }
+
+  /* FOOTER */
+  footer {
+    background:var(--bg2); border-top:1px solid var(--border);
+    padding:40px 5%; text-align:center;
+    color:var(--muted); font-size:0.85rem;
+    position:relative; z-index:1;
+  }
+  footer a { color:var(--amber); text-decoration:none; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  /* RESPONSIVE */
+  @media(max-width:860px){
+    .hero-inner { grid-template-columns:1fr; }
+    .hero-visual { display:none; }
+    .kit-inner { grid-template-columns:1fr; }
+    .payment-options { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    .cd-block { min-width:80px; padding:20px; }
+    .cd-num { font-size:2.8rem; }
+  }
+  @media(max-width:540px){
+    nav .nav-cta { display:none; }
+    .countdown-grid { gap:10px; }
+    .cd-block { min-width:72px; padding:16px 12px; }
+    .cd-num { font-size:2.2rem; }
+    .slots-num { font-size:4.5rem; }
+    .form-card { padding:28px 20px; }
+    .pay-card { padding:24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">⚡ IoT LAB</div>
+  <a href="#register" class="nav-cta">Reserve My Slot →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> NEW CLASS ENROLLING</div>
+      <h1>Build Smart Devices<br/><em>Without Coding</em><br/>Using AI</h1>
+      <p>Even with zero programming experience, you'll learn to use AI to build real IoT systems using ESP-01 WiFi relay modules — and control them from your phone.</p>
+      <div class="hero-ctas">
+        <a href="#register" class="btn-primary">⚡ Reserve My Slot Now</a>
+        <a href="#what-youll-build" class="btn-secondary">See What You'll Build</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="device-card">
+        <div class="device-title">SMART RELAY — LIVE</div>
+        <div class="device-row">
+          <div class="device-item"><span class="icon">💡</span>Smart Light<br/>ON</div>
+          <div class="device-item"><span class="icon">📱</span>Phone Control<br/>Active</div>
+          <div class="device-item"><span class="icon">🌐</span>WiFi Link<br/>Stable</div>
+        </div>
+        <div class="telegram-alert">
+          <span class="tg-icon">🤖</span>
+          <div class="tg-text"><strong>Telegram Bot:</strong> "Living room light turned ON from Lagos"</div>
+        </div>
+        <div class="status-row">
+          <span class="status-text">● Device Online</span>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted)">ESP-01 v2.1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL BUILD -->
+<section class="build-section" id="what-youll-build">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-tag">// Section 01 — Project</span>
+      <h2 class="section-title">The Real Device<br/><em>You Will Build</em></h2>
+      <p class="section-sub">This isn't theory. During training you complete a working hardware project that you take home and can expand.</p>
+    </div>
+    <div class="project-hero reveal">
+      <h3>Smart WiFi Switch — ESP-01 Relay</h3>
+      <p>A real wireless automation device you wire, program (with AI help), and test yourself.</p>
+      <ul class="cap-list">
+        <li>Turn lights ON/OFF from your phone</li>
+        <li>Control device via Telegram bot</li>
+        <li>Works from anywhere with internet</li>
+        <li>Expandable to alarms, pumps, generators</li>
+      </ul>
+    </div>
+    <div class="build-grid">
+      <div class="build-card reveal">
+        <div class="card-icon">📲</div>
+        <h3>Phone Control</h3>
+        <p>Control any appliance remotely from your smartphone via WiFi from anywhere in the world.</p>
+      </div>
+      <div class="build-card reveal">
+        <div class="card-icon">🤖</div>
+        <h3>Telegram Automation</h3>
+        <p>Send commands and receive alerts through a Telegram bot you set up yourself during training.</p>
+      </div>
+      <div class="build-card reveal">
+        <div class="card-icon">🔌</div>
+        <h3>Hardware Wiring</h3>
+        <p>Learn to connect ESP-01 relay boards correctly — a skill you can apply to any IoT project.</p>
+      </div>
+      <div class="build-card reveal">
+        <div class="card-icon">🧠</div>
+        <h3>AI-Generated Code</h3>
+        <p>Use ChatGPT to generate, modify, and upload working code to your device — no experience needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZERO CODING -->
+<section class="zero-section" id="zero-coding">
+  <div class="section-inner">
+    <div class="zero-banner reveal">
+      <h2>No Programming Experience Required</h2>
+      <p>AI writes the code. You learn how to guide it, apply it, and upload it to real hardware.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div>
+          <h4>Ask AI for Code</h4>
+          <p>Learn the exact prompts to get working ESP-01 firmware from ChatGPT on demand.</p>
+        </div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div>
+          <h4>Modify Safely</h4>
+          <p>Understand which values to change (WiFi credentials, GPIO pins) without breaking anything.</p>
+        </div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div>
+          <h4>Upload to Device</h4>
+          <p>Flash firmware to your ESP-01 using the USB programmer included in your hardware kit.</p>
+        </div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">04</div>
+        <div>
+          <h4>Troubleshoot with AI</h4>
+          <p>When something doesn't work, learn how to describe hardware errors to AI and get fixes fast.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE KIT -->
+<section class="kit-section" id="hardware-kit">
+  <div class="section-inner">
+    <div class="kit-inner">
+      <div class="reveal">
+        <span class="section-tag">// Section 03 — Hardware</span>
+        <h2 class="section-title"><em>Your Kit</em><br/>Ships First</h2>
+        <p class="section-sub">Every student receives a physical training kit delivered before the training date — so you're ready to build from day one.</p>
+        <ul class="kit-list">
+          <li><span class="k-icon">📡</span> ESP-01 WiFi Module</li>
+          <li><span class="k-icon">🔌</span> ESP-01 Relay Board</li>
+          <li><span class="k-icon">🔧</span> USB Programmer</li>
+          <li><span class="k-icon">🔗</span> Jumper Wires</li>
+          <li><span class="k-icon">💡</span> Mini Test Load / Light</li>
+        </ul>
+      </div>
+      <div class="payment-box reveal">
+        <h3>Payment Policy</h3>
+        <p>Flexible payment to get you started — but complete before training day.</p>
+        <div class="policy-item">
+          <span class="policy-icon policy-ok">✅</span>
+          <span>Part payment allowed to <strong>reserve your slot</strong> and ship the hardware kit early.</span>
+        </div>
+        <div class="policy-item">
+          <span class="policy-icon policy-ok">✅</span>
+          <span>Full payment unlocks <strong>full training access</strong> on the day.</span>
+        </div>
+        <div class="policy-item">
+          <span class="policy-icon policy-warn">⚠️</span>
+          <span>If balance is not completed before training day, <strong>initial payment covers the hardware kit only</strong>.</span>
+        </div>
+        <a href="#payment" class="btn-primary" style="margin-top:20px;display:inline-flex;width:100%;justify-content:center;">View Payment Options</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING OUTCOMES -->
+<section class="learn-section" id="outcomes">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 40px;">
+      <span class="section-tag">// Section 04 — Learning Outcomes</span>
+      <h2 class="section-title">What You'll <em>Walk Away</em> Knowing</h2>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-num">01</div>
+        <h4>Build Real IoT Devices</h4>
+        <p>Go from unboxing components to a live, working networked device in a single session.</p>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">02</div>
+        <h4>Phone Remote Control</h4>
+        <p>Control any appliance in your home or business from your smartphone, anywhere.</p>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">03</div>
+        <h4>Telegram Bot Integration</h4>
+        <p>Build and configure a Telegram bot that talks to your hardware in real time.</p>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">04</div>
+        <h4>Smart Automation Thinking</h4>
+        <p>Understand how smart systems work so you can design your own automation projects.</p>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">05</div>
+        <h4>AI as Your Hardware Partner</h4>
+        <p>Use ChatGPT as your co-engineer for any new smart device project, forever.</p>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">06</div>
+        <h4>Expandable Skills</h4>
+        <p>Every skill transfers — alarms, pumps, generators, security sensors, and beyond.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-section" id="proof">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">
+      <span class="section-tag">// Section 05 — Past Students</span>
+      <h2 class="section-title">People <em>Already Building</em></h2>
+    </div>
+    <div class="stats-row">
+      <div class="stat-block reveal">
+        <div class="people-row" style="margin-bottom:12px;justify-content:center;display:flex;">
+          <div class="person-icon">👤</div>
+          <div class="person-icon">👤</div>
+          <div class="person-icon">👤</div>
+          <div class="person-icon">👤</div>
+          <div class="person-icon">+</div>
+        </div>
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Students Trained</div>
+      </div>
+      <div class="stat-block reveal">
+        <div style="font-size:2.5rem;margin-bottom:8px;">🏆</div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Classes Completed</div>
+      </div>
+      <div class="stat-block reveal">
+        <div style="font-size:2.5rem;margin-bottom:8px;">🔌</div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Students Building Live Devices</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" id="testimonials">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">
+      <span class="section-tag">// Section 06 — Testimonials</span>
+      <h2 class="section-title">Hear From <em>Past Students</em></h2>
+    </div>
+    <div class="testi-grid">
+      <!-- Card 1 - YouTube embed -->
+      <div class="testi-card reveal">
+        <div class="testi-thumb-placeholder">
+          <!-- Replace the src below with your YouTube embed URL -->
+          <iframe
+            id="yt1"
+            width="100%" height="100%"
+            style="position:absolute;inset:0;border:none;display:none;"
+            src=""
+            data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1?autoplay=1"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+          <div class="play-overlay" onclick="playVideo('yt1')" style="cursor:pointer;text-align:center;z-index:2;position:relative;">
+            <div style="font-size:3rem;margin-bottom:8px;">🎥</div>
+            <div class="play-btn" style="margin:0 auto;display:flex;">▶</div>
+          </div>
+        </div>
+        <div class="testi-info">
+          <div class="testi-avatar">👤</div>
+          <div class="testi-name">Chidi O.</div>
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-feedback">"I had zero coding experience. After the training I built a relay that controls my generator from Telegram. It works perfectly every time."</div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="testi-card reveal">
+        <div class="testi-thumb-placeholder">
+          <iframe
+            id="yt2"
+            width="100%" height="100%"
+            style="position:absolute;inset:0;border:none;display:none;"
+            src=""
+            data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2?autoplay=1"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+          <div class="play-overlay" onclick="playVideo('yt2')" style="cursor:pointer;text-align:center;z-index:2;position:relative;">
+            <div style="font-size:3rem;margin-bottom:8px;">🎥</div>
+            <div class="play-btn" style="margin:0 auto;display:flex;">▶</div>
+          </div>
+        </div>
+        <div class="testi-info">
+          <div class="testi-avatar">👤</div>
+          <div class="testi-name">Amaka J.</div>
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-feedback">"The kit arrived before training day and the step-by-step approach with AI made it so easy. I'm now helping my colleagues at the office automate stuff."</div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="testi-card reveal">
+        <div class="testi-thumb-placeholder">
+          <iframe
+            id="yt3"
+            width="100%" height="100%"
+            style="position:absolute;inset:0;border:none;display:none;"
+            src=""
+            data-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3?autoplay=1"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+          <div class="play-overlay" onclick="playVideo('yt3')" style="cursor:pointer;text-align:center;z-index:2;position:relative;">
+            <div style="font-size:3rem;margin-bottom:8px;">🎥</div>
+            <div class="play-btn" style="margin:0 auto;display:flex;">▶</div>
+          </div>
+        </div>
+        <div class="testi-info">
+          <div class="testi-avatar">👤</div>
+          <div class="testi-name">Emeka T.</div>
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-feedback">"I thought this would be above my head. It wasn't. ChatGPT generates the code, the trainer explains the hardware. I understand both now."</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:0.82rem;margin-top:20px;">
+      📹 Replace <code style="color:var(--amber)">YOUR_VIDEO_ID_1/2/3</code> in the source code with your actual YouTube video IDs.
+    </p>
+  </div>
+</section>
+
+<!-- SLOTS URGENCY -->
+<section class="urgency-section" id="slots">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">
+      <span class="section-tag">// Section 07 — Availability</span>
+      <h2 class="section-title">Limited Slots — <em>Almost Full</em></h2>
+    </div>
+    <div class="slots-box reveal">
+      <div class="slots-label">SLOTS REMAINING</div>
+      <div class="slots-num" id="slotsNum">7</div>
+      <div class="slots-total">out of 20 total slots</div>
+      <div class="slots-bar-wrap">
+        <div class="slots-bar" id="slotsBar" style="width:0%"></div>
+      </div>
+      <p class="slots-urgency"><strong>13 slots already filled.</strong> Once all slots are taken, registration closes permanently for this class.</p>
+      <a href="#register" class="btn-primary" style="margin-top:28px;display:inline-flex;">⚡ Secure My Spot Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section" id="countdown">
+  <div class="section-inner">
+    <div class="countdown-label">⏱ TRAINING STARTS IN</div>
+    <div class="countdown-title">Don't Miss the <em>Next Class</em></div>
+    <div class="countdown-grid">
+      <div class="cd-block reveal">
+        <span class="cd-num" id="cd-days">00</span>
+        <span class="cd-unit">Days</span>
+      </div>
+      <div class="cd-block reveal">
+        <span class="cd-num" id="cd-hours">00</span>
+        <span class="cd-unit">Hours</span>
+      </div>
+      <div class="cd-block reveal">
+        <span class="cd-num" id="cd-mins">00</span>
+        <span class="cd-unit">Minutes</span>
+      </div>
+      <div class="cd-block reveal">
+        <span class="cd-num" id="cd-secs">00</span>
+        <span class="cd-unit">Seconds</span>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:0.82rem;margin-top:20px;">
+      📅 Set your training date: edit <code style="color:var(--amber)">TRAINING_DATE</code> in the script at the bottom of this file.
+    </p>
+  </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section class="form-section" id="register">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 40px;">
+      <span class="section-tag">// Section 09 — Register</span>
+      <h2 class="section-title">Register for<br/><em>the Training</em></h2>
+      <p class="section-sub" style="margin:0 auto;">Fill in your details below to reserve your slot. Hardware kit ships once payment is confirmed.</p>
+    </div>
+    <div class="form-wrap">
+      <div class="form-card reveal">
+        <!-- Replace YOUR_FORMSPREE_ID with your actual Formspree form ID -->
+        <form id="regForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="full_name" placeholder="e.g. Chidi Okafor" required/>
+              <div class="error-msg" id="nameErr">Please enter your full name.</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required/>
+              <div class="error-msg" id="emailErr">Please enter a valid email.</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+234 80X XXX XXXX" required/>
+              <div class="error-msg" id="phoneErr">Please enter your phone number.</div>
+            </div>
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" placeholder="e.g. Lagos" required/>
+              <div class="error-msg" id="cityErr">Please enter your city.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="experience">Electronics / Coding Experience? (Optional)</label>
+            <select id="experience" name="experience">
+              <option value="">Select an option</option>
+              <option value="none">None — complete beginner</option>
+              <option value="basic">Basic — tinkered with electronics</option>
+              <option value="some_coding">Some coding knowledge</option>
+              <option value="intermediate">Intermediate electronics/hardware</option>
+            </select>
+          </div>
+          <input type="hidden" name="_subject" value="New IoT Training Registration!"/>
+          <input type="hidden" name="_next" value=""/>
+          <button type="submit" class="form-submit">Register for the Training →</button>
+          <p class="form-note">🔒 Your details are private and used only for this training.</p>
+          <div class="success-msg" id="successMsg">
+            ✅ Registration received! We'll contact you shortly with next steps and payment details.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="payment-section" id="payment">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">
+      <span class="section-tag">// Section 10 — Payment</span>
+      <h2 class="section-title">Choose Your<br/><em>Payment Method</em></h2>
+      <p class="section-sub" style="margin:0 auto;">Payment confirms your registration and triggers hardware kit shipment.</p>
+    </div>
+    <div class="payment-options">
+      <div class="pay-card featured reveal">
+        <div class="pay-icon">💳</div>
+        <h3>Pay Online</h3>
+        <p>Instant payment via card, bank transfer, or USSD. Powered by Paystack.</p>
+        <!-- Replace the config below with your actual Paystack public key, amount, and email handling -->
+        <button class="paystack-btn" onclick="payWithPaystack()">Pay with Paystack →</button>
+        <p style="color:var(--muted);font-size:0.78rem;margin-top:14px;">💳 Cards · 🏦 Bank Transfer · 📱 USSD · 💰 QR</p>
+      </div>
+      <div class="pay-card reveal">
+        <div class="pay-icon">🏦</div>
+        <h3>Bank Transfer</h3>
+        <p>Direct transfer to our account. Send proof of payment after transfer.</p>
+        <div class="bank-details">
+          <div class="bank-row"><span>Bank</span><span>YOUR BANK NAME</span></div>
+          <div class="bank-row"><span>Account Name</span><span>YOUR BUSINESS NAME</span></div>
+          <div class="bank-row"><span>Account No.</span><span>0000000000</span></div>
+        </div>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:16px;">After transfer, send screenshot to <a href="https://wa.me/2348000000000" style="color:var(--amber);">WhatsApp</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL URGENCY -->
+<section class="final-section">
+  <h2 class="reveal">Opportunity Closes<br/>Once All Slots<br/><em>Are Filled.</em></h2>
+  <p class="reveal">Don't wait. The next class may not happen for months — and your spot is not guaranteed until payment is received.</p>
+  <div class="final-ctas reveal">
+    <a href="#register" class="btn-primary" style="font-size:1.1rem;padding:18px 40px;">⚡ Reserve My Slot Now</a>
+    <a href="#payment" class="btn-secondary" style="font-size:1.1rem;padding:18px 40px;">View Payment Options</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© <span id="year"></span> IoT Training Lab · All Rights Reserved</p>
+  <p style="margin-top:8px;font-size:0.78rem;">
+    Powered by <a href="https://paystack.com" target="_blank">Paystack</a> ·
+    Forms by <a href="https://formspree.io" target="_blank">Formspree</a>
+  </p>
+</footer>
+
+<script>
+  // ─────────────────────────────────────────
+  // ⚙️  CONFIG — Edit these values
+  // ─────────────────────────────────────────
+  const TRAINING_DATE = new Date('2025-08-15T09:00:00'); // Change to your actual training date
+  const SLOTS_REMAINING = 7;   // Manually adjust
+  const SLOTS_TOTAL = 20;
+
+  const PAYSTACK_PUBLIC_KEY = 'pk_live_YOUR_PAYSTACK_PUBLIC_KEY'; // Replace with your Paystack key
+  const PAYSTACK_AMOUNT = 1500000; // In kobo (₦15,000 = 1500000)
+  const PAYSTACK_CURRENCY = 'NGN';
+  // ─────────────────────────────────────────
+
+  // YEAR
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // SLOTS BAR
+  window.addEventListener('load', () => {
+    const filled = SLOTS_TOTAL - SLOTS_REMAINING;
+    const pct = (filled / SLOTS_TOTAL) * 100;
+    setTimeout(() => {
+      document.getElementById('slotsBar').style.width = pct + '%';
+    }, 800);
+    document.getElementById('slotsNum').textContent = SLOTS_REMAINING;
+  });
+
+  // COUNTDOWN
+  function updateCountdown() {
+    const now = new Date();
+    const diff = TRAINING_DATE - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent = '00';
+      document.getElementById('cd-secs').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // PAYSTACK
+  function payWithPaystack() {
+    const emailInput = document.getElementById('email');
+    const nameInput = document.getElementById('fullName');
+    const email = emailInput ? emailInput.value : '';
+    const name = nameInput ? nameInput.value : '';
+    if (!email || !email.includes('@')) {
+      alert('Please fill in your registration form above with a valid email before paying.');
+      document.getElementById('register').scrollIntoView({behavior:'smooth'});
+      return;
+    }
+    const handler = PaystackPop.setup({
+      key: PAYSTACK_PUBLIC_KEY,
+      email: email,
+      amount: PAYSTACK_AMOUNT,
+      currency: PAYSTACK_CURRENCY,
+      metadata: { name: name },
+      callback: function(response) {
+        alert('✅ Payment successful! Reference: ' + response.reference + '\n\nWe will confirm your slot and ship your kit shortly.');
+      },
+      onClose: function() {
+        console.log('Payment window closed.');
+      }
+    });
+    handler.openIframe();
+  }
+
+  // FORM VALIDATION + SUBMIT
+  const regForm = document.getElementById('regForm');
+  regForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+    const fields = [
+      { id: 'fullName', err: 'nameErr', check: v => v.trim().length >= 3 },
+      { id: 'email',    err: 'emailErr', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id: 'phone',    err: 'phoneErr', check: v => v.trim().length >= 7 },
+      { id: 'city',     err: 'cityErr',  check: v => v.trim().length >= 2 },
+    ];
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const errEl = document.getElementById(f.err);
+      if (!f.check(el.value)) {
+        errEl.style.display = 'block';
+        el.style.borderColor = '#ef4444';
+        valid = false;
+      } else {
+        errEl.style.display = 'none';
+        el.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+
+    // Submit to Formspree
+    const data = new FormData(regForm);
+    fetch(regForm.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        document.getElementById('successMsg').style.display = 'block';
+        regForm.reset();
+      } else {
+        alert('Something went wrong. Please try again or contact us directly.');
+      }
+    }).catch(() => {
+      alert('Network error. Please check your connection and try again.');
+    });
+  });
+
+  // PLAY VIDEO (lazy load YouTube embed)
+  function playVideo(iframeId) {
+    const iframe = document.getElementById(iframeId);
+    const overlay = iframe.nextElementSibling;
+    iframe.src = iframe.dataset.src;
+    iframe.style.display = 'block';
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

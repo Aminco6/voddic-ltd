@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voddic SchoolPass — Digital Student Gate Management System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+ <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/custom-animate.css" />
+    <link rel="stylesheet" href="assets/css/swiper.min.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome-all.css" />
+    <link rel="stylesheet" href="assets/css/jarallax.css" />
+    <link rel="stylesheet" href="assets/css/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.css" />
+
+
+    <link rel="stylesheet" href="assets/css/module-css/slider.css" />
+    <link rel="stylesheet" href="assets/css/module-css/footer.css" />
+    <link rel="stylesheet" href="assets/css/module-css/service.css" />
+    <link rel="stylesheet" href="assets/css/module-css/about.css" />
+    <link rel="stylesheet" href="assets/css/module-css/vission.css" />
+    <link rel="stylesheet" href="assets/css/module-css/why-choose.css" />
+    <link rel="stylesheet" href="assets/css/module-css/feature.css" />
+    <link rel="stylesheet" href="assets/css/module-css/divider.css" />
+    <link rel="stylesheet" href="assets/css/module-css/brand.css" />
+    <link rel="stylesheet" href="assets/css/module-css/portfolio.css" />
+    <link rel="stylesheet" href="assets/css/module-css/news.css" />
+    <link rel="stylesheet" href="assets/css/module-css/cta.css" />
+    <link rel="stylesheet" href="assets/css/module-css/team.css" />
+    <link rel="stylesheet" href="assets/css/module-css/sliding-text.css" />
+    <link rel="stylesheet" href="assets/css/module-css/testimonial.css" />
+    <link rel="stylesheet" href="assets/css/module-css/two-section.css" />
+    <link rel="stylesheet" href="assets/css/module-css/contact.css" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+     <link rel="stylesheet" href="assets/css/responsive.css" />
+
+
+<style>
+/* ─── TOKENS ──────────────────────────────── */
+:root {
+  --ink:        #080D1A;
+  --ink2:       #0E1628;
+  --ink3:       #1A2540;
+  --blue:       #2563EB;
+  --blue2:      #3B82F6;
+  --blue-pale:  #EFF6FF;
+  --lime:       #65A30D;
+  --lime2:      #84CC16;
+  --lime-pale:  #F0FDF4;
+  --orange:     #EA580C;
+  --orange-pale:#FFF7ED;
+  --white:      #FFFFFF;
+  --off:        #F8FAFF;
+  --surface:    #EEF2FF;
+  --text:       #080D1A;
+  --text2:      #2D3A5A;
+  --muted:      #6B7A99;
+  --border:     rgba(37,99,235,0.12);
+  --border2:    rgba(8,13,26,0.09);
+  --sh-sm:      0 2px 14px rgba(37,99,235,0.08);
+  --sh-md:      0 8px 40px rgba(37,99,235,0.13);
+  --sh-lg:      0 20px 60px rgba(8,13,26,0.18);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--off);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content:'';
+  position: fixed; inset:0;
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(37,99,235,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 90%, rgba(101,163,13,0.04) 0%, transparent 50%);
+  pointer-events:none; z-index:0;
+}
+
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--off); }
+::-webkit-scrollbar-thumb { background:var(--blue); border-radius:3px; }
+
+/* ─── NAV ─────────────────────────────────── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 52px;
+  background:rgba(248,250,255,0.93);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow:var(--sh-md); }
+
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+
+.nav-mark {
+  width:34px; height:34px;
+  background:var(--ink);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fira Code', monospace;
+  font-weight:600; font-size:0.75rem; color:var(--lime2);
+  letter-spacing:1px;
+}
+
+.nav-name {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:800; font-size:1.1rem;
+  color:var(--ink); letter-spacing:-0.3px;
+}
+
+.nav-name span { color:var(--blue); }
+
+.nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+
+.nav-links a {
+  font-size:0.87rem; font-weight:500;
+  color:var(--text2); text-decoration:none; transition:color 0.2s;
+}
+
+.nav-links a:hover { color:var(--blue); }
+
+.nav-demo {
+  background:var(--blue) !important;
+  color:white !important;
+  padding:10px 22px !important;
+  border-radius:8px; font-weight:700 !important;
+  transition:all 0.2s !important;
+}
+
+.nav-demo:hover { background:var(--blue2) !important; transform:translateY(-1px); }
+
+@media(max-width:768px){
+  nav { padding:12px 20px; }
+  .nav-links { display:none; }
+}
+
+/* ─── HERO ────────────────────────────────── */
+.hero {
+  min-height:100vh;
+  padding-top:70px;
+  background:var(--ink);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  overflow:hidden;
+  position:relative;
+}
+
+/* grid dots */
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:radial-gradient(circle, rgba(59,130,246,0.15) 1px, transparent 1px);
+  background-size:36px 36px;
+  pointer-events:none;
+}
+
+/* glow */
+.hero::after {
+  content:'';
+  position:absolute; top:50%; left:30%;
+  transform:translate(-50%,-50%);
+  width:600px; height:600px;
+  background:radial-gradient(circle, rgba(37,99,235,0.12), transparent 70%);
+  pointer-events:none;
+}
+
+@media(max-width:900px){ .hero { grid-template-columns:1fr; } }
+
+.hero-text {
+  padding:80px 48px 80px 72px;
+  position:relative; z-index:2;
+}
+
+@media(max-width:900px){ .hero-text { padding:48px 24px 32px; } }
+
+.hero-chip {
+  display:inline-flex; align-items:center; gap:9px;
+  background:rgba(101,163,13,0.12);
+  border:1px solid rgba(101,163,13,0.3);
+  color:var(--lime2);
+  font-family:'Fira Code', monospace;
+  font-size:0.68rem; letter-spacing:2px; text-transform:uppercase;
+  padding:7px 16px; border-radius:6px;
+  margin-bottom:28px;
+  animation:fup 0.7s ease both;
+}
+
+.chip-dot {
+  width:7px; height:7px;
+  background:var(--lime2); border-radius:50%;
+  animation:dot-blink 2s ease-in-out infinite;
+}
+
+@keyframes dot-blink {
+  0%,100%{opacity:1;} 50%{opacity:0.3;}
+}
+
+.hero h1 {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:clamp(2.4rem,5vw,4.4rem);
+  font-weight:800; line-height:1.05;
+  color:white; letter-spacing:-1px;
+  margin-bottom:20px;
+  animation:fup 0.7s ease 0.1s both;
+}
+
+.hero h1 .blue-w { color:var(--blue2); }
+.hero h1 .lime-w { color:var(--lime2); }
+
+.hero-sub {
+  font-size:1.02rem; color:rgba(255,255,255,0.6);
+  line-height:1.8; font-weight:300;
+  max-width:480px; margin-bottom:40px;
+  animation:fup 0.7s ease 0.2s both;
+}
+
+.hero-sub strong { color:rgba(255,255,255,0.9); font-weight:600; }
+
+.hero-btns {
+  display:flex; gap:12px; flex-wrap:wrap;
+  animation:fup 0.7s ease 0.3s both;
+}
+
+.btn-blue {
+  background:var(--blue); color:white;
+  font-size:0.9rem; font-weight:700;
+  padding:15px 32px; border-radius:8px;
+  text-decoration:none; display:inline-block;
+  border:2px solid var(--blue); transition:all 0.25s; cursor:pointer;
+}
+
+.btn-blue:hover {
+  background:var(--blue2); border-color:var(--blue2);
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(37,99,235,0.4);
+}
+
+.btn-ghost-w {
+  background:transparent; color:rgba(255,255,255,0.75);
+  font-size:0.9rem; font-weight:600;
+  padding:15px 26px; border-radius:8px;
+  text-decoration:none; display:inline-block;
+  border:2px solid rgba(255,255,255,0.15); transition:all 0.25s;
+}
+
+.btn-ghost-w:hover { border-color:var(--blue2); color:var(--blue2); }
+
+.hero-proof {
+  display:flex; gap:28px; flex-wrap:wrap; margin-top:40px;
+  animation:fup 0.7s ease 0.4s both;
+}
+
+.proof-item {
+  display:flex; align-items:center; gap:8px;
+  font-size:0.82rem; color:rgba(255,255,255,0.4); font-weight:500;
+}
+
+.proof-icon { font-size:0.9rem; }
+
+/* ─── HERO VISUAL: GATE FLOW DIAGRAM ─────── */
+.hero-visual {
+  padding:60px 48px 60px 24px;
+  position:relative; z-index:2;
+  display:flex; align-items:center; justify-content:center;
+}
+
+@media(max-width:900px){ .hero-visual { padding:32px 24px 60px; } }
+
+.gate-ui {
+  width:100%; max-width:380px;
+  display:flex; flex-direction:column; gap:10px;
+}
+
+/* Mock device header */
+.device-header {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px 12px 0 0;
+  padding:10px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+
+.dev-title {
+  font-family:'Fira Code', monospace;
+  font-size:0.62rem; letter-spacing:2px;
+  color:rgba(255,255,255,0.4); text-transform:uppercase;
+}
+
+.dev-status {
+  display:flex; align-items:center; gap:6px;
+  font-family:'Fira Code', monospace;
+  font-size:0.6rem; color:var(--lime2);
+}
+
+.dev-dot {
+  width:6px; height:6px; background:var(--lime2);
+  border-radius:50%; animation:dot-blink 1.5s ease-in-out infinite;
+}
+
+/* Tablet search screen */
+.screen-card {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.09);
+  border-top:none; border-radius:0 0 12px 12px;
+  padding:20px;
+}
+
+.search-bar {
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(59,130,246,0.3);
+  border-radius:8px; padding:10px 14px;
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:14px;
+}
+
+.search-placeholder {
+  font-family:'Fira Code', monospace;
+  font-size:0.75rem; color:rgba(255,255,255,0.35);
+  flex:1;
+}
+
+.search-cursor {
+  width:2px; height:14px; background:var(--blue2);
+  animation:cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,100%{opacity:1;} 50%{opacity:0;}
+}
+
+/* Student list */
+.student-list { display:flex; flex-direction:column; gap:6px; }
+
+.stu-row {
+  display:flex; align-items:center; gap:12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px; padding:10px 12px;
+  transition:all 0.3s; cursor:pointer;
+}
+
+.stu-row.active {
+  background:rgba(37,99,235,0.15);
+  border-color:rgba(59,130,246,0.5);
+}
+
+.stu-avatar {
+  width:32px; height:32px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.9rem; flex-shrink:0;
+}
+
+.stu-row.active .stu-avatar { background:rgba(37,99,235,0.3); }
+
+.stu-name {
+  font-weight:600; font-size:0.82rem;
+  color:rgba(255,255,255,0.7); flex:1;
+}
+
+.stu-row.active .stu-name { color:white; }
+
+.stu-class {
+  font-family:'Fira Code', monospace;
+  font-size:0.62rem; color:rgba(255,255,255,0.3);
+}
+
+.stu-row.active .stu-class { color:var(--blue2); }
+
+/* PIN pad overlay */
+.pin-overlay {
+  background:rgba(8,13,26,0.95);
+  border:1px solid rgba(59,130,246,0.3);
+  border-radius:10px; padding:16px;
+  margin-top:10px;
+  animation:pinSlide 0.4s ease;
+}
+
+@keyframes pinSlide {
+  from{opacity:0;transform:translateY(8px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.pin-label {
+  font-family:'Fira Code', monospace;
+  font-size:0.62rem; letter-spacing:2px;
+  color:var(--blue2); text-transform:uppercase;
+  text-align:center; margin-bottom:12px;
+}
+
+.pin-dots {
+  display:flex; justify-content:center; gap:10px;
+  margin-bottom:12px;
+}
+
+.pin-dot-item {
+  width:12px; height:12px;
+  border:2px solid rgba(255,255,255,0.2);
+  border-radius:50%;
+  transition:all 0.3s;
+}
+
+.pin-dot-item.filled {
+  background:var(--blue);
+  border-color:var(--blue);
+}
+
+.pin-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+}
+
+.pin-key {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px; padding:10px 6px;
+  text-align:center;
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:700; font-size:1rem; color:rgba(255,255,255,0.8);
+  cursor:pointer; transition:all 0.15s;
+}
+
+.pin-key:hover { background:rgba(37,99,235,0.25); border-color:var(--blue); }
+
+/* Access granted strip */
+.access-granted {
+  background:rgba(101,163,13,0.12);
+  border:1px solid rgba(101,163,13,0.35);
+  border-radius:8px; padding:12px 16px;
+  display:flex; align-items:center; gap:10px;
+  margin-top:10px;
+  animation:grantSlide 0.5s ease;
+}
+
+@keyframes grantSlide {
+  from{opacity:0;transform:scale(0.96);}
+  to{opacity:1;transform:scale(1);}
+}
+
+.ag-icon { font-size:1.3rem; }
+.ag-text { }
+
+.ag-title {
+  font-family:'Fira Code', monospace;
+  font-size:0.65rem; letter-spacing:2px;
+  color:var(--lime2); text-transform:uppercase; margin-bottom:2px;
+}
+
+.ag-name {
+  font-weight:700; font-size:0.85rem; color:rgba(255,255,255,0.9);
+}
+
+/* ESP32 announcement */
+.esp-announce {
+  background:rgba(234,88,12,0.1);
+  border:1px solid rgba(234,88,12,0.3);
+  border-radius:8px; padding:12px 14px;
+  margin-top:10px;
+  display:flex; align-items:center; gap:12px;
+  animation:grantSlide 0.5s ease 0.3s both;
+}
+
+.esp-wave {
+  display:flex; align-items:center; gap:2px; height:20px; flex-shrink:0;
+}
+
+.esp-bar {
+  width:3px; background:var(--orange);
+  border-radius:2px; height:5px;
+  animation:espWave 0.5s ease-in-out infinite;
+}
+
+.esp-bar:nth-child(2){animation-delay:0.1s;}
+.esp-bar:nth-child(3){animation-delay:0.2s;}
+.esp-bar:nth-child(4){animation-delay:0.1s;}
+.esp-bar:nth-child(5){animation-delay:0s;}
+
+@keyframes espWave {
+  0%,100%{height:4px;} 50%{height:16px;}
+}
+
+.esp-msg {
+  font-family:'Fira Code', monospace;
+  font-size:0.7rem; color:rgba(255,255,255,0.75);
+  line-height:1.5; letter-spacing:0.2px;
+}
+
+.esp-msg strong { color:#FCA5A5; }
+
+/* ─── PROBLEM STRIP ───────────────────────── */
+.problem-strip {
+  background:var(--orange-pale);
+  border-top:1px solid rgba(234,88,12,0.15);
+  border-bottom:1px solid rgba(234,88,12,0.15);
+  padding:36px 20px;
+  position:relative; z-index:1;
+}
+
+.problem-inner {
+  max-width:960px; margin:0 auto;
+  display:grid; grid-template-columns:auto 1fr auto;
+  gap:24px; align-items:center;
+}
+
+@media(max-width:640px){ .problem-inner{grid-template-columns:1fr;text-align:center;} }
+
+.problem-label {
+  font-family:'Fira Code', monospace;
+  font-size:0.65rem; letter-spacing:3px;
+  color:var(--orange); text-transform:uppercase;
+  display:flex; flex-direction:column; gap:4px;
+  font-weight:600;
+}
+
+.problem-items {
+  display:flex; gap:20px; flex-wrap:wrap; justify-content:center;
+}
+
+.prob-pill {
+  display:flex; align-items:center; gap:8px;
+  background:rgba(234,88,12,0.08);
+  border:1px solid rgba(234,88,12,0.2);
+  padding:8px 16px; border-radius:40px;
+  font-size:0.83rem; color:var(--orange); font-weight:600;
+}
+
+.solution-label {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:1rem; font-weight:800;
+  color:var(--blue); text-align:right;
+  line-height:1.3;
+}
+
+/* ─── SECTIONS ────────────────────────────── */
+section { position:relative; z-index:1; }
+.container { max-width:1080px; margin:0 auto; padding:0 24px; }
+.sp { padding:96px 0; }
+
+.ey {
+  font-family:'Fira Code', monospace;
+  font-size:0.67rem; letter-spacing:3px;
+  color:var(--blue); text-transform:uppercase;
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:14px;
+}
+
+.ey::before { content:'//'; opacity:0.5; font-size:0.6rem; }
+
+.st {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:clamp(1.9rem,3.8vw,3rem);
+  font-weight:800; color:var(--text);
+  line-height:1.1; margin-bottom:14px;
+  letter-spacing:-0.5px;
+}
+
+.st .blue { color:var(--blue); }
+.st .lime { color:var(--lime); }
+
+.ss {
+  font-size:1rem; color:var(--text2);
+  line-height:1.8; font-weight:400; max-width:540px;
+}
+
+/* ─── HOW IT WORKS ────────────────────────── */
+.how-section { background:white; }
+
+.how-layout {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:72px; align-items:start; margin-top:60px;
+}
+
+@media(max-width:800px){ .how-layout{grid-template-columns:1fr;gap:48px;} }
+
+/* Flow cards */
+.flow-cards { display:flex; flex-direction:column; gap:0; }
+
+.flow-card {
+  display:flex; gap:0; position:relative;
+}
+
+.flow-card::after {
+  content:'';
+  position:absolute; left:22px; top:48px; bottom:0;
+  width:2px;
+  background:linear-gradient(to bottom, rgba(37,99,235,0.3), transparent);
+}
+
+.flow-card:last-child::after { display:none; }
+
+.flow-left {
+  display:flex; flex-direction:column; align-items:center;
+  padding-right:18px; padding-bottom:32px; position:relative; z-index:1;
+}
+
+.flow-circle {
+  width:46px; height:46px;
+  background:var(--ink); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; flex-shrink:0;
+  box-shadow:0 4px 12px rgba(8,13,26,0.15);
+  transition:transform 0.3s;
+}
+
+.flow-card:hover .flow-circle { transform:scale(1.08); }
+
+.flow-body { padding:8px 0 32px; }
+
+.flow-title {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:700; font-size:0.96rem;
+  color:var(--ink); margin-bottom:6px;
+}
+
+.flow-desc {
+  font-size:0.87rem; color:var(--text2);
+  line-height:1.75; font-weight:400;
+}
+
+.flow-tag {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--blue-pale);
+  border:1px solid rgba(37,99,235,0.2);
+  color:var(--blue);
+  font-family:'Fira Code', monospace;
+  font-size:0.6rem; letter-spacing:1.5px;
+  padding:3px 10px; border-radius:4px;
+  margin-top:8px; text-transform:uppercase;
+}
+
+.flow-tag.lime { background:var(--lime-pale); border-color:rgba(101,163,13,0.25); color:var(--lime); }
+.flow-tag.orange { background:var(--orange-pale); border-color:rgba(234,88,12,0.2); color:var(--orange); }
+
+/* ─── LIVE DEMO PANEL ─────────────────────── */
+.demo-panel {
+  background:var(--ink);
+  border-radius:18px; padding:0;
+  overflow:hidden;
+  box-shadow:var(--sh-lg);
+  position:sticky; top:100px;
+}
+
+.demo-panel-head {
+  padding:16px 22px;
+  background:rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  display:flex; align-items:center; gap:10px;
+}
+
+.demo-dots { display:flex; gap:6px; }
+.demo-dots span {
+  width:10px; height:10px; border-radius:50%;
+}
+
+.demo-dots span:nth-child(1){background:#EF4444;}
+.demo-dots span:nth-child(2){background:#F59E0B;}
+.demo-dots span:nth-child(3){background:#22C55E;}
+
+.demo-head-title {
+  font-family:'Fira Code', monospace;
+  font-size:0.62rem; letter-spacing:2px;
+  color:rgba(255,255,255,0.3); flex:1; text-align:center;
+  text-transform:uppercase;
+}
+
+.demo-body { padding:20px; }
+
+/* Tab switcher */
+.scenario-tabs {
+  display:flex; gap:6px; margin-bottom:16px;
+}
+
+.sc-tab {
+  flex:1; background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px; padding:8px 10px;
+  text-align:center; cursor:pointer; transition:all 0.2s;
+}
+
+.sc-tab.on {
+  background:rgba(37,99,235,0.2);
+  border-color:rgba(59,130,246,0.4);
+}
+
+.sc-tab-label {
+  font-family:'Fira Code', monospace;
+  font-size:0.58rem; letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.sc-tab:not(.on) .sc-tab-label { color:rgba(255,255,255,0.3); }
+.sc-tab.on .sc-tab-label { color:var(--blue2); }
+
+.sc-tab-icon { font-size:1rem; display:block; margin-bottom:4px; }
+
+/* demo content areas */
+.demo-content { display:none; }
+.demo-content.show { display:block; }
+
+/* reuse gate-ui components inside demo */
+.demo-body .search-bar { margin-bottom:12px; }
+.demo-body .student-list { margin-bottom:10px; }
+
+/* ESP HUB card */
+.esp-hub-card {
+  background:rgba(234,88,12,0.08);
+  border:1px solid rgba(234,88,12,0.25);
+  border-radius:10px; padding:16px;
+  margin-top:12px;
+}
+
+.esp-hub-head {
+  display:flex; align-items:center; gap:10px; margin-bottom:12px;
+}
+
+.esp-hub-icon {
+  width:36px; height:36px;
+  background:rgba(234,88,12,0.15);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; flex-shrink:0;
+  animation:espGlow 2s ease-in-out infinite;
+}
+
+@keyframes espGlow {
+  0%,100%{box-shadow:0 0 0 0 rgba(234,88,12,0.3);}
+  50%{box-shadow:0 0 10px rgba(234,88,12,0.4);}
+}
+
+.esp-hub-label {
+  font-family:'Fira Code', monospace;
+  font-size:0.6rem; letter-spacing:2px;
+  color:var(--orange); text-transform:uppercase; margin-bottom:3px;
+}
+
+.esp-hub-name {
+  font-weight:600; font-size:0.82rem; color:rgba(255,255,255,0.8);
+}
+
+.esp-hub-msg {
+  font-family:'Fira Code', monospace;
+  font-size:0.72rem; color:rgba(255,255,255,0.7);
+  line-height:1.6; background:rgba(0,0,0,0.2);
+  border-radius:6px; padding:10px 12px;
+  border-left:3px solid var(--orange);
+}
+
+.esp-hub-msg strong { color:#FCA5A5; }
+
+/* ─── FLOW LOG ────────────────────────────── */
+.flow-log { display:flex; flex-direction:column; gap:6px; margin-top:12px; }
+
+.log-row {
+  display:flex; align-items:center; gap:10px;
+  font-family:'Fira Code', monospace;
+  font-size:0.67rem; padding:7px 10px;
+  border-radius:5px; background:rgba(255,255,255,0.03);
+  border-left:2px solid transparent;
+}
+
+.log-row.in { border-color:var(--lime2); }
+.log-row.out { border-color:var(--blue2); }
+.log-row.alert { border-color:var(--orange); }
+
+.log-time { color:rgba(255,255,255,0.25); font-size:0.6rem; flex-shrink:0; }
+.log-text { color:rgba(255,255,255,0.6); }
+.log-text strong { color:rgba(255,255,255,0.9); }
+.log-badge {
+  margin-left:auto; padding:2px 8px;
+  border-radius:3px; font-size:0.55rem; letter-spacing:1px; text-transform:uppercase; flex-shrink:0;
+}
+
+.log-row.in .log-badge { background:rgba(101,163,13,0.15); color:var(--lime2); }
+.log-row.out .log-badge { background:rgba(37,99,235,0.15); color:var(--blue2); }
+.log-row.alert .log-badge { background:rgba(234,88,12,0.15); color:var(--orange); }
+
+/* ─── FEATURES ────────────────────────────── */
+.features-section { background:var(--off); }
+.feat-head { text-align:center; margin-bottom:56px; }
+.feat-head .ss { margin:0 auto; }
+
+.feat-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+}
+
+@media(max-width:860px){.feat-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.feat-grid{grid-template-columns:1fr;}}
+
+.feat-card {
+  background:white; border:1px solid var(--border2);
+  border-radius:14px; padding:26px 22px;
+  transition:all 0.3s; position:relative; overflow:hidden;
+}
+
+.feat-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  transform:scaleX(0); transform-origin:left; transition:transform 0.3s;
+}
+
+.feat-card.blue-accent::before { background:linear-gradient(90deg,var(--blue),var(--blue2)); }
+.feat-card.lime-accent::before { background:linear-gradient(90deg,var(--lime),var(--lime2)); }
+.feat-card.orange-accent::before { background:linear-gradient(90deg,var(--orange),#FB923C); }
+
+.feat-card:hover { transform:translateY(-4px); box-shadow:var(--sh-md); border-color:transparent; }
+.feat-card:hover::before { transform:scaleX(1); }
+
+.fc-ico {
+  width:48px; height:48px;
+  background:var(--off); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; margin-bottom:16px;
+  transition:background 0.3s;
+}
+
+.blue-accent:hover .fc-ico { background:var(--blue-pale); }
+.lime-accent:hover .fc-ico { background:var(--lime-pale); }
+.orange-accent:hover .fc-ico { background:var(--orange-pale); }
+
+.fc-title {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:700; font-size:0.94rem;
+  color:var(--ink); margin-bottom:8px;
+}
+
+.fc-desc {
+  font-size:0.85rem; color:var(--text2);
+  line-height:1.75; font-weight:400;
+}
+
+/* ─── COMPARISON ──────────────────────────── */
+.compare-section {
+  background:var(--ink);
+  padding:96px 0; position:relative; overflow:hidden;
+}
+
+.compare-section::after {
+  content:'';
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:800px; height:800px;
+  background:radial-gradient(circle, rgba(37,99,235,0.05), transparent 70%);
+  pointer-events:none;
+}
+
+.compare-section .st { color:white; }
+.compare-section .ss { color:rgba(255,255,255,0.5); }
+
+.compare-grid {
+  display:grid; grid-template-columns:1fr 60px 1fr;
+  gap:20px; align-items:start; margin-top:56px;
+}
+
+@media(max-width:700px){
+  .compare-grid{grid-template-columns:1fr;} .vs-sep{display:none;}
+}
+
+.cmp-col {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px; padding:28px 22px;
+}
+
+.cmp-col.winner {
+  background:rgba(37,99,235,0.08);
+  border-color:rgba(59,130,246,0.3);
+}
+
+.cmp-badge {
+  font-family:'Fira Code', monospace;
+  font-size:0.6rem; letter-spacing:2px;
+  text-transform:uppercase; padding:4px 12px;
+  border-radius:4px; display:inline-block; margin-bottom:16px;
+}
+
+.cmp-col:not(.winner) .cmp-badge { background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.3); }
+.cmp-col.winner .cmp-badge { background:rgba(37,99,235,0.2); color:var(--blue2); }
+
+.cmp-title {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:1.2rem; font-weight:800;
+  margin-bottom:18px; letter-spacing:-0.3px;
+}
+
+.cmp-col:not(.winner) .cmp-title { color:rgba(255,255,255,0.4); }
+.cmp-col.winner .cmp-title { color:white; }
+
+.cmp-items { display:flex; flex-direction:column; gap:10px; }
+
+.cmp-item {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:0.85rem; line-height:1.5;
+}
+
+.cmp-col:not(.winner) .cmp-item { color:rgba(255,255,255,0.3); }
+.cmp-col.winner .cmp-item { color:rgba(255,255,255,0.8); }
+
+.cx { color:#EF4444; font-size:0.72rem; margin-top:2px; flex-shrink:0; }
+.ck { color:var(--lime2); font-size:0.72rem; margin-top:2px; flex-shrink:0; }
+
+.vs-sep {
+  display:flex; align-items:center; justify-content:center;
+  margin-top:80px;
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:1.3rem; font-weight:800;
+  color:rgba(255,255,255,0.1);
+}
+
+/* ─── OFFLINE BADGE ───────────────────────── */
+.offline-section { background:white; }
+
+.offline-layout {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:72px; align-items:center;
+}
+
+@media(max-width:800px){.offline-layout{grid-template-columns:1fr;gap:48px;}}
+
+.offline-visual {
+  background:var(--ink);
+  border-radius:18px; padding:32px;
+  position:relative; overflow:hidden;
+}
+
+.offline-visual::before {
+  content:'';
+  position:absolute; top:-40px; right:-40px;
+  width:200px; height:200px;
+  background:radial-gradient(circle, rgba(101,163,13,0.12), transparent 70%);
+}
+
+.no-wifi-display {
+  text-align:center; margin-bottom:28px; position:relative; z-index:1;
+}
+
+.no-wifi-icons {
+  display:flex; justify-content:center; gap:16px;
+  margin-bottom:16px;
+}
+
+.no-icon {
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+
+.no-icon-wrap {
+  width:52px; height:52px;
+  background:rgba(239,68,68,0.1);
+  border:1px solid rgba(239,68,68,0.25);
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; position:relative;
+}
+
+.no-icon-wrap::after {
+  content:'✕';
+  position:absolute; top:-6px; right:-6px;
+  width:16px; height:16px;
+  background:#EF4444; color:white;
+  border-radius:50%; font-size:0.55rem;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; line-height:16px; text-align:center;
+}
+
+.no-icon-label {
+  font-family:'Fira Code', monospace;
+  font-size:0.58rem; letter-spacing:1px;
+  color:rgba(255,255,255,0.3); text-transform:uppercase;
+}
+
+.offline-headline {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:1.5rem; font-weight:800;
+  color:var(--lime2); text-align:center;
+  margin-bottom:6px;
+}
+
+.offline-sub {
+  font-size:0.8rem; color:rgba(255,255,255,0.4);
+  text-align:center; line-height:1.6;
+}
+
+.apk-badge {
+  background:rgba(37,99,235,0.1);
+  border:1px solid rgba(59,130,246,0.3);
+  border-radius:10px; padding:14px 18px;
+  display:flex; align-items:center; gap:14px;
+  margin-top:20px; position:relative; z-index:1;
+}
+
+.apk-icon { font-size:1.6rem; flex-shrink:0; }
+
+.apk-title {
+  font-family:'Fira Code', monospace;
+  font-size:0.62rem; letter-spacing:2px;
+  color:var(--blue2); text-transform:uppercase; margin-bottom:4px;
+}
+
+.apk-desc {
+  font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.5;
+}
+
+.offline-list { display:flex; flex-direction:column; gap:16px; }
+
+.ol-row {
+  display:flex; gap:14px; align-items:flex-start;
+  padding:16px; border-radius:10px; transition:background 0.2s;
+}
+
+.ol-row:hover { background:var(--off); }
+
+.ol-icon {
+  width:38px; height:38px;
+  background:var(--blue-pale);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; flex-shrink:0;
+}
+
+.ol-title { font-weight:700; font-size:0.93rem; color:var(--ink); margin-bottom:4px; }
+.ol-desc { font-size:0.85rem; color:var(--text2); line-height:1.7; }
+
+/* ─── HARDWARE ────────────────────────────── */
+.hardware-section {
+  background:var(--off);
+  padding:96px 0;
+}
+
+.hw-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:24px; margin-top:56px;
+}
+
+@media(max-width:640px){.hw-grid{grid-template-columns:1fr;}}
+
+.hw-card {
+  background:white; border:1px solid var(--border2);
+  border-radius:16px; padding:28px 24px;
+  transition:all 0.3s;
+}
+
+.hw-card:hover { transform:translateY(-4px); box-shadow:var(--sh-md); }
+
+.hw-icon-row {
+  display:flex; align-items:center; gap:14px; margin-bottom:16px;
+}
+
+.hw-icon {
+  width:52px; height:52px;
+  background:var(--ink); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.6rem;
+}
+
+.hw-name {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:800; font-size:1.1rem;
+  color:var(--ink); margin-bottom:2px;
+}
+
+.hw-tag {
+  font-family:'Fira Code', monospace;
+  font-size:0.6rem; letter-spacing:2px;
+  color:var(--blue); text-transform:uppercase;
+}
+
+.hw-desc {
+  font-size:0.87rem; color:var(--text2);
+  line-height:1.75; margin-bottom:16px;
+}
+
+.hw-specs { display:flex; flex-direction:column; gap:8px; }
+
+.hw-spec-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:7px 0; border-bottom:1px solid var(--border);
+  font-size:0.83rem;
+}
+
+.hw-spec-row:last-child { border:none; }
+.hw-spec-label { color:var(--muted); }
+.hw-spec-val {
+  font-family:'Fira Code', monospace;
+  color:var(--blue); font-weight:500; font-size:0.78rem;
+}
+
+/* ─── FORM ────────────────────────────────── */
+.form-section {
+  background:var(--ink); padding:96px 0; position:relative;
+  overflow:hidden;
+}
+
+.form-section::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:radial-gradient(circle, rgba(37,99,235,0.08) 1px, transparent 1px);
+  background-size:36px 36px; pointer-events:none;
+}
+
+.form-layout {
+  display:grid; grid-template-columns:1fr 1.2fr;
+  gap:64px; align-items:start;
+}
+
+@media(max-width:900px){.form-layout{grid-template-columns:1fr;gap:48px;}}
+
+.form-sidebar .ss { color:rgba(255,255,255,0.5); margin-bottom:32px; }
+.form-sidebar .st { color:white; }
+.form-sidebar .ey { color:var(--blue2); }
+
+.sidebar-promises { display:flex; flex-direction:column; gap:16px; margin-top:32px; }
+
+.sp-row {
+  display:flex; gap:12px; align-items:flex-start;
+}
+
+.sp-bullet {
+  width:6px; height:6px; background:var(--blue2);
+  border-radius:50%; flex-shrink:0; margin-top:8px;
+}
+
+.sp-text {
+  font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.65;
+}
+
+.sp-text strong { color:rgba(255,255,255,0.85); font-weight:700; }
+
+.contact-dark {
+  margin-top:40px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px; padding:22px;
+}
+
+.cd-head {
+  font-family:'Fira Code', monospace;
+  font-size:0.58rem; letter-spacing:3px;
+  color:var(--blue2); text-transform:uppercase; margin-bottom:14px;
+}
+
+.cd-item {
+  font-size:0.85rem; color:rgba(255,255,255,0.4);
+  margin-bottom:8px; display:flex; gap:8px;
+}
+
+.cd-item:last-child{margin:0;}
+.cd-item a{color:rgba(255,255,255,0.7);text-decoration:none;}
+.cd-item a:hover{color:var(--blue2);}
+
+/* ─── THE FORM CARD ───────────────────────── */
+.form-card {
+  background:white; border-radius:18px;
+  padding:clamp(24px,5vw,48px);
+  box-shadow:var(--sh-lg); position:relative;
+}
+
+.form-card::before {
+  content:''; position:absolute; top:0; left:32px; right:32px; height:4px;
+  background:linear-gradient(90deg, var(--blue), var(--lime2), var(--blue));
+  border-radius:0 0 4px 4px;
+}
+
+.fh {
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-size:1.7rem; font-weight:800;
+  color:var(--ink); margin-bottom:4px; letter-spacing:-0.5px;
+}
+
+.fh .blue{color:var(--blue);}
+
+.fsub {
+  font-size:0.87rem; color:var(--muted);
+  margin-bottom:26px; line-height:1.55;
+}
+
+.f-div {
+  font-family:'Fira Code', monospace;
+  font-size:0.58rem; letter-spacing:3px;
+  color:var(--muted); text-transform:uppercase;
+  display:flex; align-items:center; gap:10px;
+  margin:20px 0 14px;
+}
+
+.f-div::after{content:'';flex:1;height:1px;background:var(--border2);}
+
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.f-grid{grid-template-columns:1fr;}}
+
+.f-g{display:flex;flex-direction:column;gap:6px;}
+.f-g.full{grid-column:1/-1;}
+
+.f-g label{
+  font-size:0.69rem;font-weight:700;
+  letter-spacing:0.5px;color:var(--text2);text-transform:uppercase;
+}
+
+.f-g input,.f-g select,.f-g textarea{
+  background:var(--off);
+  border:1.5px solid var(--border2);
+  color:var(--text);font-family:'Outfit',sans-serif;
+  font-size:0.9rem;padding:11px 13px;
+  outline:none;border-radius:8px;
+  transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+
+.f-g select option{background:white;color:var(--text);}
+
+.f-g input:focus,.f-g select:focus,.f-g textarea:focus{
+  border-color:var(--blue);
+  background:white;
+  box-shadow:0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.f-g textarea{resize:vertical;min-height:80px;line-height:1.6;}
+
+/* chips */
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;}
+
+.ch {
+  background:var(--off); border:1.5px solid var(--border2);
+  color:var(--text2); font-size:0.81rem; font-weight:600;
+  padding:7px 14px; border-radius:40px;
+  cursor:pointer; transition:all 0.2s; white-space:nowrap;
+}
+
+.ch:hover{border-color:var(--blue);color:var(--blue);}
+.ch.on{background:var(--blue);border-color:var(--blue);color:white;}
+
+/* submit */
+.sub-btn {
+  width:100%;
+  background:var(--ink);color:white;
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1rem; font-weight:800; letter-spacing:0.3px;
+  padding:18px; border:none; border-radius:10px;
+  cursor:pointer; transition:all 0.25s;
+  position:relative; overflow:hidden;
+}
+
+.sub-btn::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.07) 50%,transparent 60%);
+  transform:translateX(-100%); transition:transform 0.5s;
+}
+
+.sub-btn:hover::after{transform:translateX(100%);}
+.sub-btn:hover{background:var(--ink2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(8,13,26,0.4);}
+.sub-btn:disabled{opacity:0.55;cursor:not-allowed;transform:none;}
+
+.sub-note-txt{
+  text-align:center;font-size:0.76rem;color:var(--muted);
+  margin-top:12px;line-height:1.6;
+}
+
+/* ─── SUCCESS ─────────────────────────────── */
+.success-state{display:none;text-align:center;padding:48px 20px;}
+.success-state.show{display:block;}
+
+.success-icon{
+  width:72px;height:72px;
+  background:var(--ink);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;margin:0 auto 20px;
+  animation:iconIn 0.5s ease;
+}
+
+@keyframes iconIn{
+  from{transform:scale(0) rotate(-15deg);opacity:0;}
+  to{transform:scale(1) rotate(0);opacity:1;}
+}
+
+.success-title{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.8rem;font-weight:800;color:var(--ink);
+  margin-bottom:12px;letter-spacing:-0.5px;
+}
+
+.success-body{
+  font-size:0.93rem;color:var(--text2);
+  line-height:1.85;max-width:360px;margin:0 auto;
+}
+
+/* ─── FOOTER ──────────────────────────────── */
+footer{background:var(--ink2);padding:52px 24px;position:relative;z-index:1;}
+
+.ft-grid{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:48px;
+}
+
+@media(max-width:640px){.ft-grid{grid-template-columns:1fr;gap:32px;}}
+
+.ft-brand{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.5rem;font-weight:800;color:white;margin-bottom:8px;
+  letter-spacing:-0.3px;
+}
+
+.ft-brand span{color:var(--blue2);}
+
+.ft-tag{font-size:0.82rem;color:rgba(255,255,255,0.3);line-height:1.7;font-weight:300;}
+
+.ft-col-h{
+  font-family:'Fira Code',monospace;
+  font-size:0.58rem;letter-spacing:3px;
+  color:var(--blue2);text-transform:uppercase;margin-bottom:16px;
+}
+
+.ft-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+
+.ft-list a{
+  font-size:0.84rem;color:rgba(255,255,255,0.4);
+  text-decoration:none;transition:color 0.2s;
+}
+
+.ft-list a:hover{color:rgba(255,255,255,0.9);}
+
+.ft-contacts{display:flex;flex-direction:column;gap:10px;}
+
+.ft-ci{font-size:0.84rem;color:rgba(255,255,255,0.4);display:flex;gap:8px;}
+.ft-ci a{color:rgba(255,255,255,0.65);text-decoration:none;}
+.ft-ci a:hover{color:var(--blue2);}
+
+.ft-bar{
+  max-width:1080px;margin:40px auto 0;
+  padding-top:22px;border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+
+.ft-copy{font-size:0.75rem;color:rgba(255,255,255,0.2);}
+.ft-copy a{color:rgba(255,255,255,0.35);text-decoration:none;}
+
+/* ─── TOAST ───────────────────────────────── */
+.toast{
+  position:fixed;bottom:28px;right:28px;
+  background:var(--ink);border-left:4px solid var(--blue);
+  color:rgba(255,255,255,0.9);font-size:0.83rem;
+  padding:14px 20px;border-radius:10px;box-shadow:var(--sh-lg);
+  z-index:9999;transform:translateY(80px);opacity:0;
+  transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events:none;max-width:300px;
+}
+
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ─── ANIMS ───────────────────────────────── */
+@keyframes fup{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-mark">SP</div>
+    <div class="nav-name">School<span>Pass</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel-panic-button.html">Hotel</a></li>
+    <li><a href="hospital_panic_buttun.html">Hospital</a></li>
+    <li><a href="school_panic_button.html">School</a></li>
+    <li><a href="bloom_guard.html">Bloom</a></li>
+    <li><a href="schoolPass.html">SchPass</a></li>
+    
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#hardware">Hardware</a></li>
+    <li><a href="#request" class="nav-demo">Get a Demo</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-chip"><div class="chip-dot"></div>Voddic LTD · Smart School Security</div>
+    <h1>
+      No Paper.<br>
+      No <span class="blue-w">Sign-In</span><br>
+      Books. <span class="lime-w">Ever Again.</span>
+    </h1>
+    <p class="hero-sub">
+      <strong>SchoolPass</strong> replaces paper gate registers with a PIN-secured digital system. Parents tap, enter PIN, and your ESP32 hub announces the student's arrival or dismissal — school-wide. <strong>100% offline. No internet. No WiFi. Just works.</strong>
+    </p>
+    <div class="hero-btns">
+      <a href="#request" class="btn-blue">Get a Demo →</a>
+      <a href="#how-it-works" class="btn-ghost-w">See How It Works</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item"><span class="proof-icon">📵</span> Fully offline APK</div>
+      <div class="proof-item"><span class="proof-icon">🔐</span> PIN-secured per child</div>
+      <div class="proof-item"><span class="proof-icon">📢</span> ESP32 announcement hub</div>
+    </div>
+  </div>
+
+  <!-- ANIMATED GATE UI -->
+  <div class="hero-visual">
+    <div class="gate-ui">
+      <div class="device-header">
+        <div class="dev-title">SchoolPass · Gate Terminal</div>
+        <div class="dev-status"><div class="dev-dot"></div>OFFLINE · SECURE</div>
+      </div>
+      <div class="screen-card">
+        <div class="search-bar">
+          <span style="font-size:0.9rem;">🔍</span>
+          <span class="search-placeholder" id="searchPlaceholder">Search student name...</span>
+          <div class="search-cursor"></div>
+        </div>
+        <div class="student-list" id="studentList">
+          <div class="stu-row">
+            <div class="stu-avatar">👦</div>
+            <div class="stu-name">Adebayo Michael</div>
+            <div class="stu-class">JSS 2A</div>
+          </div>
+          <div class="stu-row active" id="activeRow">
+            <div class="stu-avatar" id="activeAvatar">👧</div>
+            <div class="stu-name" id="activeName">Okonkwo Chidera</div>
+            <div class="stu-class" id="activeClass">JSS 1B</div>
+          </div>
+          <div class="stu-row">
+            <div class="stu-avatar">👦</div>
+            <div class="stu-name">Eze Emmanuel</div>
+            <div class="stu-class">SSS 3C</div>
+          </div>
+        </div>
+        <div class="pin-overlay" id="pinOverlay">
+          <div class="pin-label">Enter Parent / Guardian PIN</div>
+          <div class="pin-dots">
+            <div class="pin-dot-item" id="pd1"></div>
+            <div class="pin-dot-item" id="pd2"></div>
+            <div class="pin-dot-item" id="pd3"></div>
+            <div class="pin-dot-item" id="pd4"></div>
+          </div>
+          <div class="pin-grid">
+            <div class="pin-key">1</div><div class="pin-key">2</div><div class="pin-key">3</div>
+            <div class="pin-key">4</div><div class="pin-key">5</div><div class="pin-key">6</div>
+            <div class="pin-key">7</div><div class="pin-key">8</div><div class="pin-key">9</div>
+            <div class="pin-key">⌫</div><div class="pin-key">0</div><div class="pin-key">✓</div>
+          </div>
+        </div>
+        <div class="access-granted" id="accessGranted" style="display:none;">
+          <div class="ag-icon">✅</div>
+          <div class="ag-text">
+            <div class="ag-title">Access Granted · Logged IN</div>
+            <div class="ag-name" id="grantName">Okonkwo Chidera — JSS 1B</div>
+          </div>
+        </div>
+        <div class="esp-announce" id="espAnnounce" style="display:none;">
+          <div class="esp-wave">
+            <div class="esp-bar"></div><div class="esp-bar"></div>
+            <div class="esp-bar"></div><div class="esp-bar"></div>
+            <div class="esp-bar"></div>
+          </div>
+          <div class="esp-msg">📢 <strong>"Okonkwo Chidera, JSS 1B"</strong> — student has arrived at the gate. Proceed to classroom.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PROBLEM STRIP ─────────────────────────── -->
+<div class="problem-strip">
+  <div class="problem-inner">
+    <div class="problem-label">
+      ❌ The Old Way
+    </div>
+    <div class="problem-items">
+      <div class="prob-pill">📋 Paper register everyone touches</div>
+      <div class="prob-pill">✍️ Slow manual signing in/out</div>
+      <div class="prob-pill">🔍 No way to verify who's picking up</div>
+      <div class="prob-pill">📢 Manual calling across the school</div>
+      <div class="prob-pill">🗂️ No digital record or audit trail</div>
+    </div>
+    <div class="solution-label">SchoolPass<br>fixes all of this ✓</div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ──────────────────────────── -->
+<section class="how-section sp" id="how-it-works">
+  <div class="container">
+    <div class="how-layout">
+      <div>
+        <div class="ey reveal">Step-by-Step Flow</div>
+        <h2 class="st reveal">Secure entry & exit in <span class="blue">under 10 seconds.</span></h2>
+        <p class="ss reveal">The entire process — from parent arriving at the gate to the classroom announcement — takes less time than writing a name in a paper book.</p>
+
+        <div class="flow-cards" style="margin-top:40px;">
+
+          <div class="flow-card reveal">
+            <div class="flow-left">
+              <div class="flow-circle">🏫</div>
+            </div>
+            <div class="flow-body">
+              <div class="flow-title">Parent / Guardian Arrives at Gate</div>
+              <div class="flow-desc">Security or the gate attendant opens the SchoolPass tablet app. No internet connection needed — it runs entirely offline on the Android device.</div>
+              <div class="flow-tag">Offline APK · No WiFi</div>
+            </div>
+          </div>
+
+          <div class="flow-card reveal">
+            <div class="flow-left">
+              <div class="flow-circle">🔍</div>
+            </div>
+            <div class="flow-body">
+              <div class="flow-title">Security Searches the Student Name</div>
+              <div class="flow-desc">The gate attendant types the student's name or scrolls through the list. Each student's photo, class, and approved guardian list appears instantly from the local database.</div>
+              <div class="flow-tag">Local Database · Instant Search</div>
+            </div>
+          </div>
+
+          <div class="flow-card reveal">
+            <div class="flow-left">
+              <div class="flow-circle">🔐</div>
+            </div>
+            <div class="flow-body">
+              <div class="flow-title">Parent or Guardian Enters Their Secret PIN</div>
+              <div class="flow-desc">The parent types their personal PIN — set during registration. Only registered guardians with the correct PIN can sign a student in or out. No PIN match, no access. Wrong PIN attempts are logged.</div>
+              <div class="flow-tag lime">PIN Secured · Per Guardian</div>
+            </div>
+          </div>
+
+          <div class="flow-card reveal">
+            <div class="flow-left">
+              <div class="flow-circle">✅</div>
+            </div>
+            <div class="flow-body">
+              <div class="flow-title">Student Logged IN — Entry Timestamped</div>
+              <div class="flow-desc">The system logs the exact date and time of entry, the guardian's name, and the PIN verified. A full digital audit trail is built automatically with zero manual effort from staff.</div>
+              <div class="flow-tag">Digital Log · Auto Timestamp</div>
+            </div>
+          </div>
+
+          <div class="flow-card reveal">
+            <div class="flow-left">
+              <div class="flow-circle">📢</div>
+            </div>
+            <div class="flow-body">
+              <div class="flow-title">ESP32 Hub Announces Arrival School-Wide</div>
+              <div class="flow-desc">The gate terminal sends a signal to the ESP32 announcement hub. Speakers throughout the school broadcast the student's name and class — confirming safe arrival to teachers and staff automatically.</div>
+              <div class="flow-tag orange">ESP32 Hub · PA Announcement</div>
+            </div>
+          </div>
+
+          <div class="flow-card reveal">
+            <div class="flow-left">
+              <div class="flow-circle">🚪</div>
+            </div>
+            <div class="flow-body">
+              <div class="flow-title">Dismissal: Classroom Announcement for Pickup</div>
+              <div class="flow-desc">At closing, the same process runs in reverse. After PIN verification at the gate, the ESP32 hub in the student's specific classroom announces their name to come to the gate — no manual teacher calling needed.</div>
+              <div class="flow-tag orange">Classroom Speaker · Smart Dismissal</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LIVE DEMO PANEL -->
+      <div class="demo-panel reveal">
+        <div class="demo-panel-head">
+          <div class="demo-dots"><span></span><span></span><span></span></div>
+          <div class="demo-head-title">SchoolPass · Live Scenarios</div>
+          <div style="width:52px;"></div>
+        </div>
+        <div class="demo-body">
+
+          <div class="scenario-tabs">
+            <div class="sc-tab on" onclick="switchTab('morning')">
+              <span class="sc-tab-icon">🌅</span>
+              <div class="sc-tab-label">Morning</div>
+            </div>
+            <div class="sc-tab" onclick="switchTab('dismissal')">
+              <span class="sc-tab-icon">🏠</span>
+              <div class="sc-tab-label">Dismissal</div>
+            </div>
+            <div class="sc-tab" onclick="switchTab('log')">
+              <span class="sc-tab-icon">📋</span>
+              <div class="sc-tab-label">Log</div>
+            </div>
+          </div>
+
+          <!-- MORNING ARRIVAL -->
+          <div class="demo-content show" id="tab-morning">
+            <div class="search-bar">
+              <span>🔍</span>
+              <span class="search-placeholder">Okonkwo Chidera...</span>
+            </div>
+            <div class="student-list" style="margin-bottom:10px;">
+              <div class="stu-row active">
+                <div class="stu-avatar">👧</div>
+                <div class="stu-name">Okonkwo Chidera</div>
+                <div class="stu-class">JSS 1B</div>
+              </div>
+            </div>
+            <div class="pin-overlay" style="margin-bottom:0;">
+              <div class="pin-label">Guardian PIN Verified ✓</div>
+              <div class="pin-dots">
+                <div class="pin-dot-item filled"></div>
+                <div class="pin-dot-item filled"></div>
+                <div class="pin-dot-item filled"></div>
+                <div class="pin-dot-item filled"></div>
+              </div>
+            </div>
+            <div class="access-granted" style="margin-top:10px;">
+              <div class="ag-icon">✅</div>
+              <div class="ag-text">
+                <div class="ag-title">Access Granted · 07:42 AM · IN</div>
+                <div class="ag-name">Okonkwo Chidera — JSS 1B</div>
+              </div>
+            </div>
+            <div class="esp-hub-card" style="margin-top:10px;">
+              <div class="esp-hub-head">
+                <div class="esp-hub-icon">📡</div>
+                <div>
+                  <div class="esp-hub-label">ESP32 Main Hub · Broadcast</div>
+                  <div class="esp-hub-name">School Entrance Speakers</div>
+                </div>
+              </div>
+              <div class="esp-hub-msg">"Attention please — <strong>Okonkwo Chidera</strong>, JSS 1B, has arrived at school. Welcome."</div>
+            </div>
+          </div>
+
+          <!-- DISMISSAL -->
+          <div class="demo-content" id="tab-dismissal">
+            <div class="search-bar">
+              <span>🔍</span>
+              <span class="search-placeholder">Adebayo Michael...</span>
+            </div>
+            <div class="student-list" style="margin-bottom:10px;">
+              <div class="stu-row active">
+                <div class="stu-avatar">👦</div>
+                <div class="stu-name">Adebayo Michael</div>
+                <div class="stu-class">JSS 2A</div>
+              </div>
+            </div>
+            <div class="access-granted" style="background:rgba(37,99,235,0.12);border-color:rgba(59,130,246,0.4);">
+              <div class="ag-icon">🚪</div>
+              <div class="ag-text">
+                <div class="ag-title" style="color:var(--blue2);">PIN Verified · 02:15 PM · OUT</div>
+                <div class="ag-name">Adebayo Michael — JSS 2A</div>
+              </div>
+            </div>
+            <div class="esp-hub-card" style="margin-top:10px;">
+              <div class="esp-hub-head">
+                <div class="esp-hub-icon">📡</div>
+                <div>
+                  <div class="esp-hub-label">ESP32 Hub · Classroom JSS 2A</div>
+                  <div class="esp-hub-name">In-Classroom Speaker</div>
+                </div>
+              </div>
+              <div class="esp-hub-msg">"<strong>Adebayo Michael</strong> — your parent is at the gate. Please proceed to the school gate. Thank you."</div>
+            </div>
+          </div>
+
+          <!-- LOG -->
+          <div class="demo-content" id="tab-log">
+            <div style="font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:10px;">Today's Movement Log</div>
+            <div class="flow-log">
+              <div class="log-row in">
+                <span class="log-time">07:38</span>
+                <span class="log-text"><strong>Eze Emmanuel</strong> · SSS 3C</span>
+                <span class="log-badge">IN</span>
+              </div>
+              <div class="log-row in">
+                <span class="log-time">07:42</span>
+                <span class="log-text"><strong>Okonkwo Chidera</strong> · JSS 1B</span>
+                <span class="log-badge">IN</span>
+              </div>
+              <div class="log-row in">
+                <span class="log-time">07:55</span>
+                <span class="log-text"><strong>Adebayo Michael</strong> · JSS 2A</span>
+                <span class="log-badge">IN</span>
+              </div>
+              <div class="log-row alert">
+                <span class="log-time">09:12</span>
+                <span class="log-text"><strong>Unknown PIN</strong> · 3 attempts</span>
+                <span class="log-badge">⚠ ALERT</span>
+              </div>
+              <div class="log-row out">
+                <span class="log-time">14:15</span>
+                <span class="log-text"><strong>Adebayo Michael</strong> · JSS 2A</span>
+                <span class="log-badge">OUT</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ───────────────────────────────── -->
+<section class="features-section sp" id="features">
+  <div class="container">
+    <div class="feat-head">
+      <div class="ey reveal">Core Features</div>
+      <h2 class="st reveal">Everything your school gate needs. <span class="blue">Nothing more.</span></h2>
+      <p class="ss reveal">Built lean, built for schools that need reliability, security, and simplicity — not complexity.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card blue-accent reveal">
+        <div class="fc-ico">📵</div>
+        <div class="fc-title">100% Offline — No Internet Ever Needed</div>
+        <div class="fc-desc">The Android APK runs entirely from the device's local storage. No WiFi, no data, no cloud dependency. It works on the cheapest Android tablet you have in the school.</div>
+      </div>
+      <div class="feat-card lime-accent reveal">
+        <div class="fc-ico">🔐</div>
+        <div class="fc-title">PIN-Secured Per Guardian</div>
+        <div class="fc-desc">Every registered parent or guardian gets a unique 4-digit PIN. Only the PIN holder can sign their child in or out. Unverified adults cannot remove a student from school premises.</div>
+      </div>
+      <div class="feat-card orange-accent reveal">
+        <div class="fc-ico">📢</div>
+        <div class="fc-title">ESP32 PA Announcement Hub</div>
+        <div class="fc-desc">The gate tablet communicates with the ESP32 hub via Bluetooth or local RF — no internet required. Speakers at the entrance and in classrooms announce arrivals and dismissals automatically.</div>
+      </div>
+      <div class="feat-card blue-accent reveal">
+        <div class="fc-ico">🏫</div>
+        <div class="fc-title">Classroom-Specific Dismissal Calls</div>
+        <div class="fc-desc">When a parent checks out a student at closing, the ESP32 unit in that student's specific classroom announces their name — so only the right child is called, no disruption to other classes.</div>
+      </div>
+      <div class="feat-card lime-accent reveal">
+        <div class="fc-ico">📋</div>
+        <div class="fc-title">Automatic Digital Attendance Log</div>
+        <div class="fc-desc">Every entry and exit is timestamped, tied to a guardian name, and stored locally. Exportable daily, weekly, or termly reports. No more lost paper registers or illegible handwriting.</div>
+      </div>
+      <div class="feat-card orange-accent reveal">
+        <div class="fc-ico">⚠️</div>
+        <div class="fc-title">Wrong PIN Alert & Lockout</div>
+        <div class="fc-desc">Three consecutive wrong PIN attempts triggers an alert and temporarily locks the profile. Security is notified immediately — preventing brute-force or impersonation attempts at the gate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPARISON ──────────────────────────────── -->
+<section class="compare-section">
+  <div class="container">
+    <div class="ey reveal" style="color:var(--blue2);">Why SchoolPass</div>
+    <h2 class="st reveal">Paper registers are a <span style="color:#EF4444;">security risk.</span> Not just an inconvenience.</h2>
+    <p class="ss reveal">Anyone can write any name in a paper book. Anyone can pretend to be a guardian. SchoolPass makes unauthorised pickup impossible.</p>
+
+    <div class="compare-grid">
+      <div class="cmp-col">
+        <span class="cmp-badge">Old Method</span>
+        <div class="cmp-title">Paper Sign-In Book</div>
+        <div class="cmp-items">
+          <div class="cmp-item"><span class="cx">✕</span> Anyone can sign any name — no verification</div>
+          <div class="cmp-item"><span class="cx">✕</span> Slow — queues at gate during rush hours</div>
+          <div class="cmp-item"><span class="cx">✕</span> Illegible handwriting, lost books</div>
+          <div class="cmp-item"><span class="cx">✕</span> No record of who actually collected the child</div>
+          <div class="cmp-item"><span class="cx">✕</span> Manual shouting / PA calling across school</div>
+          <div class="cmp-item"><span class="cx">✕</span> No way to detect unauthorised pickup attempts</div>
+          <div class="cmp-item"><span class="cx">✕</span> Can't prove what time a child left school</div>
+        </div>
+      </div>
+
+      <div class="vs-sep">vs</div>
+
+      <div class="cmp-col winner">
+        <span class="cmp-badge">✓ SchoolPass</span>
+        <div class="cmp-title">Digital SchoolPass</div>
+        <div class="cmp-items">
+          <div class="cmp-item"><span class="ck">✓</span> PIN verification — only registered guardians access</div>
+          <div class="cmp-item"><span class="ck">✓</span> Under 10 seconds per student check-in</div>
+          <div class="cmp-item"><span class="ck">✓</span> Clean digital record, never lost or damaged</div>
+          <div class="cmp-item"><span class="ck">✓</span> Full audit trail — guardian name, time, PIN used</div>
+          <div class="cmp-item"><span class="ck">✓</span> Automated ESP32 PA announcement system</div>
+          <div class="cmp-item"><span class="ck">✓</span> Wrong PIN attempts logged and alerted</div>
+          <div class="cmp-item"><span class="ck">✓</span> Timestamped proof of every movement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── OFFLINE SECTION ─────────────────────────── -->
+<section class="offline-section sp">
+  <div class="container">
+    <div class="offline-layout">
+      <div>
+        <div class="ey reveal">Offline-First Architecture</div>
+        <h2 class="st reveal">No internet. <span class="lime">No problem.</span> Ever.</h2>
+        <p class="ss reveal">We built SchoolPass from the ground up for schools where internet is unreliable, expensive, or simply unavailable. The system never needs a connection to function.</p>
+
+        <div class="offline-list" style="margin-top:36px;">
+          <div class="ol-row reveal">
+            <div class="ol-icon">📱</div>
+            <div>
+              <div class="ol-title">Android APK — Installs Once, Works Forever</div>
+              <div class="ol-desc">Install the APK on any Android tablet or phone at the gate. All student data, guardian PINs, and logs are stored locally. No app store, no updates required unless you want new features.</div>
+            </div>
+          </div>
+          <div class="ol-row reveal">
+            <div class="ol-icon">📡</div>
+            <div>
+              <div class="ol-title">ESP32 Hub Connects via Bluetooth / RF</div>
+              <div class="ol-desc">The gate tablet communicates with the ESP32 announcement hub using Bluetooth or a local RF signal — completely bypassing the internet. If one hub is in the corridor and one is in each classroom, they all receive the signal.</div>
+            </div>
+          </div>
+          <div class="ol-row reveal">
+            <div class="ol-icon">🔋</div>
+            <div>
+              <div class="ol-title">Works Through Power Interruptions</div>
+              <div class="ol-desc">The Android device runs on battery. The ESP32 hub is backed by a small rechargeable cell. NEPA outages don't stop the school gate from operating securely.</div>
+            </div>
+          </div>
+          <div class="ol-row reveal">
+            <div class="ol-icon">💾</div>
+            <div>
+              <div class="ol-title">Data Export When Needed</div>
+              <div class="ol-desc">When you want reports, connect to a local hotspot and export the term's attendance data as a spreadsheet or PDF. No cloud needed — you control your data entirely.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offline-visual reveal">
+        <div class="no-wifi-display">
+          <div class="no-wifi-icons">
+            <div class="no-icon">
+              <div class="no-icon-wrap">📶</div>
+              <div class="no-icon-label">WiFi</div>
+            </div>
+            <div class="no-icon">
+              <div class="no-icon-wrap">🌐</div>
+              <div class="no-icon-label">Internet</div>
+            </div>
+            <div class="no-icon">
+              <div class="no-icon-wrap">☁️</div>
+              <div class="no-icon-label">Cloud</div>
+            </div>
+          </div>
+          <div class="offline-headline">None Required.</div>
+          <div class="offline-sub">SchoolPass runs 100% on-device.<br>Your school data never leaves your premises.</div>
+        </div>
+
+        <div class="apk-badge">
+          <div class="apk-icon">🤖</div>
+          <div>
+            <div class="apk-title">Android APK · Offline</div>
+            <div class="apk-desc">Installs on any Android 6.0+ device. Works on tablets or phones. No Play Store needed. Single installation, lifetime use.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding:14px;background:rgba(101,163,13,0.08);border:1px solid rgba(101,163,13,0.25);border-radius:8px;">
+          <div style="font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:2px;color:var(--lime2);text-transform:uppercase;margin-bottom:8px;">System Status</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;">
+              <span style="color:rgba(255,255,255,0.45);">Gate Terminal</span>
+              <span style="color:var(--lime2);font-family:'Fira Code',monospace;font-size:0.72rem;">ONLINE · LOCAL</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;">
+              <span style="color:rgba(255,255,255,0.45);">ESP32 Hub (Main)</span>
+              <span style="color:var(--lime2);font-family:'Fira Code',monospace;font-size:0.72rem;">CONNECTED · BT</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;">
+              <span style="color:rgba(255,255,255,0.45);">Classroom Hubs (8)</span>
+              <span style="color:var(--lime2);font-family:'Fira Code',monospace;font-size:0.72rem;">ALL ACTIVE</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;">
+              <span style="color:rgba(255,255,255,0.45);">Internet Connection</span>
+              <span style="color:rgba(239,68,68,0.8);font-family:'Fira Code',monospace;font-size:0.72rem;">NOT REQUIRED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HARDWARE ───────────────────────────────── -->
+<section class="hardware-section sp" id="hardware">
+  <div class="container">
+    <div class="feat-head">
+      <div class="ey reveal">What's In The Kit</div>
+      <h2 class="st reveal">Two components. <span class="blue">Complete system.</span></h2>
+      <p class="ss reveal">SchoolPass ships as a complete kit — the Android gate app and the ESP32 announcement hub. Everything you need, nothing you don't.</p>
+    </div>
+    <div class="hw-grid">
+      <div class="hw-card reveal">
+        <div class="hw-icon-row">
+          <div class="hw-icon">📱</div>
+          <div>
+            <div class="hw-name">Gate Terminal App</div>
+            <div class="hw-tag">Android APK · Offline</div>
+          </div>
+        </div>
+        <div class="hw-desc">The SchoolPass Android application installed at the school gate on a tablet or phone. Runs entirely offline. Manages the student database, guardian PINs, search, check-in, check-out, and movement logs.</div>
+        <div class="hw-specs">
+          <div class="hw-spec-row"><span class="hw-spec-label">Platform</span><span class="hw-spec-val">Android 6.0+</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Connectivity</span><span class="hw-spec-val">Offline / Bluetooth</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Storage</span><span class="hw-spec-val">Local SQLite DB</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Internet Required</span><span class="hw-spec-val">None</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Students per school</span><span class="hw-spec-val">Unlimited</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Check-in time</span><span class="hw-spec-val">&lt; 10 seconds</span></div>
+        </div>
+      </div>
+      <div class="hw-card reveal">
+        <div class="hw-icon-row">
+          <div class="hw-icon">📡</div>
+          <div>
+            <div class="hw-name">ESP32 Announcement Hub</div>
+            <div class="hw-tag">Hardware · PA Speaker System</div>
+          </div>
+        </div>
+        <div class="hw-desc">A compact ESP32-powered device connected to your school's PA speakers or dedicated speakers. Receives signals from the gate terminal and broadcasts voice announcements — at the gate and in individual classrooms.</div>
+        <div class="hw-specs">
+          <div class="hw-spec-row"><span class="hw-spec-label">Controller</span><span class="hw-spec-val">ESP32 Module</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Signal method</span><span class="hw-spec-val">Bluetooth / Local RF</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Speaker output</span><span class="hw-spec-val">PA or standalone</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Power</span><span class="hw-spec-val">Mains + battery backup</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Hubs per school</span><span class="hw-spec-val">1 per classroom</span></div>
+          <div class="hw-spec-row"><span class="hw-spec-label">Announcement delay</span><span class="hw-spec-val">&lt; 2 seconds</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEMO REQUEST FORM ───────────────────────── -->
+
+<section class="form-section" id="request">
+  <div class="container">
+    <div class="form-layout">
+
+      <div class="form-sidebar">
+        <div class="ey reveal">Get Started</div>
+        <h2 class="st reveal">Request a Live <span class="blue">School Demo</span></h2>
+        <p class="ss reveal">Tell us about your school and we'll bring SchoolPass to your campus for a live demonstration — showing the full check-in, announcement, and dismissal flow in your actual gate environment.</p>
+
+        <div class="sidebar-promises">
+          <div class="sp-row reveal">
+            <div class="sp-bullet"></div>
+            <div class="sp-text"><strong>Live gate demo</strong> — we set up the tablet and ESP32 hub at your actual school gate and run a full test.</div>
+          </div>
+          <div class="sp-row reveal">
+            <div class="sp-bullet"></div>
+            <div class="sp-text"><strong>Custom school setup</strong> — we configure it with your student list, class structure, and number of classrooms needing hubs.</div>
+          </div>
+          <div class="sp-row reveal">
+            <div class="sp-bullet"></div>
+            <div class="sp-text"><strong>No commitment required</strong> — the demonstration is completely free with no obligation to purchase.</div>
+          </div>
+          <div class="sp-row reveal">
+            <div class="sp-bullet"></div>
+            <div class="sp-text"><strong>Response in 24 hours</strong> — our team will confirm your demo time and prepare the setup for your school.</div>
+          </div>
+        </div>
+
+        <div class="contact-dark reveal">
+          <div class="cd-head">Direct Contact</div>
+          <div class="cd-item">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+          <div class="cd-item">📱 <a href="https://wa.me/2348127633556">WhatsApp us</a></div>
+          <div class="cd-item">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+          <div class="cd-item">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <div id="formContent">
+          <h3 class="fh">School <span class="blue">Demo Request</span></h3>
+          <p class="fsub">Takes under 2 minutes. We'll handle everything else.</p>
+
+          <!-- Formspree endpoint -->
+          <form id="demoForm" action="https://formspree.io/f/mpqjgoep" method="POST">
+
+            <input type="hidden" name="student_count" id="h_students">
+            <input type="hidden" name="classrooms" id="h_classes">
+            <input type="hidden" name="demo_preference" id="h_demo">
+            <input type="hidden" name="urgency" id="h_urgency">
+
+            <!-- SCHOOL INFO -->
+            <div class="f-div">School Information</div>
+            <div class="f-grid">
+              <div class="f-g">
+                <label for="sch_name">School Name *</label>
+                <input type="text" id="sch_name" name="school_name" placeholder="Excel Academy..." required>
+              </div>
+              <div class="f-g">
+                <label for="sch_type">School Type</label>
+                <select id="sch_type" name="school_type">
+                  <option value="">Select...</option>
+                  <option>Primary School</option>
+                  <option>Secondary School</option>
+                  <option>Boarding School</option>
+                  <option>Nursery & Primary</option>
+                  <option>Nursery, Primary & Secondary</option>
+                  <option>International School</option>
+                  <option>University / Polytechnic</option>
+                  <option>Vocational School</option>
+                </select>
+              </div>
+              <div class="f-g">
+                <label for="sch_city">City / State *</label>
+                <input type="text" id="sch_city" name="city_state" placeholder="Lagos, Abuja..." required>
+              </div>
+              <div class="f-g">
+                <label for="sch_gates">Number of Gate Entrances</label>
+                <input type="number" id="sch_gates" name="gate_count" placeholder="e.g. 1" min="1">
+              </div>
+              <div class="f-g full">
+                <label for="sch_addr">School Address</label>
+                <input type="text" id="sch_addr" name="address" placeholder="Street, Area, City">
+              </div>
+            </div>
+
+            <!-- STUDENT COUNT -->
+            <div class="f-div">Student Population</div>
+            <div class="f-g full">
+              <label>Approximate number of students *</label>
+              <div class="chip-row" id="studentChips">
+                <div class="ch" data-val="Under 100" onclick="pickCh(this,'studentChips','h_students')">Under 100</div>
+                <div class="ch" data-val="100–300" onclick="pickCh(this,'studentChips','h_students')">100–300</div>
+                <div class="ch" data-val="300–600" onclick="pickCh(this,'studentChips','h_students')">300–600</div>
+                <div class="ch" data-val="600–1,000" onclick="pickCh(this,'studentChips','h_students')">600–1,000</div>
+                <div class="ch" data-val="1,000+" onclick="pickCh(this,'studentChips','h_students')">1,000+</div>
+              </div>
+            </div>
+
+            <!-- CLASSROOMS -->
+            <div class="f-div">Classrooms Needing Hubs</div>
+            <div class="f-g full">
+              <label>How many classrooms need an ESP32 announcement hub?</label>
+              <div class="chip-row" id="classChips">
+                <div class="ch" data-val="1–5 classrooms" onclick="pickCh(this,'classChips','h_classes')">1–5</div>
+                <div class="ch" data-val="6–12 classrooms" onclick="pickCh(this,'classChips','h_classes')">6–12</div>
+                <div class="ch" data-val="13–20 classrooms" onclick="pickCh(this,'classChips','h_classes')">13–20</div>
+                <div class="ch" data-val="20+ classrooms" onclick="pickCh(this,'classChips','h_classes')">20+</div>
+              </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="f-div">Contact Person</div>
+            <div class="f-grid">
+              <div class="f-g">
+                <label for="c_name">Full Name *</label>
+                <input type="text" id="c_name" name="contact_name" placeholder="Principal, Admin..." required>
+              </div>
+              <div class="f-g">
+                <label for="c_role">Role / Title</label>
+                <input type="text" id="c_role" name="role" placeholder="Principal, Proprietor...">
+              </div>
+              <div class="f-g">
+                <label for="c_phone">Phone / WhatsApp *</label>
+                <input type="tel" id="c_phone" name="phone" placeholder="+234 800 000 0000" required>
+              </div>
+              <div class="f-g">
+                <label for="c_email">Email Address *</label>
+                <input type="email" id="c_email" name="email" placeholder="admin@school.edu.ng" required>
+              </div>
+            </div>
+
+            <!-- DEMO PREF -->
+            <div class="f-div">Demo Preference</div>
+            <div class="f-g full">
+              <label>How would you prefer the demo?</label>
+              <div class="chip-row" id="demoChips">
+                <div class="ch" data-val="On-site at our school" onclick="pickCh(this,'demoChips','h_demo')">On-site at school</div>
+                <div class="ch" data-val="Video call walkthrough" onclick="pickCh(this,'demoChips','h_demo')">Video call</div>
+                <div class="ch" data-val="Visit Voddic office" onclick="pickCh(this,'demoChips','h_demo')">Visit your office</div>
+              </div>
+            </div>
+
+            <div class="f-g full" style="margin-top:12px;">
+              <label>When do you need this live?</label>
+              <div class="chip-row" id="urgChips">
+                <div class="ch" data-val="ASAP — this term" onclick="pickCh(this,'urgChips','h_urgency')">This term</div>
+                <div class="ch" data-val="Next term" onclick="pickCh(this,'urgChips','h_urgency')">Next term</div>
+                <div class="ch" data-val="Next academic year" onclick="pickCh(this,'urgChips','h_urgency')">Next year</div>
+                <div class="ch" data-val="Just exploring" onclick="pickCh(this,'urgChips','h_urgency')">Just exploring</div>
+              </div>
+            </div>
+
+            <!-- NOTES -->
+            <div class="f-div">Additional Information</div>
+            <div class="f-g full">
+              <label for="notes">Any specific questions or requirements?</label>
+              <textarea id="notes" name="notes" placeholder="Tell us about your current gate process, any specific security concerns, existing PA system, number of gate staff, budget questions, or anything else we should know..."></textarea>
+            </div>
+
+            <div style="margin-top:26px;">
+              <button type="submit" class="sub-btn" id="submitBtn">Request My School Demo →</button>
+              <p class="sub-note-txt">No commitment required. We'll respond within 24 hours to confirm your demo date.</p>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="success-state" id="successState">
+          <div class="success-icon">🏫</div>
+          <div class="success-title">Demo Requested!</div>
+          <p class="success-body">
+            Thank you. Our team at <strong>Voddic LTD</strong> will contact you within <strong>24 hours</strong> to schedule your SchoolPass demo.<br><br>
+            For a faster response, WhatsApp us at <a href="https://wa.me/2348127633556" style="color:var(--blue);font-weight:700;">+234 812 763 3556</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────── -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">School<span>Pass</span></div>
+      <div class="ft-tag">A Voddic LTD product. Secure, offline-first digital gate management for schools and colleges — replacing paper registers with PIN-secured, ESP32-announced student movement tracking.</div>
+    </div>
+    <div>
+      <div class="ft-col-h">Navigation</div>
+      <ul class="ft-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#request">Request Demo</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Contact</div>
+      <div class="ft-contacts">
+        <div class="ft-ci">📞 <a href="tel:+2348127633556">+234 812 763 3556</a></div>
+        <div class="ft-ci">📱 <a href="https://wa.me/2348127633556">WhatsApp</a></div>
+        <div class="ft-ci">📧 <a href="mailto:info@voddic.com.ng">info@voddic.com.ng</a></div>
+        <div class="ft-ci">🌐 <a href="https://voddic.com.ng" target="_blank">voddic.com.ng</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bar">
+    <div class="ft-copy">© 2026 Voddic LTD. All rights reserved. — <a href="https://voddic.com.ng">voddic.com.ng</a></div>
+    <div class="ft-copy">SchoolPass — Digital Student Gate Management System</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── NAV SCROLL ────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── REVEALS ───────────────────────────────────
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 55);
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ─── DEMO TAB SWITCHER ─────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.sc-tab').forEach((t,i) => {
+    t.classList.toggle('on', ['morning','dismissal','log'][i] === id);
+  });
+  document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('show'));
+  document.getElementById('tab-' + id).classList.add('show');
+}
+
+// ─── HERO ANIMATION SEQUENCE ───────────────────
+(function() {
+  const stages = [
+    // Stage 1: searching — show list, no pin, no granted, no announce
+    () => {
+      document.getElementById('pinOverlay').style.display = 'block';
+      document.getElementById('accessGranted').style.display = 'none';
+      document.getElementById('espAnnounce').style.display = 'none';
+      // fill 0 dots
+      for (let i=1;i<=4;i++) document.getElementById('pd'+i).classList.remove('filled');
+    },
+    // Stage 2: fill dots one by one
+    () => { document.getElementById('pd1').classList.add('filled'); },
+    () => { document.getElementById('pd2').classList.add('filled'); },
+    () => { document.getElementById('pd3').classList.add('filled'); },
+    () => { document.getElementById('pd4').classList.add('filled'); },
+    // Stage 3: granted
+    () => {
+      document.getElementById('pinOverlay').style.display = 'none';
+      document.getElementById('accessGranted').style.display = 'flex';
+    },
+    // Stage 4: ESP announce
+    () => {
+      document.getElementById('espAnnounce').style.display = 'flex';
+    },
+    // Stage 5: reset after pause
+    () => {
+      // will loop back
+    }
+  ];
+
+  const delays = [0, 800, 1400, 2000, 2600, 3400, 4200, 7000];
+  let cycle = 0;
+
+  function runCycle() {
+    stages.forEach((fn, i) => {
+      setTimeout(fn, delays[i]);
+    });
+    // after last stage + pause, reset and cycle again
+    setTimeout(() => {
+      // reset
+      document.getElementById('pinOverlay').style.display = 'block';
+      document.getElementById('accessGranted').style.display = 'none';
+      document.getElementById('espAnnounce').style.display = 'none';
+      for (let i=1;i<=4;i++) document.getElementById('pd'+i).classList.remove('filled');
+      setTimeout(runCycle, 1000);
+    }, 9000);
+  }
+
+  runCycle();
+})();
+
+// ─── CHIPS ────────────────────────────────────
+function pickCh(el, groupId, hiddenId) {
+  document.querySelectorAll('#' + groupId + ' .ch').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById(hiddenId).value = el.dataset.val;
+}
+
+// ─── FORM SUBMIT ──────────────────────────────
+document.getElementById('demoForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!document.getElementById('h_students').value) {
+    showToast('Please select your approximate student count.'); return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const resp = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (resp.ok) {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successState').classList.add('show');
+      document.getElementById('request').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Request My School Demo →';
+      showToast('Submission failed. Please try again or contact us directly.');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Request My School Demo →';
+    showToast('Network error — please check your connection.');
+  }
+});
+
+// ─── TOAST ────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+</script>
+
+        <!--Site Footer Two Start-->
+       <footer class="site-footer-two">
+        <div class="site-footer-two__shape-1 float-bob-x">
+            <img src="assets/images/shapes/site-footer-two-shape-1.png" alt="">
+        </div>
+        <div class="site-footer-two__shape-2 float-bob-y">
+            <img src="assets/images/shapes/site-footer-two-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="site-footer-two__top">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="footer-widget-two__column footer-widget-two__about">
+                            <div class="footer-widget-two__logo">
+                                <a href="index.html"><img src="assets/images/resources/voddic-ltd.png" width="350" height="250" alt=""></a>
+                            </div>
+                            <p class="footer-widget-two__about-text">Connecting real world devices with different softwares for automation and security puposes.</p>
+                            <div class="site-footer-two__social">
+                               <a href="https://twitter.com/voddicltd" class="fab fa-twitter" target="_blank"></a>
+                               <a href="https://discord.gg/AWnQc2MnUA" class="fab fa-discord" target="_blank"></a>
+    <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a>
+   
+<a href="https://wa.me/2348127633556" class="fab fa-whatsapp" target="_blank" rel="noopener"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="footer-widget-two__column footer-widget-two__usefull-link">
+                            <div class="footer-widget-two__title-box">
+                                <h4 class="footer-widget-two__title">Useful Links</h4>
+                            </div>
+                            <div class="footer-widget-two__link-box">
+                                <ul class="footer-widget-two__link list-unstyled">
+                                    <li><a href="testimonials.html">Testimonials</a></li>
+                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                        <li> <a href="contact.html">Contact</a></li>
+                                </ul>
+                                <ul class="footer-widget-two__link footer-widget-two__link-2 list-unstyled">
+                                    <li><a href="">Ebooks</a></li>
+                                        <li><a href="electrical-portfolio.html">Electrical</a></li>
+                                        <li><a href="industrial-portfolio.html">Industrial</a></li>
+                                        <li><a href="home-automation-portfolio.html">Home Automation</a></li>
+                                        <li><a href="security-portfolio.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="footer-widget-two__column footer-widget-two__services">
+                            <div class="footer-widget-two__title-box">
+                                <h4 class="footer-widget-two__title">Our Services</h4>
+                            </div>
+                            <ul class="footer-widget-two__link list-unstyled">
+                              
+                               
+                                <li><a href="web-development-service.html">Web Development</a></li>
+                                <li><a href="plc-programming-service.html">PLC Programming</a></li>
+                                <li><a href="industrial-automation-service.html">Industrial Automation</a></li>
+                                <li><a href="home-automation-service.html">Home Automation</a></li>
+                                <li><a href="cctv-alarms-service.html">CCTV & Alarms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
+                        <div class="footer-widget-two__column footer-widget-two__instagram">
+                            <div class="footer-widget-two__title-box">
+                                <h4 class="footer-widget-two__title">Telegram</h4>
+                            </div>
+                            <ul class="footer-widget-two__instagram-list list-unstyled clearfix">
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-1.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-2.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-3.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-4.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-5.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-widget-two__instagram-img">
+                                        <img src="assets/images/project/footer-widget-two-instagram-img-6.jpg"
+                                            alt="">
+                                       <a href="https://t.me/voddicltd" class="fab fa-telegram-plane" target="_blank"></a> 
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-two__bottom">
+            <div class="container">
+                <div class="site-footer-two__bottom-inner">
+                    <p class="site-footer-two__bottom-text">© Copywright 2026 by <a href="#">voddic.com.ng</a>. All
+                        Rights Reserved.</p>
+                    <ul class="list-unstyled site-footer-two__bottom-menu">
+                        <li><a href="privacy-policy.html">Privacy & Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms of use</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Site Footer Two End-->
+
+
+
+    
+    </div><!-- /.page-wrapper -->
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/resources/voddic-ltd2.png" width="110" height="85"
+                        alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:voddic28@gmail.com">voddic28@gmail.com</a>
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:812-763-3556">+234 (812) 763 3556</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                   <a href="https://twitter.com/voddicltd"><i class="fab fa-twitter"></i></a>
+                            <a href="https://t.me/voddicltd" target="_blank">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                            <a href="https://discord.gg/AWnQc2MnUA" target="_blank"><i class="fab fa-discord"></i></a>
+
+                           <a href="https://wa.me/2348127633556?text=Hello%2C%20I%20am%20interested%20in%20your%20services." target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                    
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+        <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
+        <span class="scroll-to-top__text"> Go Back Top</span>
+    </a>
+
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jarallax.min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/wNumb.min.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/marquee.min.js"></script>
+    <script src="assets/js/countdown.min.js"></script>
+    <script src="assets/js/gsap/gsap.js"></script>
+    <script src="assets/js/gsap/ScrollTrigger.js"></script>
+    <script src="assets/js/gsap/SplitText.js"></script>
+
+
+<script>
+    // Initialize WOW.js with proper settings
+    $(document).ready(function() {
+        if (typeof WOW !== 'undefined') {
+            var wow = new WOW({
+                boxClass: 'wow',
+                animateClass: 'animated',
+                offset: 0,
+                mobile: true,
+                live: true,
+                callback: function(box) {
+                    // Optional: add class to triggered elements
+                    $(box).addClass('wow-animated');
+                },
+                scrollContainer: null,
+                resetAnimation: true // This is key - allows re-animation on scroll up
+            });
+            wow.init();
+        }
+    });
+</script>
+
+
+  
+<script>
+    // Initialize WOW.js with proper settings
+    $(document).ready(function() {
+        if (typeof WOW !== 'undefined') {
+            var wow = new WOW({
+                boxClass: 'wow',
+                animateClass: 'animated',
+                offset: 0,
+                mobile: true,
+                live: true,
+                callback: function(box) {
+                    // Optional: add class to triggered elements
+                    $(box).addClass('wow-animated');
+                },
+                scrollContainer: null,
+                resetAnimation: true // This is key - allows re-animation on scroll up
+            });
+            wow.init();
+        }
+    });
+</script>
+
+
+    <!-- template js -->
+    <script src="assets/js/script.js"></script>
+
+  
+
+
+<script>
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Stop the page from redirecting
+
+        // Show a "Sending..." state
+        const submitBtn = contactForm.querySelector('button');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = "<span></span>Sending...";
+        submitBtn.disabled = true;
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mpqjgoep", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // SUCCESS POPUP
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your message has been sent successfully.',
+                    icon: 'success',
+                    confirmButtonColor: '#ff5e14', // Match this to your theme color
+                    confirmButtonText: 'OK'
+                });
+                contactForm.reset(); // Clear the form
+            } else {
+                // ERROR POPUP
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Something went wrong. Please try again.',
+                    icon: 'error'
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Could not connect to the server.',
+                icon: 'error'
+            });
+        } finally {
+            // Reset button state
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+
+
+
+</body>
+
+</html>
+
+
